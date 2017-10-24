@@ -28,7 +28,7 @@ import java.io.IOException;
  */
 public class ConfigureABusiness {
   public static void readPersonCSV( Business business){
-       String csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\personList.csv";
+       String csvFile ="TeamCSV\\personList.csv";
         BufferedReader br = null;
         String cvsSplitBy = ",";
          String line = "";
@@ -56,7 +56,7 @@ public class ConfigureABusiness {
     }
   
   public static void readSupplierDirectoryCSV(Business business){
-    String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\supplierCatalog.csv";
+    String csvFile = "TeamCSV\\supplierCatalog.csv";
     BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -86,7 +86,7 @@ public class ConfigureABusiness {
         }
   }
  static void readSupplierProducts(Supplier s){
-    String csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\"+s.getSupplierName()+ ".csv";
+    String csvFile ="TeamCSV\\"+s.getSupplierName()+ ".csv";
 //    if(s.getSupplierName().equals("Apple")){
 //     csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\Apple.csv";
 //    }
@@ -132,7 +132,7 @@ System.out.println(s.getSupplierName());
   }
   
   public static void readMarketList(Business business){
-   String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketList.csv";
+   String csvFile="TeamCSV\\marketList.csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -165,7 +165,7 @@ System.out.println(s.getSupplierName());
   }
   
   static void readCustomerList(Market market){
-     String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\"+market.getName()+".csv";
+     String csvFile="TeamCSV\\"+market.getName()+".csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -208,7 +208,7 @@ System.out.println(s.getSupplierName());
   }return null;
   }  
   public static void readMarketOffer(Business business){
-  String csvFile= "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketOffer.csv";
+  String csvFile= "TeamCSV\\marketOffer.csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -262,7 +262,7 @@ System.out.println(s.getSupplierName());
   
   
   public static void readMasterOrderCatalogCSV(Business business){
-   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\orderCatalog.csv";
+   String csvFile = "TeamCSV\\orderCatalog.csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
@@ -304,7 +304,7 @@ System.out.println(s.getSupplierName());
   }
   
   static void readOrderItemCSV(Order order){
-   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\order"+String.valueOf(order.getOrderNumber())+".csv";
+   String csvFile = "TeamCSV\\order"+String.valueOf(order.getOrderNumber())+".csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
@@ -354,7 +354,7 @@ System.out.println(s.getSupplierName());
           
           
   public static void readAccountsCSV(Business business){
-   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\userAccountList.csv";
+   String csvFile = "TeamCSV\\userAccountList.csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
