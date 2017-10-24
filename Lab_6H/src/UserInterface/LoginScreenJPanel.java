@@ -8,14 +8,12 @@ package UserInterface;
 import Business.Business;
 import Business.Person.UserAccount;
 import UserInterface.Admin.AdminWorkAreaJPanel;
-import UserInterface.MarketManager.Market.SystemAdminWorkAreaJPanel;
 import UserInterface.MarketManager.MarketManagerWorkAreaJPanel1;
 import UserInterface.Salesman.SalesmanWorkAreaJPanel;
 import UserInterface.Supplier.SupplierWorkAreaJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 /**
  *
@@ -38,6 +36,15 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
         txtPassword.setText("");
         txtUsername.setText("");
     }
+    public UserAccount isValidUser(String userid,String pwd){
+        for(UserAccount ua: business.getUserAccountDirectory().getUserAccountList()){
+            if(userid.equals(ua.getUsername())&&pwd.equals(ua.getPassWord())&&ua.isAccountStatus()==true){
+                return ua;
+            }
+        }
+        return null;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -113,9 +120,10 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        UserAccount userAccount = business.getUserAccountDirectory().isValidUser(username, password);
+        UserAccount userAccount = isValidUser(username, password);
         if(userAccount != null){
             switch(userAccount.getRole().intern()){
                 case "System Admin":{
@@ -157,6 +165,7 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(null,"You do not have the authority to enter!");
         }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
