@@ -13,6 +13,8 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Business.Configuration.MD5Util;
+import Business.Person.Salesman;
+import Business.Supplier.Supplier;
 
 /**
  *
@@ -39,10 +41,14 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
             jcbPerson.addItem(p);
         }
         jcbRole.addItem("System Admin");
-        jcbRole.addItem("HR Admin");
-        jcbRole.addItem("Ordinary User");
-        
-
+        jcbRole.addItem("Supplier");
+        jcbRole.addItem("Market Manager");
+        jcbRole.addItem("Sales Person");
+        for(Supplier s:business.getSupplierDirectory().getSupplierDirectory()){
+            jcbSupplier.addItem(s);
+        }
+        jcbSupplier.addItem("null");
+        jcbSupplier.setSelectedItem("null");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -63,6 +69,8 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        jcbSupplier = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel1.setText("Username:");
 
@@ -78,6 +86,12 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Select a role:");
 
+        jcbRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbRoleActionPerformed(evt);
+            }
+        });
+
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,31 +106,39 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        jcbSupplier.setEnabled(false);
+
+        jLabel5.setText("Select a supplier:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnBack)
-                .addGap(0, 417, Short.MAX_VALUE))
+                .addGap(0, 671, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jcbPerson, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtUsername)
-                            .addComponent(txtPassword)
-                            .addComponent(jcbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(324, 324, 324)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(244, 244, 244)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jcbPerson, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtUsername)
+                                .addComponent(txtPassword)
+                                .addComponent(jcbRole, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -124,25 +146,29 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(10, 10, 10)
+                .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jcbPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(18, 18, 18)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jcbRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jcbSupplier, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                 .addComponent(btnCreate)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -177,19 +203,36 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
             }
         }
         
-        UserAccount userAccount = business.getUserAccountDirectory().addUserAccount();
-        userAccount.setUsername(username);
-        userAccount.setPassWord(MD5Util.md5(password));
-        userAccount.setPerson((Person)jcbPerson.getSelectedItem());
-        userAccount.setRole(String.valueOf(jcbRole.getSelectedItem()));
-        userAccount.setAccountStatus(true);
+            
+            UserAccount userAccount = business.getUserAccountDirectory().addUserAccount();
+            userAccount.setUsername(username);
+            userAccount.setPassWord(MD5Util.md5(password));
+            userAccount.setPerson((Person)jcbPerson.getSelectedItem());
+            userAccount.setRole(String.valueOf(jcbRole.getSelectedItem()));
+            userAccount.setAccountStatus(true);
+            userAccount.setSupplier((Supplier)jcbSupplier.getSelectedItem());
+            JOptionPane.showMessageDialog(null,"The user account successfully created!");
         
-        JOptionPane.showMessageDialog(null,"The user account successfully created!");
+        
+        
+        
         txtUsername.setText("");
         txtPassword.setText("");
-        jcbRole.setSelectedItem("Ordinary User");
+        jcbRole.setSelectedItem("System Admin");
+        jcbSupplier.setSelectedItem("null");
         jcbPerson.setSelectedIndex(0);
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void jcbRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbRoleActionPerformed
+        // TODO add your handling code here:
+        if("Supplier".equals(String.valueOf(jcbRole.getSelectedItem()))){
+                jcbSupplier.setEnabled(true);
+            }
+        else{
+                jcbSupplier.setEnabled(false);
+                jcbSupplier.setSelectedItem("null");
+        }
+    }//GEN-LAST:event_jcbRoleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -199,8 +242,10 @@ public class CreateNewUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JComboBox jcbPerson;
     private javax.swing.JComboBox jcbRole;
+    private javax.swing.JComboBox jcbSupplier;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

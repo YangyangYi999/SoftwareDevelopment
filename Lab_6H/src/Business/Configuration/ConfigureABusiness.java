@@ -10,7 +10,10 @@ import Business.Person.Person;
 import Business.Person.PersonDirectory;
 import Business.Person.UserAccount;
 import Business.Person.UserAccountDirectory;
-import Business.Configuration.MD5Util;
+import Business.Supplier.Product;
+import Business.Supplier.ProductCatalog;
+import Business.Supplier.Supplier;
+import Business.Supplier.SupplierDirectory;
 
 /**
  *
@@ -46,6 +49,16 @@ public class ConfigureABusiness {
         p.setFirstName("John");
         p.setLastName("Adam");
         
+        SupplierDirectory sd = b.getSupplierDirectory();
+        Supplier s = sd.addSupplier();
+        
+        s.setSupplierName("YYY");
+        ProductCatalog pc = s.getProductCatalog();
+        Product pro = pc.addProduct();
+        pro.setAvail(5);
+        pro.setProductName("apple");
+        
+        
         UserAccountDirectory uad = b.getUserAccountDirectory();
         Person p2 = pd.findPersonByID(1);
         if(p2!=null){
@@ -57,35 +70,17 @@ public class ConfigureABusiness {
             ua.setAccountStatus(true);
         }
         
-        p2 = pd.findPersonByID(1);
+        p2 = pd.findPersonByID(2);
+        
         if(p2!=null){
             UserAccount ua = uad.addUserAccount();
             ua.setPerson(p2);
             ua.setUsername("yjl2");
             ua.setPassWord(MD5Util.md5("yjl2"));
-            ua.setRole("HR Admin");
+            ua.setRole("Supplier");
+            ua.setSupplier(s);
             ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(1);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("yjl3");
-            ua.setPassWord(MD5Util.md5("yjl3"));
-            ua.setRole("Ordinary User");
-            ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(2);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("wyc");
-            ua.setPassWord(MD5Util.md5("wyc"));
-            ua.setRole("HR Admin");
-            ua.setAccountStatus(true);
-        }
+        }   
         
         p2 = pd.findPersonByID(3);
         if(p2!=null){
@@ -93,7 +88,7 @@ public class ConfigureABusiness {
             ua.setPerson(p2);
             ua.setUsername("yy");
             ua.setPassWord(MD5Util.md5("yy"));
-            ua.setRole("System Admin");
+            ua.setRole("Market Manager");
             ua.setAccountStatus(true);
         }
         
@@ -103,7 +98,7 @@ public class ConfigureABusiness {
             ua.setPerson(p2);
             ua.setUsername("xt");
             ua.setPassWord(MD5Util.md5("xt"));
-            ua.setRole("Ordinary User");
+            ua.setRole("Sales Person");
             ua.setAccountStatus(true);
         }
         

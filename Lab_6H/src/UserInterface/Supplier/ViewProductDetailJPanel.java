@@ -16,18 +16,17 @@ import javax.swing.JPanel;
  */
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    JPanel cardSequenceJPanel;
     Product produdct;
     /**
      * Creates new form ViewProductDetailJPanel
      */
-    public ViewProductDetailJPanel(JPanel userProcessContainer,Product produdct) {
+    public ViewProductDetailJPanel(JPanel cardSequenceJPanel,Product produdct) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.produdct = produdct;
         txtProductName.setText(produdct.getProductName());
-        txtProductID.setText(String.valueOf(produdct.getModelNum()));
-        txtProductPrice.setText(String.valueOf(produdct.getModelNum()));
+        txtProductID.setText(String.valueOf(produdct.getModelNum()));    
         txtAvailability.setText(String.valueOf(produdct.getAvail()));
     }
 
@@ -42,12 +41,10 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
         btnBack = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         txtProductName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtProductID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtProductPrice = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -60,9 +57,8 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("View Product Detail");
-
-        jLabel4.setText("Product Price:");
 
         txtProductName.setEnabled(false);
         txtProductName.addActionListener(new java.awt.event.ActionListener() {
@@ -81,13 +77,6 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         });
 
         jLabel3.setText("Product ID:");
-
-        txtProductPrice.setEnabled(false);
-        txtProductPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProductPriceActionPerformed(evt);
-            }
-        });
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);
@@ -120,19 +109,14 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnBack)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(452, 452, 452)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(357, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(292, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(118, 118, 118)
-                            .addComponent(txtAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnSave)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -145,33 +129,29 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(356, 356, 356))
+                                .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(306, 306, 306))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(298, 298, 298)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(47, 47, 47)
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(28, 28, 28)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtProductName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtProductID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtProductPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel5)
                     .addComponent(txtAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -179,19 +159,19 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSave)
                     .addComponent(btnUpdate))
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
+        cardSequenceJPanel.remove(this);
+        Component[] componentArray = cardSequenceJPanel.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManageProductCatalogJPanel manageProductCatalogJPanel = (ManageProductCatalogJPanel) component;
         manageProductCatalogJPanel.refreshTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtProductNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductNameActionPerformed
@@ -202,14 +182,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtProductIDActionPerformed
 
-    private void txtProductPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtProductPriceActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
         txtProductName.setEnabled(true);
-        txtProductPrice.setEnabled(true);
         btnSave.setEnabled(true);
         btnUpdate.setEnabled(false);
         txtAvailability.setEnabled(true);
@@ -217,12 +192,10 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        produdct.setPrice(Integer.parseInt(txtProductPrice.getText()));
         produdct.setProductName(txtProductName.getText());
         produdct.setAvail(Integer.parseInt(txtAvailability.getText()));
         
         txtProductName.setEnabled(false);
-        txtProductPrice.setEnabled(false);
         btnSave.setEnabled(false);
         btnUpdate.setEnabled(true);
         txtAvailability.setEnabled(false);
@@ -240,11 +213,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtAvailability;
     private javax.swing.JTextField txtProductID;
     private javax.swing.JTextField txtProductName;
-    private javax.swing.JTextField txtProductPrice;
     // End of variables declaration//GEN-END:variables
 }

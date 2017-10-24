@@ -5,8 +5,8 @@
  */
 package UserInterface.Admin.Suppliers;
 
-import Business.Supplier;
-import Business.SupplierDirectory;
+import Business.Supplier.*;
+
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageSuppliersJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    JPanel cardSequenceJPanel;
     SupplierDirectory supplierDirectory;
     /**
      * Creates new form ManageSuppliers
      */
-    public ManageSuppliersJPanel(JPanel userProcessContainer,SupplierDirectory supplierDirectory) {
+    public ManageSuppliersJPanel(JPanel cardSequenceJPanel,SupplierDirectory supplierDirectory) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.supplierDirectory = supplierDirectory;
         populateTable();
     }
@@ -122,12 +122,12 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnBack)))
-                .addGap(107, 107, 107)
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRemove)
                     .addComponent(btnViewSupplier)
@@ -138,10 +138,10 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
 
     private void btnAddSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddSupplierActionPerformed
         // TODO add your handling code here:
-        AddSupplierJPanel as = new AddSupplierJPanel(userProcessContainer,supplierDirectory);
-        userProcessContainer.add("AddSupplierJPanel",as);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer); 
+        AddSupplierJPanel as = new AddSupplierJPanel(cardSequenceJPanel,supplierDirectory);
+        cardSequenceJPanel.add("AddSupplierJPanel",as);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel); 
     }//GEN-LAST:event_btnAddSupplierActionPerformed
 
     private void btnViewSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewSupplierActionPerformed
@@ -153,10 +153,10 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
         }
         else{
             Supplier s = (Supplier)supplierJTable.getValueAt(selectedRow,0);
-            ViewSupplierJPanel panel = new ViewSupplierJPanel(userProcessContainer,s);
-            userProcessContainer.add("ViewSupplierJPanel",panel);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            ViewSupplierJPanel panel = new ViewSupplierJPanel(cardSequenceJPanel,s);
+            cardSequenceJPanel.add("ViewSupplierJPanel",panel);
+            CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+            layout.next(cardSequenceJPanel);
         }
     }//GEN-LAST:event_btnViewSupplierActionPerformed
 
@@ -180,9 +180,9 @@ public class ManageSuppliersJPanel extends javax.swing.JPanel {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

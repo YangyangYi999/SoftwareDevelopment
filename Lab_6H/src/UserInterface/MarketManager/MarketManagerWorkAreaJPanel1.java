@@ -38,7 +38,6 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
         txtUserID.setText(userAccount.getUsername());
         txtRole.setText(userAccount.getRole());
         txtPersonID.setText(String.valueOf(userAccount.getPerson().getPersonID()));
-
     }
     /**
      * This method is called from within the constructor to initialize the form.

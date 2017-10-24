@@ -5,8 +5,8 @@
  */
 package UserInterface.Salesman;
 
-import Business.MasterOrderCatalog;
-import Business.SupplierDirectory;
+import Business.Person.UserAccount;
+import Business.*;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -14,19 +14,21 @@ import javax.swing.JPanel;
  *
  * @author shinychenw
  */
-public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
+public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
-    private SupplierDirectory supplierDirectory;
-    private MasterOrderCatalog masterOrderCatalog;
+    private JPanel cardSequenceJPanel;
+    private Business business;
+    private UserAccount userAccount;
     /**
      * Creates new form CustomerWorkAreaJPanel
      */
-    public CustomerWorkAreaJPanel(JPanel upc, SupplierDirectory s, MasterOrderCatalog m) {
-        initComponents();
-        this.userProcessContainer = upc;
-        this.supplierDirectory = s;
-        this.masterOrderCatalog = m;
+    
+
+    public SalesmanWorkAreaJPanel(JPanel cardSequenceJPanel, Business business, UserAccount userAccount) {
+         initComponents();
+         this.business = business;
+         this.cardSequenceJPanel = cardSequenceJPanel;
+         this.userAccount = userAccount;
     }
 
     /**
@@ -74,10 +76,10 @@ public class CustomerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnBrowseProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductCatalogActionPerformed
         // TODO add your handling code here:
-        BrowseProductsJPanel bpj = new BrowseProductsJPanel(userProcessContainer,supplierDirectory,masterOrderCatalog); 
-        userProcessContainer.add("BrowseProductsJPanel",bpj);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        BrowseProductsJPanel bpj = new BrowseProductsJPanel(cardSequenceJPanel,business.getSupplierDirectory(),business.getMasterOrderCatalog()); 
+        cardSequenceJPanel.add("BrowseProductsJPanel",bpj);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
     }//GEN-LAST:event_btnBrowseProductCatalogActionPerformed
 
 
