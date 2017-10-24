@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author shinychenw
  */
-public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
+public class MarketManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel cardSequenceJPanel;
     private Business business;
@@ -24,7 +24,7 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
     /**
      * Creates new form SystemAdminJPanel
      */
-    public MarketManagerWorkAreaJPanel1(JPanel cardSequenceJPanel,Business business,UserAccount userAccount) {
+    public MarketManagerWorkAreaJPanel(JPanel cardSequenceJPanel,Business business,UserAccount userAccount) {
         initComponents();
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.business = business;
@@ -59,6 +59,7 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtPersonID = new javax.swing.JTextField();
         btnManageUserAccount1 = new javax.swing.JButton();
+        btnMonitorSales = new javax.swing.JButton();
 
         jLabel1.setText("Username:");
 
@@ -97,6 +98,13 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
             }
         });
 
+        btnMonitorSales.setText("Monitor Sales");
+        btnMonitorSales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonitorSalesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,7 +113,7 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(124, 124, 124)
+                .addGap(258, 258, 258)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,21 +130,21 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPersonID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnManageUserAccount)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                .addComponent(btnManageUserAccount1)
-                .addGap(38, 38, 38))
+                        .addComponent(txtPersonID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnManageUserAccount)
+                            .addComponent(btnManageUserAccount1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnMonitorSales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,10 +161,12 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnManageUserAccount)
-                    .addComponent(btnManageUserAccount1))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addComponent(btnManageUserAccount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnManageUserAccount1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnMonitorSales)
+                .addContainerGap(82, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -176,18 +186,27 @@ public class MarketManagerWorkAreaJPanel1 extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnManageUserAccount1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageUserAccount1ActionPerformed
-       ManageMarketOfferJPanel mmop = new ManageMarketOfferJPanel(cardSequenceJPanel,business);
+        ManageMarketOfferJPanel mmop = new ManageMarketOfferJPanel(cardSequenceJPanel,business);
         cardSequenceJPanel.add("ManageMarketOfferJPanel",mmop);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
         // TODO add your handling code here:
     }//GEN-LAST:event_btnManageUserAccount1ActionPerformed
 
+    private void btnMonitorSalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorSalesActionPerformed
+        // TODO add your handling code here:
+        MonitorSalesJPanel msj = new MonitorSalesJPanel(cardSequenceJPanel,business);
+        cardSequenceJPanel.add("MonitorSalesJPanel",msj);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_btnMonitorSalesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnManageUserAccount;
     private javax.swing.JButton btnManageUserAccount1;
+    private javax.swing.JButton btnMonitorSales;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

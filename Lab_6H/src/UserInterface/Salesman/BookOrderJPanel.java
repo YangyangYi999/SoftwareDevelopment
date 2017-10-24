@@ -58,8 +58,8 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         }
         Supplier supplier = (Supplier)jComboBoxSupplier1.getSelectedItem();
         for(MarketOffer m : business.getMarketOfferCatalog().getMarketOfferCatalog()){
-            if(supplier.getProductCatalog().getProductCatalog().contains(m.getProduct())&&m.getMarket().getCustomer().equals(customer)){
-                Object row[] = new Object[4];
+            if(supplier.getProductCatalog().getProductCatalog().contains(m.getProduct())&&m.getMarket().getCustomerList().contains(customer)){
+                Object row[] = new Object[6];
                 row[0] = m;
                 row[1] = m.getProduct().getModelNum();
                 row[2] = m.getProduct().getAvail();
@@ -74,8 +74,8 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel)jTableMarketOffer.getModel();
         dtm.setRowCount(0);   
         for(MarketOffer m : business.getMarketOfferCatalog().getMarketOfferCatalog()){
-            if(m.getProduct().getProductName().equalsIgnoreCase(keyword)&&m.getMarket().getCustomer().equals(customer)){
-                Object row[] = new Object[4];
+            if(m.getProduct().getProductName().equalsIgnoreCase(keyword)&&m.getMarket().getCustomerList().contains(customer)){
+                Object row[] = new Object[6];
                 row[0] = m;
                 row[1] = m.getProduct().getModelNum();
                 row[2] = m.getProduct().getAvail();
@@ -129,7 +129,7 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         btnModifyQuantity = new javax.swing.JButton();
         btnCheckOut = new javax.swing.JButton();
         btnRemove = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         btnRandom = new javax.swing.JButton();
 
         jLabel1.setText("Supplier");
@@ -223,7 +223,12 @@ public class BookOrderJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton8.setText("<< Back");
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnRandom.setText("Random");
         btnRandom.addActionListener(new java.awt.event.ActionListener() {
@@ -237,7 +242,7 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jButton8)
+                .addComponent(btnBack)
                 .addGap(0, 888, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
@@ -285,7 +290,7 @@ public class BookOrderJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton8)
+                .addComponent(btnBack)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -492,9 +497,17 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         txtActualPrice.setText(String.valueOf(result));
     }//GEN-LAST:event_btnRandomActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddToCart;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCheckOut;
     private javax.swing.JButton btnModifyQuantity;
     private javax.swing.JButton btnRandom;
@@ -502,7 +515,6 @@ public class BookOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSearchProduct;
     private javax.swing.JButton btnViewMarketOfferDetails;
     private javax.swing.JButton btnViewOrderItem;
-    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox jComboBoxSupplier1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

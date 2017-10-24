@@ -142,6 +142,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
 
     private void btnServeCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServeCustomerActionPerformed
         // TODO add your handling code here:
+        customer = (Customer)jComboBoxCustomerName.getSelectedItem();
         ServeCustomerJPanel scj = new ServeCustomerJPanel(cardSequenceJPanel,business,userAccount,customer);
         cardSequenceJPanel.add("ServeCustomerJPanel",scj);
         CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();

@@ -8,7 +8,7 @@ package UserInterface;
 import Business.Business;
 import Business.Person.UserAccount;
 import UserInterface.Admin.AdminWorkAreaJPanel;
-import UserInterface.MarketManager.MarketManagerWorkAreaJPanel1;
+import UserInterface.MarketManager.MarketManagerWorkAreaJPanel;
 import UserInterface.Salesman.SalesmanWorkAreaJPanel;
 import UserInterface.Supplier.SupplierWorkAreaJPanel;
 import java.awt.CardLayout;
@@ -143,7 +143,7 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
                 }
                 
                 case "Market Manager":{
-                    MarketManagerWorkAreaJPanel1 mmwaj = new MarketManagerWorkAreaJPanel1(cardSequenceJPanel,business,userAccount);
+                    MarketManagerWorkAreaJPanel mmwaj = new MarketManagerWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
                     cardSequenceJPanel.add("MarketManagerWorkAreaJPanel",mmwaj);
                     CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
                     layout.next(cardSequenceJPanel);

@@ -5,8 +5,8 @@
  */
 package UserInterface.Salesman;
 
-import Business.Person.UserAccount;
 import Business.*;
+import Business.Person.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -22,15 +22,20 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form CustomerWorkAreaJPanel
      */
-    
-
     public SalesmanWorkAreaJPanel(JPanel cardSequenceJPanel, Business business, UserAccount userAccount) {
-         initComponents();
-         this.business = business;
-         this.cardSequenceJPanel = cardSequenceJPanel;
-         this.userAccount = userAccount;
+        initComponents();
+        this.cardSequenceJPanel = cardSequenceJPanel;
+        this.business = business;
+        this.userAccount = userAccount;
+        populate();
     }
 
+     public void populate(){
+        txtName.setText(userAccount.getPerson().getFirstName()+" "+userAccount.getPerson().getLastName());
+        txtUserID.setText(userAccount.getUsername());
+        txtRole.setText(userAccount.getRole());
+        txtPersonID.setText(String.valueOf(userAccount.getPerson().getPersonID()));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,51 +45,137 @@ public class SalesmanWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBrowseProductCatalog = new javax.swing.JButton();
+        btnManageCustomers = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtUserID = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtPersonID = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtRole = new javax.swing.JTextField();
 
-        btnBrowseProductCatalog.setText("Browse Product Catalog >>");
-        btnBrowseProductCatalog.addActionListener(new java.awt.event.ActionListener() {
+        btnManageCustomers.setText("Manage Customers >>");
+        btnManageCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBrowseProductCatalogActionPerformed(evt);
+                btnManageCustomersActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("My Work Area(Customer role)");
+        jLabel1.setText("Salesman Work Area");
+
+        btnBack.setText("<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Username:");
+
+        txtUserID.setEnabled(false);
+
+        txtName.setEnabled(false);
+
+        jLabel3.setText("Person Name:");
+
+        jLabel4.setText("PersonID:");
+
+        txtPersonID.setEnabled(false);
+
+        jLabel5.setText("Role:");
+
+        txtRole.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(319, 319, 319)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBrowseProductCatalog))
-                .addContainerGap(439, Short.MAX_VALUE))
+                    .addComponent(btnBack)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(288, 288, 288)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtPersonID, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnManageCustomers)))))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(199, 199, 199)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(41, 41, 41)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
-                .addComponent(btnBrowseProductCatalog)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtPersonID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addComponent(btnManageCustomers)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnBrowseProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseProductCatalogActionPerformed
+    private void btnManageCustomersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageCustomersActionPerformed
         // TODO add your handling code here:
-        BrowseProductsJPanel bpj = new BrowseProductsJPanel(cardSequenceJPanel,business.getSupplierDirectory(),business.getMasterOrderCatalog()); 
-        cardSequenceJPanel.add("BrowseProductsJPanel",bpj);
+        ManageCustomersJPanel mcj = new ManageCustomersJPanel(cardSequenceJPanel,business,userAccount);
+        cardSequenceJPanel.add("ManageCustomersJPanel",mcj);
         CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
         layout.next(cardSequenceJPanel);
-    }//GEN-LAST:event_btnBrowseProductCatalogActionPerformed
+    }//GEN-LAST:event_btnManageCustomersActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBrowseProductCatalog;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnManageCustomers;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtPersonID;
+    private javax.swing.JTextField txtRole;
+    private javax.swing.JTextField txtUserID;
     // End of variables declaration//GEN-END:variables
 }
