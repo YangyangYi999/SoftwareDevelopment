@@ -6,13 +6,9 @@
 package UserInterface;
 
 import Business.Business;
-import Business.Person.UserAccount;
-import UserInterface.Admin.UserAccounts.SystemAdminWorkAreaJPanel;
-import UserInterface.Admin.HumanResources.HumanResourcesWorkAreaJPanel;
+import UserInterface.MarketManager.MarketManagerWorkAreaJPanel1;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 /**
  *
@@ -101,32 +97,37 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
-        UserAccount userAccount = business.getUserAccountDirectory().isValidUser(username, password);
-        if(userAccount != null){
-            switch(userAccount.getRole().intern()){
-                case "System Admin":{
-                    SystemAdminWorkAreaJPanel sawaj = new SystemAdminWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
-                    cardSequenceJPanel.add("SystemAdminWorkAreaJPanel",sawaj);
+//        String username = txtUsername.getText();
+//        String password = txtPassword.getText();
+//        UserAccount userAccount = business.getUserAccountDirectory().isValidUser(username, password);
+//        if(userAccount != null){
+//            switch(userAccount.getRole().intern()){
+//                case "System Admin":{
+//                    SystemAdminWorkAreaJPanel sawaj = new SystemAdminWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
+//                    cardSequenceJPanel.add("SystemAdminWorkAreaJPanel",sawaj);
+//                    CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+//                    layout.next(cardSequenceJPanel);
+//                    break;
+//                }
+//                
+//                case "HR Admin":{
+//                    HumanResourcesWorkAreaJPanel hrwaj = new HumanResourcesWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
+//                    cardSequenceJPanel.add("HumanResourcesWorkAreaJPanel",hrwaj);
+//                    CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+//                    layout.next(cardSequenceJPanel);
+//                    break;
+//                }
+//                
+//            }
+//        }
+//        else{
+//            JOptionPane.showMessageDialog(null,"You do not have the authority to enter!");
+//        }
+
+       MarketManagerWorkAreaJPanel1 mmwajp = new MarketManagerWorkAreaJPanel1(cardSequenceJPanel,business);
+        cardSequenceJPanel.add("MarketManagerWorkAreaJPanel",mmwajp);
                     CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
-                    layout.next(cardSequenceJPanel);
-                    break;
-                }
-                
-                case "HR Admin":{
-                    HumanResourcesWorkAreaJPanel hrwaj = new HumanResourcesWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
-                    cardSequenceJPanel.add("HumanResourcesWorkAreaJPanel",hrwaj);
-                    CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
-                    layout.next(cardSequenceJPanel);
-                    break;
-                }
-                
-            }
-        }
-        else{
-            JOptionPane.showMessageDialog(null,"You do not have the authority to enter!");
-        }
+                   layout.next(cardSequenceJPanel);
     }//GEN-LAST:event_btnLoginActionPerformed
 
 

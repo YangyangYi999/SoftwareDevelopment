@@ -6,107 +6,385 @@
 package Business.Configuration;
 
 import Business.Business;
+import Business.Market.Market;
+import Business.Market.MarketOffer;
+import Business.Order.Order;
+import Business.Order.OrderItem;
+import Business.Person.Customer;
 import Business.Person.Person;
-import Business.Person.PersonDirectory;
+import Business.Person.Salesman;
 import Business.Person.UserAccount;
-import Business.Person.UserAccountDirectory;
-import Business.Configuration.MD5Util;
+import Business.Supplier.Product;
+import Business.Supplier.Supplier;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
  * @author shinychenw
  */
 public class ConfigureABusiness {
-    public static Business Initialize (String n){
-        Business b = new Business(n);
-        
-        PersonDirectory pd = b.getPersonDirectory();
-        
-        Person p = pd.addPerson();
-        p.setFirstName("Jialin");
-        p.setLastName("Yang");
-        
-        p = pd.addPerson();
-        p.setFirstName("Yuchen");
-        p.setLastName("Wang");
-        
-        p = pd.addPerson();
-        p.setFirstName("Yun");
-        p.setLastName("Yang");
-        
-        p = pd.addPerson();
-        p.setFirstName("Tong");
-        p.setLastName("Xie");
-        
-        p = pd.addPerson();
-        p.setFirstName("Ann");
-        p.setLastName("Wells");
-        
-        p = pd.addPerson();
-        p.setFirstName("John");
-        p.setLastName("Adam");
-        
-        UserAccountDirectory uad = b.getUserAccountDirectory();
-        Person p2 = pd.findPersonByID(1);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("yjl1");
-            ua.setPassWord(MD5Util.md5("yjl1"));
-            ua.setRole("System Admin");
-            ua.setAccountStatus(true);
+  public static void readPersonCSV( Business business){
+       String csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\personList.csv";
+        BufferedReader br = null;
+        String cvsSplitBy = ",";
+         String line = "";
+        try {
+            br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+            String[] atribute = line.split(cvsSplitBy);
+            Person p = business.getPersonDirectory().addPerson();
+            p.setFirstName(atribute[0]);
+            p.setLastName(atribute[1]);
+            }
+    }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        
-        p2 = pd.findPersonByID(1);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("yjl2");
-            ua.setPassWord(MD5Util.md5("yjl2"));
-            ua.setRole("HR Admin");
-            ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(1);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("yjl3");
-            ua.setPassWord(MD5Util.md5("yjl3"));
-            ua.setRole("Ordinary User");
-            ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(2);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("wyc");
-            ua.setPassWord(MD5Util.md5("wyc"));
-            ua.setRole("HR Admin");
-            ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(3);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("yy");
-            ua.setPassWord(MD5Util.md5("yy"));
-            ua.setRole("System Admin");
-            ua.setAccountStatus(true);
-        }
-        
-        p2 = pd.findPersonByID(4);
-        if(p2!=null){
-            UserAccount ua = uad.addUserAccount();
-            ua.setPerson(p2);
-            ua.setUsername("xt");
-            ua.setPassWord(MD5Util.md5("xt"));
-            ua.setRole("Ordinary User");
-            ua.setAccountStatus(true);
-        }
-        
-        return b;
     }
+  
+  public static void readSupplierDirectoryCSV(Business business){
+    String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\supplierCatalog.csv";
+    BufferedReader br = null;
+    String cvsSplitBy = ",";
+    String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                 String[] atribute = line.split(cvsSplitBy);
+                Supplier s = business.getSupplierDirectory().addSupplier();
+                s.setSupplierName(atribute[0]);
+                readSupplierProducts(s);
+                
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  }
+ static void readSupplierProducts(Supplier s){
+    String csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\"+s.getSupplierName()+ ".csv";
+//    if(s.getSupplierName().equals("Apple")){
+//     csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\Apple.csv";
+//    }
+System.out.println(s.getSupplierName());
+    BufferedReader br = null;
+    String cvsSplitBy = ",";
+    String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                 String[] atribute = line.split(cvsSplitBy);
+                 Product p = s.getProductCatalog().addProduct();
+                 System.out.println(atribute[0]);
+                 p.setProductName(atribute[0]);
+                 p.setAvail(Integer.parseInt(atribute[1]));
+                
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+      
+  }
+  static Product findProductbyName(String name, Business business){
+  for(Supplier s: business.getSupplierDirectory().getSupplierDirectory()){
+      for(Product p : s.getProductCatalog().getProductCatalog()){
+        if(p.getProductName().equals(name)){
+            return p;
+        }
+      }
+  }return null;
+  }
+  
+  public static void readMarketList(Business business){
+   String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketList.csv";
+  BufferedReader br = null;
+    String cvsSplitBy = ",";
+    String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                 String[] atribute = line.split(cvsSplitBy);
+                 if(atribute.length>1){
+                Market m = business.getMarketList().addMarket();
+                m.setName(atribute[0]);
+                readCustomerList(m);
+                 }
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  
+  }
+  
+  static void readCustomerList(Market market){
+     String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\"+market.getName()+".csv";
+  BufferedReader br = null;
+    String cvsSplitBy = ",";
+    String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                 String[] atribute = line.split(cvsSplitBy);
+                 
+                 for(int i=0;i<atribute.length;i++){
+                 Customer cus = new Customer();
+                 String[] name = atribute[i].split("\\s");
+                 cus.setFirstName(name[0]);
+                 cus.setLastName(name[1]);
+                 market.getCustomerList().add(cus);
+                         }
+            }
+            
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  }
+  
+  
+  static Market getMarket(String s, Business business){
+  for(Market m : business.getMarketList().getMarketList()){
+  if(m.getName().equals(s)){
+  return m;
+  }
+  }return null;
+  }  
+  public static void readMarketOffer(Business business){
+  String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketOffer.csv";
+  BufferedReader br = null;
+    String cvsSplitBy = ",";
+    String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+                 String[] atribute = line.split(cvsSplitBy);
+                 if(atribute.length>1){
+                MarketOffer mo = business.getMarketOfferCatalog().addMarketOffer();
+                mo.setFloorPrice(Integer.parseInt(atribute[0]));
+                mo.setCeilingPrice(Integer.parseInt(atribute[1]));
+                mo.setTargetPrice(Integer.parseInt(atribute[2]));
+                mo.setProduct(findProductbyName(atribute[3],business));
+//                System.out.println(atribute[3]);
+//                System.out.println(mo.getProduct().getProductName());
+                mo.setMarket(getMarket(atribute[4],business));
+                System.out.println(atribute[4]);
+                 System.out.println(mo.getMarket().getName());
+                 }
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  
+  }
+  
+  public static Person getPersonbyName(String first,String last, Business business){
+  for(Person p : business.getPersonDirectory().getPersonList()){
+   if(p.getFirstName().equals(first)&&p.getLastName().equals(last)){
+      return p;
+   }
+  }
+  return null;
+  
+  }
+  
+  
+  
+  
+  
+  public static void readMasterOrderCatalogCSV(Business business){
+   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\orderCatalog.csv";
+   BufferedReader br = null;
+   String cvsSplitBy = ",";
+   String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+             String[] atribute = line.split(cvsSplitBy);
+             Order order = new Order();
+             readOrderItemCSV(order);
+             try{
+             Customer cus= new Customer();
+             Person p = getPersonbyName(atribute[0],atribute[1],business);
+             cus.setFirstName(p.getFirstName());
+             cus.setLastName(p.getLastName());
+             Salesman s = new Salesman();
+             Person person = getPersonbyName(atribute[2],atribute[3],business);
+             s.setFirstName(person.getFirstName());
+             s.setLastName(person.getLastName());
+             }catch(Exception e){
+              System.out.println("This person don't exist.");
+            }
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  }
+  
+  static void readOrderItemCSV(Order order){
+   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\order"+String.valueOf(order.getOrderNumber())+".csv";
+   BufferedReader br = null;
+   String cvsSplitBy = ",";
+   String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+              String[] atribute = line.split(cvsSplitBy);
+              if(atribute.length>1){
+              OrderItem oi = new OrderItem();
+              if(atribute.length>1){
+              oi.setQuantity(Integer.parseInt(atribute[0]));
+              oi.setActualPrice(Double.parseDouble(atribute[1]));
+              order.getOrderItemList().add(oi);
+              }
+              }
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  
+  }
+  
+  public static Supplier getSupplier(String name,Business business){
+      if(!name.equals("null")){
+      for(Supplier s: business.getSupplierDirectory().getSupplierDirectory()){
+          if(s.getSupplierName().equals(name)){
+              return s;
+          }
+      }
+      }
+      return null;
+  }
+          
+          
+          
+          
+  public static void readAccountsCSV(Business business){
+   String csvFile = "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\userAccountList.csv";
+   BufferedReader br = null;
+   String cvsSplitBy = ",";
+   String line = "";
+  try{
+        br = new BufferedReader(new FileReader(csvFile));
+            while ((line = br.readLine()) != null) {
+             String[] atribute = line.split(cvsSplitBy);
+             UserAccount acc = business.getUserAccountDirectory().addUserAccount();
+//            for(int i =0;i<atribute.length;i++){
+//             System.out.println(atribute[i]);}
+             acc.setUsername(atribute[0]);
+             acc.setPassWord(atribute[1]);
+             acc.setRole(atribute[2]);
+             if(atribute[3].equals("true")){
+             acc.setAccountStatus(true);}else{acc.setAccountStatus(false);}
+             //if(getSupplir(atribute[4])!=null){acc.setSupplier(getSupplir(atribute[4]));}
+             acc.setPerson(getPersonbyName(atribute[5],atribute[6],business));
+            }
+  
+  }
+  catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+  }
 }

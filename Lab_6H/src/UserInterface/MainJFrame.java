@@ -21,7 +21,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-        business = ConfigureABusiness.Initialize("General Motors");
+       //business = ConfigureABusiness.Initialize("General Motors");
+       Business business = new Business("Go");
         LoginScreenJPanel lsj = new LoginScreenJPanel(cardSequenceJPanel,business);
         cardSequenceJPanel.add("LoginScreenJPanel",lsj);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();

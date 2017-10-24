@@ -27,6 +27,22 @@ public class Order {
         orderNumber = count;
         orderItemList = new ArrayList<>();
     }
+    
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Salesman getSalesman() {
+        return salesman;
+    }
+
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
+    }
 
     public ArrayList<OrderItem> getOrderItemList() {
         return orderItemList;

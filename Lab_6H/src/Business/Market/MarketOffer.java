@@ -12,12 +12,17 @@ import Business.Supplier.Product;
  * @author shinychenw
  */
 public class MarketOffer {
+    private static int count = 1;
+    final String id;
     private Product product;
     private Market market;
     private int floorPrice;
     private int ceilingPrice;
     private int targetPrice;
-
+    public MarketOffer(){
+        id = "MO"+String.valueOf(count);
+        count++;
+}
     public Product getProduct() {
         return product;
     }
@@ -61,5 +66,12 @@ public class MarketOffer {
     @Override
     public String toString(){
         return getProduct().getProductName()+" "+getMarket().getName();
+    }
+    public String getPriceSet(){
+    //return (String.valueOf(this.floorPrice)+","+String.valueOf(this.targetPrice)+","String.valueOf(this.ceilingPrice));
+    String fp = String.valueOf(this.floorPrice);
+    String tp = String.valueOf(this.targetPrice);
+    String cp = String.valueOf(this.ceilingPrice);
+    return fp+","+tp+","+cp;
     }
 }

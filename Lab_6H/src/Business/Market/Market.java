@@ -6,6 +6,7 @@
 package Business.Market;
 
 import Business.Person.Customer;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,8 +15,10 @@ import Business.Person.Customer;
 public class Market {
     private String name;
     private int revenue;
-    private Customer customer;
-
+    private ArrayList<Customer> customerList;
+    public Market(){
+    customerList = new ArrayList<>();
+    }
     public String getName() {
         return name;
     }
@@ -32,12 +35,16 @@ public class Market {
         this.revenue = revenue;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerList(ArrayList<Customer> customerList) {
+        this.customerList = customerList;
+    }
+    
+    public void addCustomer(Customer customer){
+    this.customerList.add(customer);
     }
     
     @Override
