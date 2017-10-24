@@ -16,7 +16,17 @@ public class OrderItem {
     private int quantity;
     private double actualPrice;
     private MarketOffer marketOffer;
+    private double gap;
 
+    public double getGap() {
+        return gap;
+    }
+
+    public void setGap(double gap) {
+        this.gap = gap;
+    }
+
+    
     public int getQuantity() {
         return quantity;
     }

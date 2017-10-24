@@ -10,16 +10,7 @@ package Business.Person;
  * @author shinychenw
  */
 public class Salesman extends Person{
-    private boolean status;
     private int rank;
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
 
     public int getRank() {
         return rank;

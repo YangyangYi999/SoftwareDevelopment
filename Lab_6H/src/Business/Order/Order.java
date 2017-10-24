@@ -59,11 +59,12 @@ public class Order {
         this.orderNumber = orderNumber;
     }
     
-    public OrderItem addOrderItem(MarketOffer m, int q,double price){
+    public OrderItem addOrderItem(MarketOffer m, int q,double price,double gap){
         OrderItem o = new OrderItem();
         o.setMarketOffer(m);
         o.setQuantity(q);
         o.setActualPrice(price);
+        o.setGap(gap);
         orderItemList.add(o);
         return o;
     }
