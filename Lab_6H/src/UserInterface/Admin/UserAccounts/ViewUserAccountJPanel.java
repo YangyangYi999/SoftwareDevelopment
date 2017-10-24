@@ -32,19 +32,20 @@ public class ViewUserAccountJPanel extends javax.swing.JPanel {
         this.cardSequenceJPanel = cardSequenceJPanel;
         this.business = business;
         this.userAccount = userAccount;
+        jcbPerson.removeAll();
+        jcbRole.removeAll();
+        jcbRole.addItem("System Admin");
+        jcbRole.addItem("Supplier");
+        jcbRole.addItem("Market Manager");
+        jcbRole.addItem("Sales Person");
+        for(Person p: business.getPersonDirectory().getPersonList()){
+            jcbPerson.addItem(p);
+        }
         populate();
     }
 
     public void populate(){
-        jcbPerson.removeAll();
-        jcbRole.removeAll();
-        jcbRole.addItem("System Admin");
-        jcbRole.addItem("HR Admin");        
-        jcbRole.addItem("Ordinary User");
-        for(Person p: business.getPersonDirectory().getPersonList()){
-            jcbPerson.addItem(p);
-        }
-        
+       
         txtUsername.setText(userAccount.getUsername());
         txtPassword.setText("********");
         jcbPerson.setSelectedItem(userAccount.getPerson());
@@ -291,6 +292,8 @@ public class ViewUserAccountJPanel extends javax.swing.JPanel {
         jcbRole.setEnabled(true);
         jrbtnActive.setEnabled(true);
         jrbtnDisabled.setEnabled(true);
+       
+        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
 

@@ -5,13 +5,13 @@
  */
 package UserInterface.Salesman;
 
-import Business.MasterOrderCatalog;
-import Business.Order;
-import Business.OrderItem;
-import Business.Product;
-import Business.Supplier;
-import Business.SupplierDirectory;
-import UserInterface.CustomerRole.ViewProductDetailJPanel;
+
+import Business.Order.MasterOrderCatalog;
+import Business.Order.Order;
+import Business.Order.OrderItem;
+import Business.Supplier.Product;
+import Business.Supplier.Supplier;
+import Business.Supplier.SupplierDirectory;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BrowseProductsJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
+    private JPanel cardSequenceJPanel;
     private SupplierDirectory supplierDirectory;
     private MasterOrderCatalog masterOrderCatalog;
     private Order order;
@@ -33,7 +33,7 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
      */
     public BrowseProductsJPanel(JPanel upc, SupplierDirectory s, MasterOrderCatalog m) {
         initComponents();
-        this.userProcessContainer = upc;
+        this.cardSequenceJPanel = upc;
         this.supplierDirectory = s;
         this.masterOrderCatalog = m;
         populateSupplierCombo();
@@ -57,11 +57,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         }
         Supplier supplier = (Supplier)jComboBoxSupplier1.getSelectedItem();
         for(Product p :supplier.getProductCatalog().getProductCatalog()){
-            Object row[] = new Object[4];
+            Object row[] = new Object[3];
             row[0] = p;
             row[1] = p.getModelNum();
-            row[2] = p.getPrice();
-            row[3] = p.getAvail();
+            
+            row[2] = p.getAvail();
             dtm.addRow(row);
         }
     }
@@ -74,8 +74,8 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
                     Object row[] = new Object[4];
                     row[0] = p;
                     row[1] = p.getModelNum();
-                    row[2] = p.getPrice();
-                    row[3] = p.getAvail();
+                    
+                    row[2] = p.getAvail();
                     dtm.addRow(row);
                 }
             }
@@ -86,11 +86,11 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel)jTableOrder.getModel();
         dtm.setRowCount(0);   
         for(OrderItem oi: order.getOrderItemList()){
-            Object row[] = new Object[4];
+            Object row[] = new Object[2];
             row[0] = oi;
-            row[1] = oi.getSalesPrice();
-            row[2] = oi.getQuantity();
-            row[3] = oi.getQuantity()*oi.getSalesPrice();
+            
+            row[1] = oi.getQuantity();
+            
             dtm.addRow(row);
         }
     }
@@ -325,10 +325,10 @@ public class BrowseProductsJPanel extends javax.swing.JPanel {
         }
         else{
             Product p = (Product)jTableProduct.getValueAt(selectedRow,0);
-            ViewProductDetailJPanel vpdj = new ViewProductDetailJPanel(userProcessContainer,p);
-            userProcessContainer.add("ViewProductDetailJPanel(Cutomer)",vpdj);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            ViewProductDetailJPanel vpdj = new ViewProductDetailJPanel(cardSequenceJPanel,p);
+            cardSequenceJPanel.add("ViewProductDetailJPanel(Cutomer)",vpdj);
+            CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+            layout.next(cardSequenceJPanel);
         }
     }//GEN-LAST:event_btnViewProductDetailsActionPerformed
 

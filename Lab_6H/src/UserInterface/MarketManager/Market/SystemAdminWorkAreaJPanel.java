@@ -33,6 +33,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         populate();
     }
 
+    public SystemAdminWorkAreaJPanel(JPanel cardSequenceJPanel, Business business, UserAccount userAccount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public void populate(){
         txtName.setText(userAccount.getPerson().getFirstName()+" "+userAccount.getPerson().getLastName());
         txtUserID.setText(userAccount.getUsername());

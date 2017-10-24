@@ -5,17 +5,29 @@
  */
 package Business.Person;
 
+import Business.Supplier.Supplier;
+
 /**
  *
  * @author shinychenw
  */
 public class UserAccount {
     private Person person;
+    private Supplier supplier;
     private String username;
     private String passWord;
     private String role;
     private boolean accountStatus;
 
+    public Supplier getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    
     public Person getPerson() {
         return person;
     }

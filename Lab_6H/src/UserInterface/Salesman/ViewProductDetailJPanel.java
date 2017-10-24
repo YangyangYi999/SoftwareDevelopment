@@ -5,7 +5,8 @@
  */
 package UserInterface.Salesman;
 
-import Business.Product;
+
+import Business.Supplier.Product;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -15,14 +16,14 @@ import javax.swing.JPanel;
  */
 public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
+    JPanel cardSequenceJPanel;
     Product product;
     /**
      * Creates new form ViewProductDetailsJPanel
      */
-    public ViewProductDetailJPanel(JPanel userProcessContainer,Product produdct) {
+    public ViewProductDetailJPanel(JPanel cardSequenceJPanel,Product produdct) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.product = produdct;
         txtProductName.setText(produdct.getProductName());
         txtProductID.setText(String.valueOf(produdct.getModelNum()));
@@ -167,9 +168,9 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void txtAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAvailActionPerformed

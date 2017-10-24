@@ -17,14 +17,15 @@ import javax.swing.JPanel;
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
     private Supplier supplier;
-    private JPanel userProcessContainer;
+    private JPanel cardSequenceJPanel;
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel(JPanel userProcessContainer,Supplier supplier) {
+    public SupplierWorkAreaJPanel(JPanel cardSequenceJPanel,Supplier supplier) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.supplier = supplier;
+        supplierNameTxt.setText(supplier.getSupplierName());
     }
 
     /**
@@ -39,8 +40,12 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnManageProductCatalog = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        supplierNameTxt = new javax.swing.JTextField();
 
-        jLabel1.setText("My Work Area(Product Manager Role)");
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("My Work Area");
 
         btnManageProductCatalog.setText("Manage Product Catalog >>");
         btnManageProductCatalog.addActionListener(new java.awt.event.ActionListener() {
@@ -56,20 +61,33 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Supplier Name:");
+
+        supplierNameTxt.setEditable(false);
+        supplierNameTxt.setEnabled(false);
+        supplierNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supplierNameTxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(327, 327, 327)
-                        .addComponent(jLabel1))
+                        .addGap(242, 242, 242)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(supplierNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(344, 344, 344)
-                        .addComponent(btnManageProductCatalog))
-                    .addComponent(btnBack))
-                .addContainerGap(392, Short.MAX_VALUE))
+                        .addGap(283, 283, 283)
+                        .addComponent(btnManageProductCatalog)))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,31 +96,41 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addGap(67, 67, 67)
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
-                .addComponent(btnManageProductCatalog)
-                .addContainerGap(372, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(supplierNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btnManageProductCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(154, 154, 154))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManageProductCatalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageProductCatalogActionPerformed
         // TODO add your handling code here:
-        ManageProductCatalogJPanel mpcj = new ManageProductCatalogJPanel(userProcessContainer,supplier);
-        userProcessContainer.add("ManageProductCatalogJPanel",mpcj);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        ManageProductCatalogJPanel manageProductCatalogJPanel = new ManageProductCatalogJPanel(cardSequenceJPanel,supplier);
+        cardSequenceJPanel.add("ManageProductCatalogJPanel",manageProductCatalogJPanel);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
     }//GEN-LAST:event_btnManageProductCatalogActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void supplierNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_supplierNameTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnManageProductCatalog;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField supplierNameTxt;
     // End of variables declaration//GEN-END:variables
 }

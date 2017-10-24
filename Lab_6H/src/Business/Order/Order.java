@@ -8,7 +8,6 @@ package Business.Order;
 import Business.Market.MarketOffer;
 import Business.Person.Customer;
 import Business.Person.Salesman;
-import Business.Supplier.Product;
 import java.util.ArrayList;
 
 /**
