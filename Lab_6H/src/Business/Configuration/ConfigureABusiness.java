@@ -17,6 +17,7 @@ import Business.Person.UserAccount;
 import Business.Supplier.Product;
 import Business.Supplier.Supplier;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -207,7 +208,7 @@ System.out.println(s.getSupplierName());
   }return null;
   }  
   public static void readMarketOffer(Business business){
-  String csvFile="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketOffer.csv";
+  String csvFile= "C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\marketOffer.csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
