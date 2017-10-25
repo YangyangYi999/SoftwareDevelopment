@@ -39,6 +39,11 @@ public class Person {
     public int getPersonID() {
         return personID;
     }
+
+    public void setPersonID(int personID) {
+        this.personID = personID;
+    }
+    
     
     @Override
     public String toString(){

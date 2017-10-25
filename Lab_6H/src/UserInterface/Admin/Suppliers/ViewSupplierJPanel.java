@@ -5,8 +5,8 @@
  */
 package UserInterface.Admin.Suppliers;
 
-import Business.Product;
-import Business.Supplier;
+
+import Business.Supplier.*;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ViewSupplierJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
+    private JPanel cardSequenceJPanel;
     private Supplier supplier;
     /**
      * Creates new form ViewSupplier
      */
-    public ViewSupplierJPanel(JPanel userProcessContainer,Supplier supplier) {
+    public ViewSupplierJPanel(JPanel cardSequenceJPanel,Supplier supplier) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.supplier = supplier;
         
         labelSupplier.setText(supplier.getSupplierName());
@@ -40,10 +40,10 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
         }
         
         for(Product p :supplier.getProductCatalog().getProductCatalog()){
-            Object row[] = new Object[3];
+            Object row[] = new Object[2];
             row[0] = p;
             row[1] = p.getModelNum();
-            row[2] = p.getPrice();
+           
             dtm.addRow(row);
         }
     } 
@@ -63,13 +63,13 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
 
         productCatalogJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Product Name", "Model Name", "Price"
+                "Product Name", "Model Name"
             }
         ));
         jScrollPane1.setViewportView(productCatalogJTable);
@@ -93,31 +93,31 @@ public class ViewSupplierJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(354, 354, 354)
+                        .addComponent(labelSupplier))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(411, 411, 411)
-                        .addComponent(labelSupplier)))
-                .addContainerGap(321, Short.MAX_VALUE))
+                        .addGap(149, 149, 149)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(390, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(85, 85, 85)
+                .addGap(70, 70, 70)
                 .addComponent(labelSupplier)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(238, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_btnBackActionPerformed
 
 

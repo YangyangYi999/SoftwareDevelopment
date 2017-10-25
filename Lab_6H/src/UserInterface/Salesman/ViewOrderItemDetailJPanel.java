@@ -5,7 +5,7 @@
  */
 package UserInterface.Salesman;
 
-import Business.OrderItem;
+import Business.Order.OrderItem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -15,20 +15,20 @@ import javax.swing.JPanel;
  */
 public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
 
-    private JPanel userProcessContainer;
+    private JPanel cardSequenceJPanel;
     private OrderItem orderItem;
     /**
      * Creates new form ViewOrderItemDetailJPanel
      */
-    public ViewOrderItemDetailJPanel(JPanel userProcessContainer, OrderItem orderItem) {
+    public ViewOrderItemDetailJPanel(JPanel cardSequenceJPanel, OrderItem orderItem) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.cardSequenceJPanel = cardSequenceJPanel;
         this.orderItem = orderItem;
-        txtProductName.setText(orderItem.getProduct().getProductName());
-        txtProductID.setText(String.valueOf(orderItem.getProduct().getModelNum()));
-        txtPaidPrice.setText(String.valueOf(orderItem.getSalesPrice()));
+        txtProductName.setText(orderItem.getMarketOffer().getProduct().getProductName());
+        txtProductID.setText(String.valueOf(orderItem.getMarketOffer().getProduct().getModelNum()));
+        txtTotalPrice.setText(String.valueOf(orderItem.getActualPrice()*orderItem.getQuantity()));
         txtQuantity.setText(String.valueOf(orderItem.getQuantity()));
-        txtSalesPrice.setText(String.valueOf(orderItem.getProduct().getPrice()));
+        txtActualPrice.setText(String.valueOf(orderItem.getActualPrice()));
     }
 
     /**
@@ -45,11 +45,11 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
         txtProductName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtProductID = new javax.swing.JTextField();
-        txtSalesPrice = new javax.swing.JTextField();
+        txtActualPrice = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         txtQuantity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtPaidPrice = new javax.swing.JTextField();
+        txtTotalPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -63,7 +63,7 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
 
         txtProductID.setEnabled(false);
 
-        txtSalesPrice.setEnabled(false);
+        txtActualPrice.setEnabled(false);
 
         jLabel4.setText("Price:");
 
@@ -71,9 +71,9 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Quantity:");
 
-        txtPaidPrice.setEnabled(false);
+        txtTotalPrice.setEnabled(false);
 
-        jLabel6.setText("Paid Price:");
+        jLabel6.setText("Total Price:");
 
         jButton1.setText("<< BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +105,7 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtSalesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -113,7 +113,7 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtPaidPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jButton1))
                 .addContainerGap(382, Short.MAX_VALUE))
         );
@@ -135,7 +135,7 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtSalesPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtActualPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -143,16 +143,16 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtPaidPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotalPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        cardSequenceJPanel.remove(this);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.previous(cardSequenceJPanel);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -164,10 +164,10 @@ public class ViewOrderItemDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField txtPaidPrice;
+    private javax.swing.JTextField txtActualPrice;
     private javax.swing.JTextField txtProductID;
     private javax.swing.JTextField txtProductName;
     private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtSalesPrice;
+    private javax.swing.JTextField txtTotalPrice;
     // End of variables declaration//GEN-END:variables
 }

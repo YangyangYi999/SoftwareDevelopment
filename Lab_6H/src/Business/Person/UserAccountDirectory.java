@@ -29,15 +29,7 @@ public class UserAccountDirectory {
         userAccountList.remove(userAccount);
     }
     
-    public UserAccount isValidUser(String userid,String pwd){
-        for(UserAccount ua: userAccountList){
-            if(userid.equals(ua.getUsername())&&MD5Util.md5(pwd).equals(ua.getPassWord())&&ua.isAccountStatus()==true){
-                return ua;
-            }
-        }
-        return null;
-    }
-
+    
     public UserAccount findUserAccount(String userid){
         for(UserAccount ua: userAccountList){
             if(userid.equals(ua.getUsername())){

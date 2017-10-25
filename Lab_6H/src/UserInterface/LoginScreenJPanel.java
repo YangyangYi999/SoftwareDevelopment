@@ -7,12 +7,13 @@ package UserInterface;
 
 import Business.Business;
 import Business.Person.UserAccount;
-import UserInterface.Admin.UserAccounts.SystemAdminWorkAreaJPanel;
-import UserInterface.Admin.HumanResources.HumanResourcesWorkAreaJPanel;
+import UserInterface.Admin.AdminWorkAreaJPanel;
+import UserInterface.MarketManager.MarketManagerWorkAreaJPanel;
+import UserInterface.Salesman.SalesmanWorkAreaJPanel;
+import UserInterface.Supplier.SupplierWorkAreaJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 
 /**
  *
@@ -35,6 +36,15 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
         txtPassword.setText("");
         txtUsername.setText("");
     }
+    public UserAccount isValidUser(String userid,String pwd){
+        for(UserAccount ua: business.getUserAccountDirectory().getUserAccountList()){
+            if(userid.equals(ua.getUsername())&&pwd.equals(ua.getPassWord())&&ua.isAccountStatus()==true){
+                return ua;
+            }
+        }
+        return null;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +59,7 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
         txtUsername = new javax.swing.JTextField();
         btnLogin = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("Username:");
 
@@ -61,31 +72,39 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(134, 134, 134)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtPassword))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(267, 267, 267)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPassword))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(btnLogin)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -93,33 +112,52 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(72, 72, 72)
                 .addComponent(btnLogin)
-                .addGap(83, 83, 83))
+                .addGap(120, 120, 120))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        UserAccount userAccount = business.getUserAccountDirectory().isValidUser(username, password);
+        UserAccount userAccount = isValidUser(username, password);
         if(userAccount != null){
             switch(userAccount.getRole().intern()){
                 case "System Admin":{
-                    SystemAdminWorkAreaJPanel sawaj = new SystemAdminWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
-                    cardSequenceJPanel.add("SystemAdminWorkAreaJPanel",sawaj);
+                    AdminWorkAreaJPanel sawaj = new AdminWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
+                    cardSequenceJPanel.add("AdminWorkAreaJPanel",sawaj);
                     CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
                     layout.next(cardSequenceJPanel);
                     break;
                 }
                 
-                case "HR Admin":{
-                    HumanResourcesWorkAreaJPanel hrwaj = new HumanResourcesWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
-                    cardSequenceJPanel.add("HumanResourcesWorkAreaJPanel",hrwaj);
+                case "Supplier":{
+                    SupplierWorkAreaJPanel swj = new SupplierWorkAreaJPanel(cardSequenceJPanel,userAccount.getSupplier());
+                    cardSequenceJPanel.add("SupplierWorkAreaJPanel",swj);
                     CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
                     layout.next(cardSequenceJPanel);
                     break;
+                }
+                
+                case "Market Manager":{
+                    MarketManagerWorkAreaJPanel mmwaj = new MarketManagerWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
+                    cardSequenceJPanel.add("MarketManagerWorkAreaJPanel",mmwaj);
+                    CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+                    layout.next(cardSequenceJPanel);
+                    break;              
+                }
+                
+                case "Sales Person":{
+                    SalesmanWorkAreaJPanel cwaj = new SalesmanWorkAreaJPanel(cardSequenceJPanel,business,userAccount);
+                    cardSequenceJPanel.add("SalesmanWorkAreaJPanel",cwaj);
+                    CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
+                    layout.next(cardSequenceJPanel);
+                    break;
+                
+                
                 }
                 
             }
@@ -127,6 +165,7 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(null,"You do not have the authority to enter!");
         }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
 
@@ -134,6 +173,7 @@ public class LoginScreenJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables

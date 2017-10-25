@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Configuration.ConfigureABusiness;
 import Business.Market.MarketList;
 import Business.Market.MarketOfferCatalog;
 import Business.Order.MasterOrderCatalog;
@@ -35,6 +36,13 @@ public class Business {
         masterOrderCatalog = new MasterOrderCatalog();
         marketOfferCatalog = new MarketOfferCatalog();
         marketList = new MarketList();
+         ConfigureABusiness.readSupplierDirectoryCSV(this);
+         ConfigureABusiness.readPersonCSV(this);
+         ConfigureABusiness.readAccountsCSV(this);
+         ConfigureABusiness.readMarketList(this);
+         ConfigureABusiness.readMarketOffer(this);
+         ConfigureABusiness.readMasterOrderCatalogCSV(this);
+            
     }
 
     public PersonDirectory getPersonDirectory() {
@@ -102,4 +110,7 @@ public class Business {
         }
         return n;
     }
+    
+    
+    
 }

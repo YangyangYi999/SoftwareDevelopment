@@ -21,7 +21,8 @@ public class MainJFrame extends javax.swing.JFrame {
      */
     public MainJFrame() {
         initComponents();
-        business = ConfigureABusiness.Initialize("General Motors");
+       //business = ConfigureABusiness.Initialize("General Motors");
+       Business business = new Business("Go");
         LoginScreenJPanel lsj = new LoginScreenJPanel(cardSequenceJPanel,business);
         cardSequenceJPanel.add("LoginScreenJPanel",lsj);
         CardLayout layout = (CardLayout) cardSequenceJPanel.getLayout();
@@ -50,11 +51,11 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardSequenceJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(cardSequenceJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cardSequenceJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(cardSequenceJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
         );
 
         pack();

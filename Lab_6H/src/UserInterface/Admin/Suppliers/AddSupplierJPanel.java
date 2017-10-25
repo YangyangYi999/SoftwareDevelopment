@@ -5,8 +5,7 @@
  */
 package UserInterface.Admin.Suppliers;
 
-import Business.Supplier;
-import Business.SupplierDirectory;
+import Business.Supplier.*;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -78,10 +77,10 @@ public class AddSupplierJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(437, 437, 437)
+                        .addGap(350, 350, 350)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(389, 389, 389)
+                        .addGap(277, 277, 277)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

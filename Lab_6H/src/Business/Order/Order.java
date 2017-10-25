@@ -8,7 +8,6 @@ package Business.Order;
 import Business.Market.MarketOffer;
 import Business.Person.Customer;
 import Business.Person.Salesman;
-import Business.Supplier.Product;
 import java.util.ArrayList;
 
 /**
@@ -27,6 +26,22 @@ public class Order {
         orderNumber = count;
         orderItemList = new ArrayList<>();
     }
+    
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Salesman getSalesman() {
+        return salesman;
+    }
+
+    public void setSalesman(Salesman salesman) {
+        this.salesman = salesman;
+    }
 
     public ArrayList<OrderItem> getOrderItemList() {
         return orderItemList;
@@ -44,16 +59,21 @@ public class Order {
         this.orderNumber = orderNumber;
     }
     
-    public OrderItem addOrderItem(MarketOffer m, int q,double price){
+    public OrderItem addOrderItem(MarketOffer m, int q,double price,double gap){
         OrderItem o = new OrderItem();
         o.setMarketOffer(m);
         o.setQuantity(q);
         o.setActualPrice(price);
+        o.setGap(gap);
         orderItemList.add(o);
         return o;
     }
     
     public void removeOrderItem(OrderItem o){
         orderItemList.remove(o);
+    }
+    
+    public String toString(){
+        return String.valueOf(this.getOrderNumber());
     }
 }

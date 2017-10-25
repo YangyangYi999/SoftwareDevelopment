@@ -24,6 +24,8 @@ public class Customer extends Person{
     public static int getCount() {
         return count;
     }
-      
-    
+
+    public String toString(){
+    return this.getFirstName()+" "+this.getLastName();
+    }
 }
