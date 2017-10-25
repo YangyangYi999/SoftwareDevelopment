@@ -9,9 +9,13 @@ import Business.Business;
 import Business.Market.Market;
 import Business.Order.Order;
 import Business.Order.OrderItem;
+import Business.Person.Person;
+import Business.Person.Salesman;
 import Business.Supplier.Product;
 import Business.Supplier.Supplier;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,6 +44,20 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
             jComboBoxTop10.addItem(m);
         }
     }
+    
+    static String fix(double i,int k)
+ {
+  double j = i*Math.pow(10,k);
+  j=Math.round(j);
+  
+  double dou = j/Math.pow(10,k);
+  String str = String.valueOf(dou) ;
+  //System.out.println(str.length()+" "+str.indexOf("."));
+  while(str.length()-str.indexOf(".")<3){
+   str = str+"0";
+  }
+  return str;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -65,6 +83,7 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
         jTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("Monitor Sales");
 
@@ -92,12 +111,32 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
         jLabel2.setText("Market:");
 
         btnTop10.setText("Top10 Sales Person");
+        btnTop10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop10ActionPerformed(evt);
+            }
+        });
 
         btnAbove.setText("Sales Person Above Target");
+        btnAbove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAboveActionPerformed(evt);
+            }
+        });
 
         btnBelow.setText("Sales Person Below Target");
+        btnBelow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBelowActionPerformed(evt);
+            }
+        });
 
         btnTop3.setText("Top3 Products");
+        btnTop3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTop3ActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Market:");
 
@@ -118,6 +157,13 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Market:");
 
+        jButton1.setText("View Salesman Salary");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -125,10 +171,6 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(btnBack)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(381, 381, 381))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,6 +198,15 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
                             .addComponent(btnBelow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnTop3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(103, 103, 103))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(381, 381, 381))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(309, 309, 309))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,9 +219,7 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addGap(52, 52, 52)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81))
+                        .addGap(251, 251, 251))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addComponent(jLabel1)
@@ -194,7 +243,11 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
                                 .addComponent(btnBelow)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnTop3)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,12 +270,12 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
         double gap = 0;
         for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
             for(OrderItem oi: o.getOrderItemList()){
-                revenue += oi.getActualPrice();
-                gap += oi.getGap();
+                revenue += oi.getActualPrice()*oi.getQuantity();
+                gap += oi.getGap()*oi.getQuantity();
             }
         }
-        row[0] = revenue;
-        row[1] = gap;
+        row[0] = fix(revenue,2);
+        row[1] = fix(gap,2);
         dtm.addRow(row);
     }//GEN-LAST:event_btnTotalActionPerformed
 
@@ -243,26 +296,231 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
                 double gap=0;
                 for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
                         for(OrderItem oi: o.getOrderItemList()){
-                                if(oi.getMarketOffer().getProduct()==p)
-                                        totalRevenue += oi.getActualPrice();
-                                        totalGap += oi.getGap();
-                                        revenue += oi.getActualPrice();
-                                        gap += oi.getGap();
+                                if(oi.getMarketOffer().getProduct()==p && oi.getMarketOffer().getMarket() == market){
+                                    revenue += oi.getActualPrice()*oi.getQuantity();
+                                    totalRevenue += oi.getActualPrice()*oi.getQuantity();
+                                    gap += oi.getGap()*oi.getQuantity();
+                                    totalGap += oi.getGap()*oi.getQuantity();       
+                                }
                         }
                 }
                 row[0] = p;
-                row[1] = revenue;
-                row[2] = gap;
+                row[1] = fix(revenue,2);
+                row[2] = fix(gap,2);
                 dtm.addRow(row);
             }
         }
         Object row[] = new Object[3];
         row[0] = "Total";
-        row[1] = totalRevenue;
-        row[2] = totalGap;
+        row[1] = fix(totalRevenue,2);
+        row[2] = fix(totalGap,2);
         dtm.addRow(row);
         
     }//GEN-LAST:event_btnProductSalesRevenueActionPerformed
+
+    private void btnAboveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAboveActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnCount(3);
+        String[] tableHeads = new String[] { "Salesman" ,"Sales Revenue", "Sales Gap" };
+        dtm.setColumnIdentifiers(tableHeads);
+        
+        ArrayList <Salesman> salesmanList = new ArrayList();
+        
+        for(Person p: business.getPersonDirectory().getPersonList()){
+                if(Salesman.class.isInstance(p))
+                    salesmanList.add((Salesman)p);
+        }
+        
+        for(Salesman s: salesmanList){
+            double revenue=0;
+            double gap=0;
+            boolean flag = true;
+            for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
+                if(o.getSalesman().getPersonID() == s.getPersonID()){
+                    for(OrderItem oi: o.getOrderItemList()){
+                        revenue+= oi.getActualPrice()*oi.getQuantity();
+                        gap+= oi.getGap()*oi.getQuantity();
+                    }
+                    if(gap<0) {
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            if(flag==true){
+                Object row[] = new Object[3];
+                row[0] = s;
+                row[1] = fix(revenue,2);
+                row[2] = fix(gap,2);
+                dtm.addRow(row);   
+            }
+        }
+    }//GEN-LAST:event_btnAboveActionPerformed
+
+    private void btnTop3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop3ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnCount(3);
+        String[] tableHeads = new String[] { "Product" ,"Product Revenue", "Product Gap" };
+        dtm.setColumnIdentifiers(tableHeads);
+        for(Supplier s: business.getSupplierDirectory().getSupplierDirectory()){
+            for(Product p: s.getProductCatalog().getProductCatalog()){
+                
+                double revenue=0;
+                double gap=0;
+                for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
+                        for(OrderItem oi: o.getOrderItemList()){
+                                if(oi.getMarketOffer().getProduct()==p){
+                                    revenue += oi.getActualPrice()*oi.getQuantity();
+                                    gap += oi.getGap()*oi.getQuantity();
+                                }
+                        }
+                }
+                p.setRevenue(revenue);
+                p.setGap(gap);
+            }
+        }
+        ArrayList<Product> productList=new ArrayList();
+        for(Supplier s: business.getSupplierDirectory().getSupplierDirectory()){
+            for(Product p: s.getProductCatalog().getProductCatalog()){
+                productList.add(p);
+            }
+        }
+        Collections.sort(productList, new SortProduct());  
+        int flag = 0;
+        for(Product p: productList){
+            flag++;
+            Object row[] = new Object[3];
+            row[0] = p;
+            row[1] = p.getRevenue();
+            row[2] = p.getGap();
+            dtm.addRow(row);   
+            if(flag==3)
+                break;
+            
+        }
+    }//GEN-LAST:event_btnTop3ActionPerformed
+
+    private void btnBelowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBelowActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnCount(3);
+        String[] tableHeads = new String[] { "Salesman" ,"Sales Revenue", "Sales Gap" };
+        dtm.setColumnIdentifiers(tableHeads);
+        
+        ArrayList <Salesman> salesmanList = new ArrayList();
+        
+        for(Person p: business.getPersonDirectory().getPersonList()){
+                if(Salesman.class.isInstance(p))
+                    salesmanList.add((Salesman)p);
+        }
+        for(Salesman s: salesmanList){
+            double revenue=0;
+            double gap=0;
+            for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
+                if(o.getSalesman().getPersonID() == s.getPersonID()){
+                    for(OrderItem oi: o.getOrderItemList()){
+                        revenue+= oi.getActualPrice()*oi.getQuantity();
+                        gap+= oi.getGap()*oi.getQuantity();
+                    }
+                }
+            }
+            if(gap<0){
+                Object row[] = new Object[3];
+                row[0] = s;
+                row[1] = fix(revenue,2);
+                row[2] = fix(gap,2);
+                dtm.addRow(row);   
+            }
+        }
+    }//GEN-LAST:event_btnBelowActionPerformed
+
+    private void btnTop10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTop10ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnCount(3);
+        String[] tableHeads = new String[] { "Salesman" ,"Sales Revenue", "Sales Gap" };
+        dtm.setColumnIdentifiers(tableHeads);
+        Market market = (Market)jComboBoxTop10.getSelectedItem();
+        
+        ArrayList <Salesman> salesmanList = new ArrayList();
+        
+        for(Person p: business.getPersonDirectory().getPersonList()){
+                if(Salesman.class.isInstance(p))
+                    salesmanList.add((Salesman)p);
+        }
+        for(Salesman s: salesmanList){
+            double revenue=0;
+            double gap=0;
+            for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
+                if(o.getSalesman().getPersonID()==s.getPersonID()&&market.getCustomerList().contains(o.getCustomer())){
+                    for(OrderItem oi: o.getOrderItemList()){
+                        revenue+=oi.getActualPrice()*oi.getQuantity();
+                        gap+=oi.getGap()*oi.getQuantity();
+                    }
+                }
+            } 
+            s.setRevenue(revenue);
+            s.setGap(gap);
+        }
+        Collections.sort(salesmanList, new SortSalesman());  
+        int flag=0;
+        for(Salesman s: salesmanList){
+            flag++;
+            Object row[] = new Object[3];
+            row[0] = s;
+            row[1] = s.getRevenue();
+            row[2] = s.getGap();
+            dtm.addRow(row);  
+            if(flag==10)
+                break;
+        }
+    }//GEN-LAST:event_btnTop10ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm = (DefaultTableModel)jTable.getModel();
+        dtm.setRowCount(0);
+        dtm.setColumnCount(3);
+        String[] tableHeads = new String[] { "Salesman" ,"Salary"};
+        dtm.setColumnIdentifiers(tableHeads);
+        
+        ArrayList <Salesman> salesmanList = new ArrayList();
+        
+        for(Person p: business.getPersonDirectory().getPersonList()){
+                if(Salesman.class.isInstance(p))
+                    salesmanList.add((Salesman)p);
+        }
+        for(Salesman s: salesmanList){
+            
+            for(Order o: business.getMasterOrderCatalog().getOrderCatalog()){
+                
+                if(o.getSalesman().getPersonID() == s.getPersonID()){
+                    double revenue=0;
+                    double gap=0;
+                    for(OrderItem oi: o.getOrderItemList()){
+                        revenue+= oi.getActualPrice()*oi.getQuantity();
+                        gap+= oi.getGap()*oi.getQuantity();
+                    }
+                    double salary = s.getSalary();
+                    salary+=gap*0.1;
+                    s.setSalary(salary);
+                }
+                
+            }
+        }
+        for(Salesman s:salesmanList){
+            Object row[] = new Object[2];
+            row[0] = s;
+            row[1] = s.getSalary();
+            dtm.addRow(row);  
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -273,6 +531,7 @@ public class MonitorSalesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnTop10;
     private javax.swing.JButton btnTop3;
     private javax.swing.JButton btnTotal;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBoxProduct;
     private javax.swing.JComboBox jComboBoxTop10;
     private javax.swing.JLabel jLabel1;

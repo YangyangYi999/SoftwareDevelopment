@@ -62,6 +62,11 @@ public class MarketOffer {
     public void setTargetPrice(int targetPrice) {
         this.targetPrice = targetPrice;
     }
+
+    public String getId() {
+        return id;
+    }
+    
     
     @Override
     public String toString(){

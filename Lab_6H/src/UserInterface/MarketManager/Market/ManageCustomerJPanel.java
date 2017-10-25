@@ -195,7 +195,7 @@ public class ManageCustomerJPanel extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        String name =  customerName.getText();
-       if(name.matches(" ") ){
+       if(name.matches("") ){
        JOptionPane.showMessageDialog(this,"Invalid Name");
        }else {String[] names = name.split(" ");
        Customer cus = new Customer();

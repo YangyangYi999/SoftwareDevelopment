@@ -54,7 +54,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnServeCustomer = new javax.swing.JButton();
-        btnServeCustomer1 = new javax.swing.JButton();
+        btnReviewOrderHistory = new javax.swing.JButton();
         btnReviewSalesCommission = new javax.swing.JButton();
         jComboBoxCustomerName = new javax.swing.JComboBox();
 
@@ -76,7 +76,12 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnServeCustomer1.setText("Review Order History");
+        btnReviewOrderHistory.setText("Review Order History");
+        btnReviewOrderHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReviewOrderHistoryActionPerformed(evt);
+            }
+        });
 
         btnReviewSalesCommission.setText("Review Sales Commission");
 
@@ -110,7 +115,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                         .addGap(182, 182, 182)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnReviewSalesCommission, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnServeCustomer1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnReviewOrderHistory, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -126,7 +131,7 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
                     .addComponent(btnServeCustomer)
                     .addComponent(jComboBoxCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnServeCustomer1)
+                .addComponent(btnReviewOrderHistory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReviewSalesCommission)
                 .addContainerGap(87, Short.MAX_VALUE))
@@ -153,12 +158,20 @@ public class ManageCustomersJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxCustomerNameActionPerformed
 
+    private void btnReviewOrderHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReviewOrderHistoryActionPerformed
+        // TODO add your handling code here:
+        ReviewOrderHistoryJPanel rohj = new ReviewOrderHistoryJPanel(cardSequenceJPanel,business,userAccount);
+        cardSequenceJPanel.add("ReviewOrderHistoryJPanel",rohj);
+        CardLayout layout = (CardLayout)cardSequenceJPanel.getLayout();
+        layout.next(cardSequenceJPanel);
+    }//GEN-LAST:event_btnReviewOrderHistoryActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnReviewOrderHistory;
     private javax.swing.JButton btnReviewSalesCommission;
     private javax.swing.JButton btnServeCustomer;
-    private javax.swing.JButton btnServeCustomer1;
     private javax.swing.JComboBox jComboBoxCustomerName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

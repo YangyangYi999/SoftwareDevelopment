@@ -10,6 +10,8 @@ import Business.Market.MarketOffer;
 import Business.Order.Order;
 import Business.Order.OrderItem;
 import Business.Person.Customer;
+import Business.Person.Person;
+import Business.Person.Salesman;
 import Business.Person.UserAccount;
 import Business.Supplier.Supplier;
 import java.awt.CardLayout;
@@ -28,7 +30,6 @@ public class BookOrderJPanel extends javax.swing.JPanel {
     private Business business;
     private UserAccount userAccount;
     private Customer customer;
-    private boolean isCheckedOut=false;
     private Order order;
     /**
      * Creates new form BrowseProducts
@@ -93,12 +94,25 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         for(OrderItem oi: order.getOrderItemList()){
             Object row[] = new Object[4];
             row[0] = oi;
-            row[1] = oi.getActualPrice();
+            row[1] = fix(oi.getActualPrice(),2);
             row[2] = oi.getQuantity();
-            row[3] = oi.getQuantity()*oi.getActualPrice();
+            row[3] = fix(oi.getQuantity()*oi.getActualPrice(),2);
             dtm.addRow(row);
         }
     }
+     static String fix(double i,int k)
+ {
+  double j = i*Math.pow(10,k);
+  j=Math.round(j);
+  
+  double dou = j/Math.pow(10,k);
+  String str = String.valueOf(dou) ;
+  //System.out.println(str.length()+" "+str.indexOf("."));
+  while(str.length()-str.indexOf(".")<3){
+   str = str+"0";
+  }
+  return str;
+ }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -454,6 +468,12 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(order.getOrderItemList().size() > 0){
             business.getMasterOrderCatalog().addOrder(order);
+            order.setCustomer(customer);
+            Person person = new Salesman();
+            person.setFirstName(userAccount.getPerson().getFirstName());
+            person.setLastName(userAccount.getPerson().getLastName());
+            person.setPersonID(userAccount.getPerson().getPersonID());
+            order.setSalesman((Salesman)person);
             JOptionPane.showMessageDialog(null, "Order placed successfully!");
             order = new Order();
             refreshOrderTable();
@@ -494,7 +514,7 @@ public class BookOrderJPanel extends javax.swing.JPanel {
         int floorPrice = selectedMarketOffer.getFloorPrice();
         int ceilingPrice = selectedMarketOffer.getCeilingPrice();
         Double result = (double)floorPrice + ((double)ceilingPrice-(double)floorPrice)*r.nextDouble();
-        txtActualPrice.setText(String.valueOf(result));
+        txtActualPrice.setText(String.valueOf(fix(result,2)));
     }//GEN-LAST:event_btnRandomActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

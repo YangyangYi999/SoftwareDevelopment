@@ -39,7 +39,7 @@
                       <EmptySpace min="-2" pref="182" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnReviewSalesCommission" max="32767" attributes="0"/>
-                          <Component id="btnServeCustomer1" min="-2" pref="206" max="-2" attributes="0"/>
+                          <Component id="btnReviewOrderHistory" min="-2" pref="206" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -61,7 +61,7 @@
                   <Component id="jComboBoxCustomerName" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnServeCustomer1" min="-2" max="-2" attributes="0"/>
+              <Component id="btnReviewOrderHistory" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnReviewSalesCommission" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="87" max="32767" attributes="0"/>
@@ -96,10 +96,13 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnServeCustomerActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnServeCustomer1">
+    <Component class="javax.swing.JButton" name="btnReviewOrderHistory">
       <Properties>
         <Property name="text" type="java.lang.String" value="Review Order History"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReviewOrderHistoryActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnReviewSalesCommission">
       <Properties>

@@ -27,8 +27,22 @@ import java.io.IOException;
  * @author shinychenw
  */
 public class ConfigureABusiness {
+  public static void setAfterRead(Business business){
+      for(Person p: business.getPersonDirectory().getPersonList()){
+          for(UserAccount u: business.getUserAccountDirectory().getUserAccountList())
+              if(u.getPerson() == p && u.getRole().equals("Sales Person")){
+                  Person np = new Salesman();
+                  np = p;
+                  p = np;
+                  break;
+              }
+      }
+      
+      
+      
+  }
   public static void readPersonCSV( Business business){
-       String csvFile ="TeamCSV\\personList.csv";
+       String csvFile ="personList.csv";
         BufferedReader br = null;
         String cvsSplitBy = ",";
          String line = "";
@@ -56,7 +70,7 @@ public class ConfigureABusiness {
     }
   
   public static void readSupplierDirectoryCSV(Business business){
-    String csvFile = "TeamCSV\\supplierCatalog.csv";
+    String csvFile = "supplierCatalog.csv";
     BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -86,11 +100,10 @@ public class ConfigureABusiness {
         }
   }
  static void readSupplierProducts(Supplier s){
-    String csvFile ="TeamCSV\\"+s.getSupplierName()+ ".csv";
+    String csvFile =s.getSupplierName()+ ".csv";
 //    if(s.getSupplierName().equals("Apple")){
 //     csvFile ="C:\\Users\\BoyangWei\\Desktop\\TeamCSV\\Apple.csv";
 //    }
-System.out.println(s.getSupplierName());
     BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -99,7 +112,6 @@ System.out.println(s.getSupplierName());
             while ((line = br.readLine()) != null) {
                  String[] atribute = line.split(cvsSplitBy);
                  Product p = s.getProductCatalog().addProduct();
-                 System.out.println(atribute[0]);
                  p.setProductName(atribute[0]);
                  p.setAvail(Integer.parseInt(atribute[1]));
                 
@@ -132,7 +144,7 @@ System.out.println(s.getSupplierName());
   }
   
   public static void readMarketList(Business business){
-   String csvFile="TeamCSV\\marketList.csv";
+   String csvFile="marketList.csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -165,7 +177,7 @@ System.out.println(s.getSupplierName());
   }
   
   static void readCustomerList(Market market){
-     String csvFile="TeamCSV\\"+market.getName()+".csv";
+     String csvFile=market.getName()+".csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -208,7 +220,7 @@ System.out.println(s.getSupplierName());
   }return null;
   }  
   public static void readMarketOffer(Business business){
-  String csvFile= "TeamCSV\\marketOffer.csv";
+  String csvFile= "marketOffer.csv";
   BufferedReader br = null;
     String cvsSplitBy = ",";
     String line = "";
@@ -225,8 +237,6 @@ System.out.println(s.getSupplierName());
 //                System.out.println(atribute[3]);
 //                System.out.println(mo.getProduct().getProductName());
                 mo.setMarket(getMarket(atribute[4],business));
-                System.out.println(atribute[4]);
-                 System.out.println(mo.getMarket().getName());
                  }
             }
   
@@ -262,7 +272,7 @@ System.out.println(s.getSupplierName());
   
   
   public static void readMasterOrderCatalogCSV(Business business){
-   String csvFile = "TeamCSV\\orderCatalog.csv";
+   String csvFile = "orderCatalog.csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
@@ -270,18 +280,37 @@ System.out.println(s.getSupplierName());
         br = new BufferedReader(new FileReader(csvFile));
             while ((line = br.readLine()) != null) {
              String[] atribute = line.split(cvsSplitBy);
+             if(atribute.length==1)
+                 continue;
              Order order = new Order();
              business.getMasterOrderCatalog().addOrder(order);
-             readOrderItemCSV(order);
+             readOrderItemCSV(order,business);
              try{
-             Customer cus= new Customer();
+             Person cus= new Customer();
              Person p = getPersonbyName(atribute[0],atribute[1],business);
              cus.setFirstName(p.getFirstName());
              cus.setLastName(p.getLastName());
-             Salesman s = new Salesman();
+             cus.setPersonID(p.getPersonID());
+             business.getPersonDirectory().removePerson(p);
+             business.getPersonDirectory().getPersonList().add(cus);
+             order.setCustomer((Customer)cus);
+             for(Market m: business.getMarketList().getMarketList()){
+                 for(Customer c: m.getCustomerList()){
+                     if(c.getLastName().equals(cus.getLastName())&&c.getFirstName().equals(cus.getFirstName())){
+                         m.getCustomerList().remove(c);
+                         m.getCustomerList().add((Customer)cus);
+                         break;
+                     }     
+                 }
+             }
+             Person s = new Salesman();
              Person person = getPersonbyName(atribute[2],atribute[3],business);
              s.setFirstName(person.getFirstName());
              s.setLastName(person.getLastName());
+             s.setPersonID(person.getPersonID());
+             order.setSalesman((Salesman)s); 
+             business.getPersonDirectory().removePerson(person);
+             business.getPersonDirectory().getPersonList().add(s);
              }catch(Exception e){
               System.out.println("This person don't exist.");
             }
@@ -303,8 +332,8 @@ System.out.println(s.getSupplierName());
         }
   }
   
-  static void readOrderItemCSV(Order order){
-   String csvFile = "TeamCSV\\order"+String.valueOf(order.getOrderNumber())+".csv";
+  static void readOrderItemCSV(Order order,Business business){
+   String csvFile = "order"+String.valueOf(order.getOrderNumber())+".csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
@@ -317,6 +346,13 @@ System.out.println(s.getSupplierName());
               if(atribute.length>1){
               oi.setQuantity(Integer.parseInt(atribute[0]));
               oi.setActualPrice(Double.parseDouble(atribute[1]));
+              for(MarketOffer mo: business.getMarketOfferCatalog().getMarketOfferCatalog()){
+                  if(mo.getId().equals(atribute[2])){
+                     oi.setMarketOffer(mo);
+                     break;
+                  }
+              }
+              oi.setGap(oi.getActualPrice()-oi.getMarketOffer().getTargetPrice());
               order.getOrderItemList().add(oi);
               }
               }
@@ -354,7 +390,7 @@ System.out.println(s.getSupplierName());
           
           
   public static void readAccountsCSV(Business business){
-   String csvFile = "TeamCSV\\userAccountList.csv";
+   String csvFile = "userAccountList.csv";
    BufferedReader br = null;
    String cvsSplitBy = ",";
    String line = "";
@@ -373,7 +409,6 @@ System.out.println(s.getSupplierName());
              if(getSupplier(atribute[4],business)!=null)
              {acc.setSupplier(getSupplier(atribute[4],business));}
              acc.setPerson(getPersonbyName(atribute[5],atribute[6],business));
-           System.out.println(acc.getUsername());
             }
   
   }

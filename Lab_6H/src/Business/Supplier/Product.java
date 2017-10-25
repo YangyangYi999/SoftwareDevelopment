@@ -11,6 +11,8 @@ package Business.Supplier;
  * @author shinychenw
  */
 public class Product {
+    private double revenue;
+    private double gap;
     private String productName;
     private int modelNum;
     private static int count = 0;
@@ -43,6 +45,22 @@ public class Product {
 
     public void setAvail(int avail) {
         this.avail = avail;
+    }
+
+    public double getRevenue() {
+        return revenue;
+    }
+
+    public void setRevenue(double revenue) {
+        this.revenue = revenue;
+    }
+
+    public double getGap() {
+        return gap;
+    }
+
+    public void setGap(double gap) {
+        this.gap = gap;
     }
     
     

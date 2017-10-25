@@ -72,4 +72,8 @@ public class Order {
     public void removeOrderItem(OrderItem o){
         orderItemList.remove(o);
     }
+    
+    public String toString(){
+        return String.valueOf(this.getOrderNumber());
+    }
 }
