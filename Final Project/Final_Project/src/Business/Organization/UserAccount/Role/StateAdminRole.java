@@ -10,20 +10,19 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.EnterpriseAdmin.AdminWorkAreaJPanel;
+import Interface.StateAdmin.StateAdminWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author shinychenw
+ * @author BoyangWei
  */
-public class AdminRole extends Role{
+public class StateAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system,State state) {
-       return new AdminWorkAreaJPanel(enterprise,userProcessContainer,account,system); //To change body of generated methods, choose Tools | Templates.
+        return new StateAdminWorkAreaJPanel(system,userProcessContainer,account,state); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
     
 }
