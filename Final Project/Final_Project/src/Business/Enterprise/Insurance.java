@@ -9,6 +9,10 @@ package Business.Enterprise;
  *
  * @author shinychenw
  */
-public class Insurance {
+public class Insurance extends Enterprise{
+    
+    public Insurance(String name) {
+        super(name, Type.Insurance);
+    }
     
 }

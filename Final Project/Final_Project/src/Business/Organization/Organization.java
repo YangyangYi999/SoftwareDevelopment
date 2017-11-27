@@ -8,6 +8,7 @@ package Business.Organization;
 import Business.Organization.Employee.EmployeeDirectory;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.UserAccount.UserAccountDirectory;
+import Business.Organization.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,8 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
+    private WorkQueue inboundworkQueue;
+    private WorkQueue outboundworkQueue;
     
     public enum Type{
         Basic("Basic Organization"),Equipment("Equipment Manage Organization"),Customer("Customer Manage Organization");
@@ -36,6 +39,8 @@ public abstract class Organization {
         this.name = name;
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        inboundworkQueue = new WorkQueue();
+        outboundworkQueue = new WorkQueue();
         organizationID = counter;
         ++counter;
     }
@@ -62,6 +67,14 @@ public abstract class Organization {
         this.name = name;
     }
 
+    public WorkQueue getInboundworkQueue() {
+        return inboundworkQueue;
+    }
+
+    public WorkQueue getOutboundworkQueue() {
+        return outboundworkQueue;
+    }
+    
     @Override
     public String toString() {
         return name;

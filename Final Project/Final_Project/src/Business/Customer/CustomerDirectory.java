@@ -5,6 +5,9 @@
  */
 package Business.Customer;
 
+import Business.EcoSystem;
+import Business.Network.Network;
+import Business.State.State;
 import java.util.ArrayList;
 
 /**
@@ -18,13 +21,13 @@ public class CustomerDirectory {
         customerList = new ArrayList();
     }
     
-    public Customer createEnterprise() {
+    public Customer createCustomer() {
         Customer customer = new Customer();
         customerList.add(customer);
         return customer;
     }
     
-    public void deleteEnterprise(Customer customer){
+    public void deleteCustomer(Customer customer){
         customerList.remove(customer);
     }
 
@@ -32,5 +35,17 @@ public class CustomerDirectory {
         return customerList;
     }
     
+    public static boolean isValid(String str,EcoSystem system){
+        for(Network net : system.getNetworkList().getNetworkList()){
+            for(State s:net.getStateDirectory().getStateList()){
+                for(Customer cus:s.getCustomerDirectory().getCustomerList()){
+                    if(str.equals(cus.getUsername())){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
     
 }

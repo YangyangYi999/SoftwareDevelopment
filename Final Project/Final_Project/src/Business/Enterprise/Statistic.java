@@ -9,6 +9,10 @@ package Business.Enterprise;
  *
  * @author shinychenw
  */
-public class Statistic {
+public class Statistic extends Enterprise{
+    
+    public Statistic(String name) {
+        super(name, Type.Statistic);
+    }
     
 }

@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class CustomerManageOrganization extends Organization{
     private CustomerDirectory customerDirectory;
     private WorkQueue workQueue;
-    public CustomerManageOrganization() {
-        super("CustomerManageOrganization");
+    public CustomerManageOrganization(String name) {
+        super(name);
         customerDirectory = new CustomerDirectory();
         workQueue = new WorkQueue();
     }

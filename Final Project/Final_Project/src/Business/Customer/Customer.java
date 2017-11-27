@@ -5,6 +5,7 @@
  */
 package Business.Customer;
 
+import Business.Organization.WorkQueue.WorkQueue;
 import Business.Organization.WorkQueue.WorkRequest;
 
 
@@ -13,33 +14,34 @@ import Business.Organization.WorkQueue.WorkRequest;
  * @author shinychenw
  */
 public class Customer {
-    private String firstName;
-    private String lastName;
-    private WorkRequest workRequest;
+    private String username;
+    private String password;
+    private WorkQueue workQueue;
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public WorkRequest getWorkRequest() {
-        return workRequest;
+    public WorkQueue getWorkQueue() {
+        return workQueue;
     }
-
-    public void setWorkRequest(WorkRequest workRequest) {
-        this.workRequest = workRequest;
+    
+    public Customer(){
+        workQueue = new WorkQueue();
     }
+    
     
     
 }

@@ -5,6 +5,7 @@
  */
 package Business.State;
 
+import Business.Customer.CustomerDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Organization.BasicOrganization;
 
@@ -14,13 +15,22 @@ import Business.Organization.BasicOrganization;
  */
 public class State extends BasicOrganization{
     private EnterpriseDirectory enterpriseDirectory;
-    public State(){
-        this.setName("State");
+    private CustomerDirectory customerDirectory;
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+    
+    public State(String name){
+        this.setName(name);
         enterpriseDirectory = new EnterpriseDirectory();
     }
 
     public EnterpriseDirectory getEnterpriseDirectory() {
         return enterpriseDirectory;
     }
-    
+    public String toString(){
+     return this.getName();
+    }
 }
+

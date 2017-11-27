@@ -18,8 +18,8 @@ public class NetworkDirectory {
         networkList = new ArrayList();
     }
     
-    public Network createNetwork() {
-        Network network = new Network();
+    public Network createNetwork(String name) {
+        Network network = new Network(name);
         networkList.add(network);
         return network;
     }

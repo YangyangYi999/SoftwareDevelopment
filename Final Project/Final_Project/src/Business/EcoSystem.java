@@ -15,7 +15,6 @@ import Business.Organization.BasicOrganization;
 public class EcoSystem extends BasicOrganization{
     private static EcoSystem system;
     private NetworkDirectory networkDirectory;
-
     public static EcoSystem getInstance() {
         if (system == null) {
             system = new EcoSystem();
@@ -26,6 +25,7 @@ public class EcoSystem extends BasicOrganization{
     private EcoSystem() {
         this.setName("Anti-Theft System");
         networkDirectory = new NetworkDirectory();
+        
     }
 
     public NetworkDirectory getNetworkList() {

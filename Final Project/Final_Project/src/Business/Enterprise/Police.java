@@ -9,6 +9,10 @@ package Business.Enterprise;
  *
  * @author shinychenw
  */
-public class Police {
+public class Police extends Enterprise{
+    
+    public Police(String name) {
+        super(name, Type.Police);
+    }
     
 }
