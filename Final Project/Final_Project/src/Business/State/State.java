@@ -24,6 +24,7 @@ public class State extends BasicOrganization{
     public State(String name){
         this.setName(name);
         enterpriseDirectory = new EnterpriseDirectory();
+        customerDirectory = new CustomerDirectory();
     }
 
     public EnterpriseDirectory getEnterpriseDirectory() {

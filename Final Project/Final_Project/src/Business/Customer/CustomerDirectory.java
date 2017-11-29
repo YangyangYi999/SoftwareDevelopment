@@ -35,6 +35,14 @@ public class CustomerDirectory {
         return customerList;
     }
     
+    public Customer authenticateCustomer(String username, String password){
+        for (Customer ua : customerList)
+            if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
+                return ua;
+            }
+        return null;
+    }
+    
     public static boolean isValid(String str,EcoSystem system){
         for(Network net : system.getNetworkList().getNetworkList()){
             for(State s:net.getStateDirectory().getStateList()){

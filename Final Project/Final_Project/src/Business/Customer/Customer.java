@@ -17,6 +17,16 @@ public class Customer {
     private String username;
     private String password;
     private WorkQueue workQueue;
+    private String Location;
+
+    public String getLocation() {
+        return Location;
+    }
+
+    public void setLocation(String Location) {
+        this.Location = Location;
+    }
+    
 
     public String getUsername() {
         return username;

@@ -25,8 +25,8 @@ public class ConfigureAEcoSystem {
         
         
         Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
-        
-        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole());       
+        SystemAdminRole role = new SystemAdminRole();
+        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee,role );       
         return system;
     }
 }

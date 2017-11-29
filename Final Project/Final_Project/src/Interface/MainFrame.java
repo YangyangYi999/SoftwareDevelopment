@@ -5,10 +5,14 @@
  */
 package Interface;
 
-import Interface.Aftersale.AftersaleWorkArea;
 import Business.ConfigureAEcoSystem;
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
 import Interface.Customer.CustomerWorkArea;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -24,10 +28,15 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private EcoSystem system;
+    private JPanel container;
+    private DB4OUtil  dB4OUtil;
     public MainFrame() {
         initComponents();
-        system = ConfigureAEcoSystem.configure();
+        this.dB4OUtil = DB4OUtil.getInstance();
+        system = dB4OUtil.retrieveSystem();
         jButton2.setEnabled(false);
+        this.container= Container;
+        
     }
 
     /**
@@ -123,7 +132,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,30 +146,55 @@ public class MainFrame extends javax.swing.JFrame {
         if(username.getText().equals("")||String.valueOf(password.getPassword()).equals("")){
             JOptionPane.showMessageDialog(this, "Invalid");
         }else{
-//         for(Network network : system.getNetworkList().getNetworkList()){
-//             for(State state: network.getStateDirectory().getStateList()){
-//                 for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
-//                 
-//                 }
-//             }
-//         }
-//         if(username.getText().equals("customer")||String.valueOf(password.getPassword()).equals("customer")){
-//         CardLayout layout = (CardLayout)Container.getLayout();
-//         CustomerWorkArea cwa = new CustomerWorkArea(system,Container);
-//         Container.add("CustomerWorkArea",cwa);
-//         layout.next(Container);
-//         jButton1.setEnabled(false);
-//         jButton2.setEnabled(true);
-//         }
-          if(username.getText().equals("aftersale")||String.valueOf(password.getPassword()).equals("aftersale")){
-               CardLayout layout = (CardLayout)Container.getLayout();
-               AftersaleWorkArea awa = new AftersaleWorkArea(system,Container);
-               Container.add("AftersaleWorkArea",awa);
-               layout.next(Container);
-               jButton1.setEnabled(false);
-               jButton2.setEnabled(true);
-         }
-        }
+            String user = username.getText();
+            String pw = String.valueOf(password.getPassword());
+            State state = null;
+            Enterprise enterprise = null;
+            UserAccount account = null;
+            Customer customer = null;
+              account = system.getUserAccountDirectory().authenticateUser(user, pw);
+              if(account == null){
+                  for(Network network: system.getNetworkList().getNetworkList()){
+                      for(State s:network.getStateDirectory().getStateList()){
+                              account = s.getUserAccountDirectory().authenticateUser(user, pw);
+                              customer = s.getCustomerDirectory().authenticateCustomer(user, pw);
+                              if(account != null||customer!=null){
+                                  state = s;
+                                  break;
+                              }
+                              else{
+                                  for(Enterprise en: s.getEnterpriseDirectory().getEnterpriseList()){
+                                      account = en.getUserAccountDirectory().authenticateUser(user, pw);
+                                      if(account != null){
+                                          enterprise = en;
+                                          state = s;
+                                          break;
+                                      }
+                                  }
+                              }
+                      }
+                  }
+              }
+              if(account == null){
+                  if(customer!= null){
+                      CardLayout layout = (CardLayout)container.getLayout();
+                      CustomerWorkArea  cwa = new CustomerWorkArea(system,container,customer);
+                      container.add("CustomerWorkArea",cwa);
+                      layout.next(container);
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(this,"Invalid");
+                  }
+              }
+              else{
+                      CardLayout layout = (CardLayout)container.getLayout();
+                      container.add("WorkArea",account.getRole().createWorkArea(container, account, state, enterprise, system, state));
+                       layout.next(container);
+                       jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
+                  }
+            }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -178,7 +212,7 @@ public class MainFrame extends javax.swing.JFrame {
         Container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) Container.getLayout();
         crdLyt.next(Container);
-        //DB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(system);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 

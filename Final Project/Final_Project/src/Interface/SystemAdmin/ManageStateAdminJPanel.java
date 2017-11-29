@@ -8,7 +8,7 @@ package Interface.SystemAdmin;
 import Business.EcoSystem;
 import Business.Network.Network;
 import Business.Organization.Employee.Employee;
-import Business.Organization.UserAccount.Role.AdminRole;
+import Business.Organization.UserAccount.Role.StateAdminRole;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import java.awt.CardLayout;
@@ -52,6 +52,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = account;
             row[1] = account.getRole();
+            dtm.addRow(row);
         }
     }
 
@@ -231,8 +232,8 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_stateComActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    int select = accountTable.getSelectedRow();
-    if(select<0||userName.getText().isEmpty()||employeeName.getText().isEmpty()){
+
+    if(userName.getText().isEmpty()||employeeName.getText().isEmpty()||stateCom.getSelectedItem()==null){
         JOptionPane.showMessageDialog(this, "Invalid");
     }else{
         Employee e = new Employee(employeeName.getText());
@@ -240,7 +241,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
         acc.setEmployee(e);
         acc.setUsername(userName.getText());
         acc.setPassword(userName.getText());
-        acc.setRole(new AdminRole());
+        acc.setRole(new StateAdminRole());
         ((State)stateCom.getSelectedItem()).getUserAccountDirectory().getUserAccountList().add(acc);
         userName.setText("");
         employeeName.setText("");

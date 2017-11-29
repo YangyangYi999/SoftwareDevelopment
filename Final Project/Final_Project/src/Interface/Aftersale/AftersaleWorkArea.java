@@ -6,6 +6,8 @@
 package Interface.Aftersale;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,10 +22,14 @@ public class AftersaleWorkArea extends javax.swing.JPanel {
      */
     private EcoSystem system;
     private JPanel container;
-    public AftersaleWorkArea(EcoSystem system,JPanel container) {
+    private UserAccount account;
+    private Enterprise enterprise;
+    public AftersaleWorkArea(EcoSystem system,JPanel container,UserAccount account,Enterprise enterprise) {
         initComponents();
         this.system=system;
         this.container=container;
+        this.account = account;
+        this.enterprise = enterprise;
     }
 
     /**

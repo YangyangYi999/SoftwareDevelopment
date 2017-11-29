@@ -8,6 +8,7 @@ package Interface.Account;
 import Business.Customer.Customer;
 import Business.Organization.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -140,10 +141,11 @@ public class ManageOwnAccountJPanel extends javax.swing.JPanel {
             if(!String.valueOf(oldPassword.getPassword()).equals(account.getPassword())){
                 JOptionPane.showMessageDialog(this,"Invalid Password");
             }
-            if(newPassword.getPassword().equals(confPassword.getPassword())){
-                try{account.setPassword(confPassword.getPassword().toString());}
-                catch(Exception e){customer.setPassword(confPassword.getPassword().toString());}
-                JOptionPane.showMessageDialog(this,"New password has been seted.");
+            if(String.valueOf(newPassword.getPassword()).equals(String.valueOf(confPassword.getPassword()))){
+                try{account.setPassword(String.valueOf(newPassword.getPassword()));}
+                catch(Exception e){customer.setPassword(String.valueOf(newPassword.getPassword()));}
+                finally{
+                    JOptionPane.showMessageDialog(this,"New password has been seted.");}
             }
         }
         // TODO add your handling code here:

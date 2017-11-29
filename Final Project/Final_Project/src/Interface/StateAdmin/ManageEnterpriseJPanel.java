@@ -23,12 +23,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    private EcoSystem system;
+    
     private JPanel container;
     private State state;
-    public ManageEnterpriseJPanel(EcoSystem system,JPanel container,State state) {
+    public ManageEnterpriseJPanel(JPanel container,State state) {
         initComponents();
-        this.system=system;
         this.container=container;
         this.state = state;
         populateTable();
@@ -41,6 +40,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = enterprise;
             row[1] = enterprise;
+            dtm.addRow(row);
         }
     }
     void populateCom(){
