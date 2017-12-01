@@ -14,7 +14,10 @@ import java.util.ArrayList;
  * @author shinychenw
  */
 public class BasicOrganization extends Organization{
-    public BasicOrganization() {
+    public BasicOrganization(String name) {
+        super(name);
+    }
+    public BasicOrganization(){
         super("BasicOrganization");
     }
     @Override
@@ -23,4 +26,5 @@ public class BasicOrganization extends Organization{
         roleList.add(new AdminRole());
         return roleList;
     }
+    
 }

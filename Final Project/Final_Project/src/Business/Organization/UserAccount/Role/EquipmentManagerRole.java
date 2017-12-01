@@ -5,9 +5,11 @@
  */
 package Business.Organization.UserAccount.Role;
 
+import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.Supplier.SupplierManageWorkAreaJPanel;
 
 /**
  *
@@ -16,6 +18,6 @@ import javax.swing.JPanel;
 public class EquipmentManagerRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization) {
-        return new EquipmentManagerWorkAreaJPanel(userProcessContainer, account, organization);
+        return new EquipmentManageWorkAreaJPanel(userProcessContainer, account, (EquipmentManageOrganization)organization);
     }
 }

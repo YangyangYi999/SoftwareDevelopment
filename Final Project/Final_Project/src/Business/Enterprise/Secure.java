@@ -5,10 +5,21 @@
  */
 package Business.Enterprise;
 
+import Business.Organization.Organization;
+import java.util.ArrayList;
+
 /**
  *
  * @author shinychenw
  */
-public class Secure {
+public class Secure extends Enterprise{
+       
+    public Secure(String name) {
+        super(name, Enterprise.Type.Secure);
+    }
+        @Override
+    public ArrayList<Organization.Type> getSupportedOrg() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -14,8 +14,17 @@ import Business.Organization.WorkQueue.WorkRequest;
 public class Equipment {
     private String name;
     private int quantity;
+    private int price;
     boolean alert = false;
     private WorkRequest workRequest;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public String getName() {
         return name;

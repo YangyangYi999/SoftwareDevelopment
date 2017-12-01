@@ -5,10 +5,21 @@
  */
 package Business.Enterprise;
 
+import Business.Organization.Organization;
+import java.util.ArrayList;
+
 /**
  *
  * @author shinychenw
  */
-public class Police {
+public class Police extends Enterprise{
+    
+    public Police(String name) {
+        super(name, Enterprise.Type.Police);
+    }
+     @Override
+    public ArrayList<Organization.Type> getSupportedOrg() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

@@ -19,11 +19,13 @@ import java.util.ArrayList;
 public class CustomerManageOrganization extends Organization{
     private CustomerDirectory customerDirectory;
     private WorkQueue workQueue;
-    public CustomerManageOrganization() {
+    public CustomerManageOrganization(String name) {
         super("CustomerManageOrganization");
         customerDirectory = new CustomerDirectory();
         workQueue = new WorkQueue();
     }
+
+   
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();

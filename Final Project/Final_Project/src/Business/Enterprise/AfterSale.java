@@ -7,6 +7,8 @@ package Business.Enterprise;
 
 import Business.Organization.CustomerManageOrganization;
 import Business.Organization.EquipmentManageOrganization;
+import Business.Organization.Organization;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,9 +16,15 @@ import Business.Organization.EquipmentManageOrganization;
  */
 public class AfterSale extends Enterprise{
     
-    public AfterSale(){
-        this.setName("AfterSale");
+    public AfterSale(String name){
+        super(name,Enterprise.Type.Aftersale);
         this.getOrganizationDirectory().getOrganizationList().add(new CustomerManageOrganization());
         this.getOrganizationDirectory().getOrganizationList().add(new EquipmentManageOrganization());
     }
+
+    @Override
+    public ArrayList<Organization.Type> getSupportedOrg() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+    
