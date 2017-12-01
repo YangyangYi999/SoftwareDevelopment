@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Aftersale;
+package Interface.Aftersale.CustomerManager;
 
 import Business.EcoSystem;
+import Interface.Account.ManageOwnAccountJPanel;
 import Interface.Customer.ContactAftersalePanel;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,6 +50,7 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         messageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,13 +76,22 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
             messageTable.getColumnModel().getColumn(1).setPreferredWidth(200);
         }
 
+        jButton1.setText("<< Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -87,12 +99,22 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        CardLayout layout = (CardLayout)container.getLayout();
+        container.remove(this);
+        layout.previous(container);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable messageTable;
     // End of variables declaration//GEN-END:variables

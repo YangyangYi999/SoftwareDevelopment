@@ -36,7 +36,6 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         this.system = system;
         populateTable();
         populateorgCom();
-        populateRoleCom();
     }
     void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel)accountTable.getModel();
@@ -58,24 +57,30 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
             orgCom.addItem(org);
         }
-        orgCom.setSelectedIndex(0);
+        if(enterprise.getOrganizationDirectory().getOrganizationList().size()>0){
+            orgCom.setSelectedIndex(0);
+        populateRoleCom((Organization)orgCom.getSelectedItem());
         populateEmpCom((Organization)orgCom.getSelectedItem());
+        }
     }
     
-    void populateRoleCom(){
+    void populateRoleCom(Organization org){
         roleCom.removeAllItems();
-        for(Role role: enterprise.getSupportedRole()){
+        
+        for(Role role: org.getSupportedRole()){
             roleCom.addItem(role);
         }
         roleCom.setSelectedIndex(0);
     }
     
     void populateEmpCom(Organization org){
-        empCom.removeAllItems();;
+        empCom.removeAllItems();
+        if(org.getEmployeeDirectory().getEmployeeList().size()>0){
         for(Employee emp :org.getEmployeeDirectory().getEmployeeList()){
             empCom.addItem(emp);
         }
         empCom.setSelectedIndex(0);
+        }
     }
     
 
@@ -127,6 +132,12 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel1.setText("Organization:");
+
+        orgCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgComActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel2.setText("Role:");
@@ -279,6 +290,18 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         layout.previous(container);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void orgComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComActionPerformed
+        if(orgCom.getSelectedItem() == null){
+            roleCom.removeAllItems();
+            empCom.removeAllItems();
+        }else{
+            Organization org = (Organization)orgCom.getSelectedItem();
+            populateRoleCom(org);
+            populateEmpCom(org);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orgComActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -14,7 +14,7 @@ public class Employee {
     private int id;
     private static int count = 1;
 
-    public Employee(String nane) {
+    public Employee(String name) {
         this.name=name;
         id = count;
         count++;

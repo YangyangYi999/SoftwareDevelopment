@@ -6,7 +6,6 @@
 package Business.Organization;
 
 import Business.Customer.CustomerDirectory;
-import Business.Organization.UserAccount.Role.AdminRole;
 import Business.Organization.UserAccount.Role.CustomerManagerRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.WorkQueue.WorkQueue;

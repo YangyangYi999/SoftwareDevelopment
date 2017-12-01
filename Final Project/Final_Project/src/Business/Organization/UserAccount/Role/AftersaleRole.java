@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.Aftersale.AftersaleWorkArea;
+import Interface.Aftersale.CustomerManager.CustomerManagerWorkArea;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +21,7 @@ public class AftersaleRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
-        return new AftersaleWorkArea(system,userProcessContainer,account,enterprise);
+        return new CustomerManagerWorkArea(system,userProcessContainer,account,enterprise);
     }
     
 }

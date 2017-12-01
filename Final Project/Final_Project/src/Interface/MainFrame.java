@@ -5,14 +5,16 @@
  */
 package Interface;
 
-import Business.ConfigureAEcoSystem;
 import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Equipment.Equipment;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
+import Interface.Customer.CreateCustomerJPanel;
 import Interface.Customer.CustomerWorkArea;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -56,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,6 +87,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton3.setText("Sign in");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,7 +113,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(password)
                             .addComponent(username)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -120,7 +132,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(49, 49, 49)
                 .addComponent(jButton2)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jButton3)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -169,6 +183,15 @@ public class MainFrame extends javax.swing.JFrame {
                                           enterprise = en;
                                           state = s;
                                           break;
+                                      }else{
+                                          for(Organization org: en.getOrganizationDirectory().getOrganizationList()){
+                                              account = org.getUserAccountDirectory().authenticateUser(user, pw);
+                                              if(account != null){
+                                                enterprise = en;
+                                                state = s;
+                                                break;
+                                              }
+                                          }
                                       }
                                   }
                               }
@@ -181,6 +204,8 @@ public class MainFrame extends javax.swing.JFrame {
                       CustomerWorkArea  cwa = new CustomerWorkArea(system,container,customer);
                       container.add("CustomerWorkArea",cwa);
                       layout.next(container);
+                      jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
                   }
                   else{
                       JOptionPane.showMessageDialog(this,"Invalid");
@@ -216,6 +241,14 @@ public class MainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CardLayout crdLyt = (CardLayout) Container.getLayout();
+        CreateCustomerJPanel ccjp = new CreateCustomerJPanel(system,container);
+        container.add("CreateCustomerJPanel",ccjp);
+        crdLyt.next(container);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -247,6 +280,8 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
+                new MainFrame().setLocationRelativeTo(null);
+                new MainFrame().setSize(900, 600);
             }
         });
     }
@@ -255,6 +290,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;

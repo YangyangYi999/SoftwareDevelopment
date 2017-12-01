@@ -18,11 +18,11 @@ public class EquipmentDirectory {
         equipmentList = new ArrayList();
     }
     
-    public Equipment createEnterprise() {
-        Equipment equipment = new Equipment();
-        equipmentList.add(equipment);
-        return equipment;
-    }
+//    public Equipment createEnterprise() {
+//        Equipment equipment = new Equipment();
+//        equipmentList.add(equipment);
+//        return equipment;
+//    }
     
     public void deleteEnterprise(Equipment equipment){
         equipmentList.remove(equipment);

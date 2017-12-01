@@ -138,14 +138,25 @@ public class ManageOwnAccountJPanel extends javax.swing.JPanel {
         if(oldPassword.getPassword().length==0||newPassword.getPassword().length==0||confPassword.getPassword().length==0){
             JOptionPane.showMessageDialog(this,"Please fill in all the blanks.");
         }else{
-            if(!String.valueOf(oldPassword.getPassword()).equals(account.getPassword())){
-                JOptionPane.showMessageDialog(this,"Invalid Password");
-            }
             if(String.valueOf(newPassword.getPassword()).equals(String.valueOf(confPassword.getPassword()))){
-                try{account.setPassword(String.valueOf(newPassword.getPassword()));}
-                catch(Exception e){customer.setPassword(String.valueOf(newPassword.getPassword()));}
-                finally{
-                    JOptionPane.showMessageDialog(this,"New password has been seted.");}
+                if(customer == null){
+                    if(!String.valueOf(oldPassword.getPassword()).equals(account.getPassword())){
+                        JOptionPane.showMessageDialog(this,"Invalid Password");
+                    }else{
+                        account.setPassword(String.valueOf(newPassword.getPassword()));
+                         JOptionPane.showMessageDialog(this,"New password has been seted.");
+                    }
+                    
+                }else{
+                     if(!String.valueOf(oldPassword.getPassword()).equals(customer.getPassword())){
+                        JOptionPane.showMessageDialog(this,"Invalid Password");
+                    }else{
+                         customer.setPassword(String.valueOf(newPassword.getPassword()));
+                          JOptionPane.showMessageDialog(this,"New password has been seted.");
+                     }
+                     
+                }
+              
             }
         }
         // TODO add your handling code here:
