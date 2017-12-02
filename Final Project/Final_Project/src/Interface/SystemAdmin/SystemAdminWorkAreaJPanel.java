@@ -7,10 +7,7 @@ package Interface.SystemAdmin;
 
 import Business.EcoSystem;
 import Business.Organization.UserAccount.UserAccount;
-<<<<<<< HEAD
-=======
 import Interface.Account.ManageOwnAccountJPanel;
->>>>>>> yyy
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 

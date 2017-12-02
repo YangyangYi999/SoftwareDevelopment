@@ -45,24 +45,18 @@ public class StateAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-<<<<<<< HEAD
-=======
         jButton3 = new javax.swing.JButton();
->>>>>>> yyy
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jLabel1.setText("StateAdmin WorkArea:");
 
         jButton1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jButton1.setText("Manage Enterprise");
-<<<<<<< HEAD
-=======
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
->>>>>>> yyy
 
         jButton2.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jButton2.setText("Manage Own Account");
