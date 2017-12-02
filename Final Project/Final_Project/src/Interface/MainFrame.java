@@ -201,7 +201,7 @@ public class MainFrame extends javax.swing.JFrame {
               if(account == null){
                   if(customer!= null){
                       CardLayout layout = (CardLayout)container.getLayout();
-                      CustomerWorkArea  cwa = new CustomerWorkArea(system,container,customer);
+                      CustomerWorkArea  cwa = new CustomerWorkArea(state,container,customer);
                       container.add("CustomerWorkArea",cwa);
                       layout.next(container);
                       jButton1.setEnabled(false);

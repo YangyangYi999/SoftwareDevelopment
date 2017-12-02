@@ -23,7 +23,7 @@ import java.util.TimerTask;
  */
 public class Equipment {
     private String name;
-    private int quantity;
+    private int stock;
     private boolean alert = false;
     private Customer customer;
     private WorkQueue sendedRequests;
@@ -33,6 +33,16 @@ public class Equipment {
     private Insurance insurance;
     private Secure secure;
     private String status;
+    private double price;
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
 
     public String getStatus() {
         return status;
@@ -76,13 +86,14 @@ public class Equipment {
         this.name = name;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getStock() {
+        return stock;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
+
 
     public boolean isAlert() {
         return alert;
