@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Supplier;
+package Interface.Supplier;
 
 import Business.Equipment.Equipment;
 import Business.Organization.EquipmentManageOrganization;
@@ -11,7 +11,7 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.Distributor.ViewProductDetailJPanel;
+import Interface.Distributor.ViewProductDetailJPanel;
 
 /**
  *

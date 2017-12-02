@@ -9,6 +9,7 @@ import Business.Equipment.MasterOrderCatalog;
 import Business.Equipment.Order;
 import Business.Organization.UserAccount.Role.OrderManagerRole;
 import Business.Organization.UserAccount.Role.Role;
+import Business.Organization.UserAccount.Role.SupplierOrderConfirmRole;
 import java.util.ArrayList;
 
 /**
@@ -36,6 +37,7 @@ public class OrderManageOrganization extends Organization{
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();
         roleList.add(new OrderManagerRole());
+        roleList.add(new SupplierOrderConfirmRole());
         return roleList;
     }
     

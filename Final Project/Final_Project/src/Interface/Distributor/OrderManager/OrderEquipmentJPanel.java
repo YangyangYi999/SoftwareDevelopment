@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Distributor.OrderManager;
+package Interface.Distributor.OrderManager;
 
+import Interface.Distributor.ViewProductDetailJPanel;
 import Business.Enterprise.Distributor;
-import userinterface.Distributor.*;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Supplier;
 import Business.Equipment.Equipment;
@@ -43,6 +43,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         this.distributor = distributor;
         this.state = state;
         this.userProcessContainer= userProcessContainer; 
+        this.orderManageOrganization = orderManageOrganization;
         populateSupplierCombo();
          if(!isCheckOut){
           order = new Order();
@@ -215,7 +216,9 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
+                        .addGap(29, 29, 29)
+                        .addComponent(btnViewOrderItem)
+                        .addGap(18, 18, 18)
                         .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -241,8 +244,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                             .addComponent(btnSearchProduct))
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnViewOrderItem)
-                            .addGap(95, 95, 95)
+                            .addGap(200, 200, 200)
                             .addComponent(btnModifyQuantity)
                             .addGap(55, 55, 55)
                             .addComponent(btnCheckOut)
@@ -271,8 +273,10 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                 .addGap(3, 3, 3)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewOrderItem))
+                .addGap(44, 44, 44))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -286,7 +290,6 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                     .addComponent(viewProdjButton2)
                     .addGap(181, 181, 181)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnViewOrderItem)
                         .addComponent(btnModifyQuantity)
                         .addComponent(btnCheckOut)
                         .addComponent(btnRemoveOrderItem))
@@ -349,8 +352,8 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
       public void refreshOrderTable(){
         DefaultTableModel model = (DefaultTableModel)orderTable.getModel();
         model.setRowCount(0);
-        for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
-            for(OrderItem oi:o.getOrderItemList()){
+        
+            for(OrderItem oi:order.getOrderItemList()){
                     Object row[]= new Object[4];
                      row[0] = oi;
                      row[1] = oi.getSalesPrice();
@@ -358,7 +361,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                      row[3] = oi.getQuatity()*oi.getSalesPrice();
                      model.addRow(row);
                 }
-        }
+       
             
         
         
@@ -405,7 +408,6 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             return;
         }
         try{
-            
             if(fetchQty<=selectedProduct.getQuantity()){
                 boolean alreadyPresent=false;
                 for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
@@ -438,24 +440,11 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             }
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Invalid SalesPrice");
+            JOptionPane.showMessageDialog(null, "Unable to add to cart");
             return;
         }
 
     }//GEN-LAST:event_addtoCartButton6ActionPerformed
-
-    private void btnViewOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderItemActionPerformed
-        int row =orderTable.getSelectedRow();
-        if(row<0){
-            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        OrderItem p = (OrderItem)orderTable.getValueAt(row,0);
-        ViewOrderItemDetailJPanel vs = new ViewOrderItemDetailJPanel(userProcessContainer, p);
-        userProcessContainer.add("ViewProductDetailJPanel", vs);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewOrderItemActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
         // TODO add your handling code here:
@@ -518,6 +507,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             
             
             JOptionPane.showMessageDialog(null, "Order placed successful!");
+            order = new Order();
             refreshOrderTable();
             populateTable();
             
@@ -552,6 +542,19 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         CardLayout layout =(CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnViewOrderItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderItemActionPerformed
+        int row =orderTable.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Please select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        OrderItem p = (OrderItem)orderTable.getValueAt(row,0);
+        ViewProductDetailJPanel vs = new ViewProductDetailJPanel(userProcessContainer, p.getEquipment());        
+        userProcessContainer.add("ViewProductDetailJPanel", vs);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewOrderItemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

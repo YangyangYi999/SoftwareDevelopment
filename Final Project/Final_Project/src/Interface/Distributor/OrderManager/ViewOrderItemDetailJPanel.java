@@ -2,9 +2,8 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Distributor.OrderManager;
+package Interface.Distributor.OrderManager;
 
-import userinterface.Distributor.*;
 import Business.Equipment.OrderItem;
 import java.awt.CardLayout;
 import javax.swing.JPanel;

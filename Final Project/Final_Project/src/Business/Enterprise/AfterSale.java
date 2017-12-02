@@ -35,9 +35,5 @@ public class AfterSale extends Enterprise{
         return list;
     }
 
-    @Override
-    public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
     

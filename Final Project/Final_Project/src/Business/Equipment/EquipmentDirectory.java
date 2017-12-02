@@ -20,8 +20,7 @@ public class EquipmentDirectory {
     
     public Equipment createEquipment(String name,int quantity,int price) {
         
-        Equipment equipment = new Equipment();
-        equipment.setName(name);
+        Equipment equipment = new Equipment(name);
         equipment.setQuantity(quantity);
         equipment.setPrice(price);
         equipmentList.add(equipment);

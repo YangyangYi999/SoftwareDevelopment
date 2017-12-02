@@ -18,14 +18,16 @@ public class Supplier extends Enterprise{
     
     public Supplier(String name) {
         super(name, Type.Supplier);
-        this.getOrganizationDirectory().addOrganization("Supplier", Organization.Type.Basic);
-
     }
 
+    
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.Order);
+        list.add(Organization.Type.Equipment);
+        return list;    }    
+    
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();

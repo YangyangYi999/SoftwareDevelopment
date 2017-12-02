@@ -4,7 +4,7 @@
  * Created on September 18, 2008, 2:54 PM
  */
 
-package userinterface.Distributor;
+package Interface.Distributor;
 
 
 import Business.Equipment.Equipment;

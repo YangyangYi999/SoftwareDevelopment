@@ -7,12 +7,13 @@ package Business.Organization.UserAccount.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Supplier;
 import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import javax.swing.JPanel;
-import userinterface.Supplier.ConfirmOrder.SupplierOrderConfirmWorkAreaJPanel;
+import Interface.Supplier.ConfirmOrder.SupplierOrderConfirmWorkAreaJPanel;
 
 /**
  *
@@ -22,7 +23,7 @@ public class SupplierOrderConfirmRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
-        return new SupplierOrderConfirmWorkAreaJPanel(userProcessContainer,account,(OrderManageOrganization)organization,state,enterprise );//To change body of generated methods, choose Tools | Templates.
+        return new SupplierOrderConfirmWorkAreaJPanel(userProcessContainer,account,(OrderManageOrganization)organization,state,(Supplier)enterprise );//To change body of generated methods, choose Tools | Templates.
     }
     
 }

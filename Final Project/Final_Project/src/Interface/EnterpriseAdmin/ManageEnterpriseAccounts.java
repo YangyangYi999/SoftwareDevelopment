@@ -6,10 +6,18 @@
 package Interface.EnterpriseAdmin;
 
 import Business.EcoSystem;
+import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Supplier;
 import Business.Organization.Employee.Employee;
+import Business.Organization.EquipmentManageOrganization;
+import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
+import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.OrderManagerRole;
 import Business.Organization.UserAccount.Role.Role;
+import Business.Organization.UserAccount.Role.SupplierEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.SupplierOrderConfirmRole;
 import Business.Organization.UserAccount.UserAccount;
 import Business.Organization.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
@@ -66,9 +74,22 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
     
     void populateRoleCom(Organization org){
         roleCom.removeAllItems();
-        
-        for(Role role: org.getSupportedRole()){
-            roleCom.addItem(role);
+        if(org instanceof EquipmentManageOrganization && enterprise instanceof Distributor){
+                roleCom.addItem(new DistributorEquipmentManagerRole());
+            }
+        else if(org instanceof EquipmentManageOrganization && enterprise instanceof Supplier){
+                roleCom.addItem(new SupplierEquipmentManagerRole());
+            }
+        else if(org instanceof OrderManageOrganization && enterprise instanceof Supplier){
+                roleCom.addItem(new SupplierOrderConfirmRole());
+        }
+        else if(org instanceof OrderManageOrganization && enterprise instanceof Distributor){
+                roleCom.addItem(new OrderManagerRole());
+        }
+        else{
+            for(Role role: org.getSupportedRole()){
+                roleCom.addItem(role);
+            }
         }
         roleCom.setSelectedIndex(0);
     }
@@ -141,6 +162,12 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel2.setText("Role:");
+
+        roleCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleComActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel3.setText("Username: ");
@@ -302,6 +329,10 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_orgComActionPerformed
+
+    private void roleComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roleComActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

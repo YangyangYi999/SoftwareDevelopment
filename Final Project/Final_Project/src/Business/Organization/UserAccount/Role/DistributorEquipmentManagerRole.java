@@ -7,13 +7,12 @@ package Business.Organization.UserAccount.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.Enterprise.Type.Distributor;
 import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import javax.swing.JPanel;
-import userinterface.Distributor.DistributorEquipmentManageWorkAreaJPanel;
+import Interface.Distributor.DistributorEquipmentManageWorkAreaJPanel;
 
 /**
  *

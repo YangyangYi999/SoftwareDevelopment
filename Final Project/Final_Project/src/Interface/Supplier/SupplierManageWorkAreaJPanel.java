@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Supplier;
+package Interface.Supplier;
 
 import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;

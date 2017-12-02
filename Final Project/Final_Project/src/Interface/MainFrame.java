@@ -163,6 +163,7 @@ public class MainFrame extends javax.swing.JFrame {
             String user = username.getText();
             String pw = String.valueOf(password.getPassword());
             State state = null;
+            Organization organization = null;
             Enterprise enterprise = null;
             UserAccount account = null;
             Customer customer = null;
@@ -187,15 +188,26 @@ public class MainFrame extends javax.swing.JFrame {
                                           for(Organization org: en.getOrganizationDirectory().getOrganizationList()){
                                               account = org.getUserAccountDirectory().authenticateUser(user, pw);
                                               if(account != null){
+                                                organization = org;
                                                 enterprise = en;
                                                 state = s;
                                                 break;
                                               }
                                           }
                                       }
+                                      if(organization!=null){
+                                          break;
+                                      }
                                   }
                               }
+                              if(enterprise!=null){
+                                  break;
+                              }
                       }
+                      if(state!=null){
+                          break;
+                      }
+                      
                   }
               }
               if(account == null){
@@ -213,7 +225,7 @@ public class MainFrame extends javax.swing.JFrame {
               }
               else{
                       CardLayout layout = (CardLayout)container.getLayout();
-                      container.add("WorkArea",account.getRole().createWorkArea(container, account, state, enterprise, system, state));
+                      container.add("WorkArea",account.getRole().createWorkArea(container, account,organization, enterprise,system,state));
                        layout.next(container);
                        jButton1.setEnabled(false);
                         jButton2.setEnabled(true);

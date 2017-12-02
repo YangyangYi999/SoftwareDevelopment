@@ -18,7 +18,6 @@ public class Distributor extends Enterprise{
     
     public Distributor(String name) {
         super(name,Type.Distributor);
-        this.getOrganizationDirectory().addOrganization("Distributor", Organization.Type.Basic);
     }
 
    
@@ -31,7 +30,9 @@ public class Distributor extends Enterprise{
 
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.Order);
+        list.add(Organization.Type.Equipment);
+        return list;    }
     
 }

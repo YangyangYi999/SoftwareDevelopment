@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.Supplier.ConfirmOrder;
+package Interface.Supplier.ConfirmOrder;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Supplier;
 import Business.Organization.OrderManageOrganization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
@@ -21,7 +22,7 @@ private JPanel userProcessContainer;
 private UserAccount account;
 private OrderManageOrganization orderManageOrganization;
 private State state;
-private Enterprise enterprise;
+private Supplier supplier;
     /**
      * Creates new form EquipmentMngWorkAreaJPanel
      */
@@ -29,12 +30,12 @@ private Enterprise enterprise;
 
    
 
-    public SupplierOrderConfirmWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, OrderManageOrganization orderManageOrganization, State state, Enterprise enterprise) {
+    public SupplierOrderConfirmWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, OrderManageOrganization orderManageOrganization, State state, Supplier supplier) {
         initComponents();
         this.account = account;
         this.userProcessContainer = userProcessContainer;
         this.orderManageOrganization = orderManageOrganization;
-        this.enterprise = enterprise;
+        this.supplier = supplier;
         this.state = state;
     }
 
@@ -122,7 +123,7 @@ private Enterprise enterprise;
 
     private void btnMngOrdersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMngOrdersActionPerformed
         // TODO add your handling code here:
-        OrderProcessJPanel opjp = new OrderProcessJPanel(userProcessContainer,orderManageOrganization,enterprise,state);
+        OrderProcessJPanel opjp = new OrderProcessJPanel(userProcessContainer,orderManageOrganization,supplier,state);
         userProcessContainer.add("OrderProcessJPanel", opjp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

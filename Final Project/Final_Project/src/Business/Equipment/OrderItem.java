@@ -15,7 +15,7 @@ public class OrderItem {
     private Equipment equipment;
   
     public OrderItem (){
-        equipment=new Equipment();
+        equipment=new Equipment(null);
     }
 
     public Equipment getEquipment() {

@@ -22,6 +22,7 @@ import java.util.TimerTask;
  * @author shinychenw
  */
 public class Equipment {
+    private int price;
     private String name;
     private int quantity;
     private boolean alert = false;
@@ -33,6 +34,8 @@ public class Equipment {
     private Insurance insurance;
     private Secure secure;
     private String status;
+
+    
 
     public String getStatus() {
         return status;
@@ -104,14 +107,12 @@ public class Equipment {
         return sendedRequests;
     }
     
-    public Equipment(String name,Insurance insurance,Secure secure){
+    public Equipment(String name){
         this.sendedRequests = new WorkQueue();
         this.customer = null;
         this.updatedRecords = new ArrayList();
         this.manufacturedDate = new Date();
         this.name= name;
-        this.insurance= insurance;
-        this.secure = secure;
         this.status = "on sale";
     }
     
@@ -144,6 +145,9 @@ public class Equipment {
           timer.schedule(task, 0, 1000*60*20);//20min
     }
     
-    
+    @Override
+    public String toString(){
+        return this.name;
+    }
     
 }

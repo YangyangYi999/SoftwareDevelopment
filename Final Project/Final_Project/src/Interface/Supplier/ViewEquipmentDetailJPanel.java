@@ -4,7 +4,7 @@
  * Created on September 18, 2008, 2:54 PM
  */
 
-package userinterface.Supplier;
+package Interface.Supplier;
 
 
 import Business.Equipment.Equipment;
@@ -118,7 +118,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
             p.setPrice(Integer.parseInt(txtPrice.getText()));
             p.setQuantity(Integer.parseInt(txtAvail.getText()));
             btnSave.setEnabled(false);
-            btnUpdate.setEnabled(true);
+            btnUpdate2.setEnabled(true);
             JOptionPane.showMessageDialog(null,"Account successfully updated!");
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -130,7 +130,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         txtPrice.setEnabled(true);
         txtAvail.setEnabled(true);
         btnSave.setEnabled(true);
-        btnUpdate.setEnabled(false);
+        btnUpdate2.setEnabled(false);
     }//GEN-LAST:event_btnUpdate2ActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -144,8 +144,6 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
     private javax.swing.JButton btnUpdate2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
