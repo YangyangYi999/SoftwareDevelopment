@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Group5100">
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/StateAdmin/StateAdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/CustomerManageOrganization.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Enterprise/Insurance.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/OrganizationDirectory.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/StateAdmin/ManageEnterpriseAdminJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/WorkQueue/WorkQueue.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Equipment/Equipment.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/DB4OUtil/DB4OUtil.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Customer/CreateCustomerJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/AdminWorkAreaJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Customer/Customer.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Enterprise/Enterprise.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageStateAdminJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/EcoSystem.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Alert/AlertDirectory.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageStateJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Aftersale/CustomerManager/CustomerManagerWorkArea.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/MainFrame.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageNetworkJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Aftersale/EquipmentManager/EquipmentManagerWorkArea.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Account/ManageOwnAccountJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Aftersale/CustomerManager/CheckFeedbackPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/Role.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/Employee/Employee.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEnterpriseAccounts.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/Organization.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Alert/Alert.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/SystemAdminRole.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageOrganizationJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Aftersale/EquipmentManager/CheckEquimentStatusJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/UserAccountDirectory.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/AftersaleRole.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/StateAdminRole.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/ConfigureAEcoSystem.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Enterprise/Secure.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/BasicOrganization.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/EquipmentManageOrganization.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Equipment/EquipmentDirectory.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/CustomerManagerRole.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Enterprise/EnterpriseDirectory.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEmployeeJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/StateAdmin/ManageEnterpriseJPanel.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Enterprise/AfterSale.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Interface/Customer/CustomerWorkArea.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/State/State.java</file>
+            <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/EquipmentManagerRole.java</file>
+        </group>
+    </open-files>
+</project-private>

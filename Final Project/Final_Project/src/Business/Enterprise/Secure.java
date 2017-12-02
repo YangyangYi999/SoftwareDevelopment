@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Alert.AlertDirectory;
 import Business.Organization.Organization;
 import java.util.ArrayList;
 
@@ -13,13 +14,19 @@ import java.util.ArrayList;
  * @author shinychenw
  */
 public class Secure extends Enterprise{
-       
-    public Secure(String name) {
-        super(name, Enterprise.Type.Secure);
+       private AlertDirectory alertDirectory;
+
+    public AlertDirectory getAlertDirectory() {
+        return alertDirectory;
     }
-        @Override
+    public Secure(String name) {
+        super(name, Type.Secure);
+        this.alertDirectory = new AlertDirectory();
+    }
+
+    @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+       
 }

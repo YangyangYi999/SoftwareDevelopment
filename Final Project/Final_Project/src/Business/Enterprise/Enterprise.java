@@ -9,6 +9,7 @@ import Business.Equipment.EquipmentDirectory;
 import Business.Organization.BasicOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Organization.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**

@@ -29,7 +29,6 @@ public class EquipmentManageOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();
-        roleList.add(new AdminRole());
         roleList.add(new EquipmentManagerRole());
         return roleList;
     }

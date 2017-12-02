@@ -14,7 +14,6 @@ import java.util.ArrayList;
  *
  * @author shinychenw
  */
-
 public class Supplier extends Enterprise{
     
     public Supplier(String name) {

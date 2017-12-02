@@ -15,12 +15,16 @@ import Business.State.StateDirectory;
 public class Network extends BasicOrganization{
     
     private StateDirectory stateDirectory;
-    public Network() {
-        this.setName("Network");
+    public Network(String name) {
+        this.setName(name);
         stateDirectory = new StateDirectory();
     }
 
     public StateDirectory getStateDirectory() {
         return stateDirectory;
+    }
+    
+    public String toString(){
+        return this.getName();
     }
 }

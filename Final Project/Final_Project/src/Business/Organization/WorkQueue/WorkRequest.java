@@ -5,6 +5,7 @@
  */
 package Business.Organization.WorkQueue;
 
+import Business.Customer.Customer;
 import Business.Organization.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -13,25 +14,46 @@ import java.util.Date;
  * @author shinychenw
  */
 public class WorkRequest {
-    private String testResult;
+    //private String testResult;
     private String message;
     private UserAccount sender;
+    private Customer customer;
     private UserAccount receiver;
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private String feedBack;
+
+    public String getFeedBack() {
+        return feedBack;
+    }
+
+    public void setFeedBack(String feedBack) {
+        this.feedBack = feedBack;
+    }
+    
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+    
     
     public WorkRequest(){
         requestDate = new Date();
+        this.feedBack = "";
     }
 
-    public String getTestResult() {
-        return testResult;
-    }
-
-    public void setTestResult(String testResult) {
-        this.testResult = testResult;
-    }
+//    public String getTestResult() {
+//        return testResult;
+//    }
+//
+//    public void setTestResult(String testResult) {
+//        this.testResult = testResult;
+//    }
     
     public String getMessage() {
         return message;
@@ -79,5 +101,9 @@ public class WorkRequest {
 
     public void setResolveDate(Date resolveDate) {
         this.resolveDate = resolveDate;
+    }
+    
+    public String toString(){
+        return message;
     }
 }

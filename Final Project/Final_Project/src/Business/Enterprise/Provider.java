@@ -15,12 +15,7 @@ import java.util.ArrayList;
 public class Provider extends Enterprise{
     
     public Provider(String name) {
-        super(name, Enterprise.Type.Provider);
+        super(name, Type.Provider);
     }
-     @Override
-    public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     
 }
