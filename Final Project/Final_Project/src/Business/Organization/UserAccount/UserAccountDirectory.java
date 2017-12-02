@@ -5,8 +5,13 @@
  */
 package Business.Organization.UserAccount;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Employee.Employee;
+import Business.Organization.Organization;
 import Business.Organization.UserAccount.Role.Role;
+import Business.State.State;
 import java.util.ArrayList;
 
 /**
@@ -46,6 +51,25 @@ public class UserAccountDirectory {
         for (UserAccount ua : userAccountList){
             if (ua.getUsername().equals(username))
                 return false;
+        }
+        return true;
+    }
+    
+    public static boolean isValid(String str, EcoSystem system){
+        for(Network network:system.getNetworkList().getNetworkList()){
+            for(State state:network.getStateDirectory().getStateList()){
+                for(Enterprise en: state.getEnterpriseDirectory().getEnterpriseList()){
+                    if(!en.getUserAccountDirectory().checkIfUsernameIsUnique(str)){
+                        return false;
+                    }else{
+                        for(Organization org: en.getOrganizationDirectory().getOrganizationList()){
+                            if(!org.getUserAccountDirectory().checkIfUsernameIsUnique(str)){
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
         }
         return true;
     }

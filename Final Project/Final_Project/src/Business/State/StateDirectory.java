@@ -18,8 +18,8 @@ public class StateDirectory {
         stateList = new ArrayList();
     }
     
-    public State createState() {
-        State state = new State();
+    public State createState(String name) {
+        State state = new State(name);
         stateList.add(state);
         return state;
     }

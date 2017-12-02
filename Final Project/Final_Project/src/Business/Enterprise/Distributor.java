@@ -9,6 +9,10 @@ package Business.Enterprise;
  *
  * @author shinychenw
  */
-public class Distributor {
+public class Distributor extends Enterprise{
+    
+    public Distributor(String name) {
+        super(name,Type.Distributor);
+    }
     
 }

@@ -50,6 +50,17 @@ public class UserAccount {
         return employee;
     }
     
+    public UserAccount(){
+    
+    }
+    
+    public UserAccount(String username,String password,Role role,Employee employee){
+        this.employee=employee;
+        this.username= username;
+        this.password = password;
+        this.role = role;
+    }
+            
     @Override
     public String toString() {
         return username;

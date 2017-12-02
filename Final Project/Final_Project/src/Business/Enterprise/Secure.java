@@ -9,6 +9,10 @@ package Business.Enterprise;
  *
  * @author shinychenw
  */
-public class Secure {
-    
+public class Secure extends Enterprise{
+       
+    public Secure(String name) {
+        super(name, Type.Secure);
+    }
+       
 }
