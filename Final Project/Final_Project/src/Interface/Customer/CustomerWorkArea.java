@@ -6,7 +6,7 @@
 package Interface.Customer;
 
 import Business.Customer.Customer;
-import Business.EcoSystem;
+import Business.State.State;
 import Interface.Account.ManageOwnAccountJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -20,12 +20,12 @@ public class CustomerWorkArea extends javax.swing.JPanel {
     /**
      * Creates new form CustomerWorkArea
      */
-    private EcoSystem system;
+    private State state; 
     private JPanel container;
     private Customer customer;
-    public CustomerWorkArea(EcoSystem system,JPanel container,Customer customer) {
+    public CustomerWorkArea(State state,JPanel container,Customer customer) {
         initComponents();
-        this.system=system;
+        this.state = state;
         this.container=container;
         this.customer = customer;
     }
@@ -102,7 +102,7 @@ public class CustomerWorkArea extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         CardLayout layout = (CardLayout) container.getLayout();
-        ContactAftersalePanel cap = new ContactAftersalePanel(system,container,customer);
+        ContactAftersalePanel cap = new ContactAftersalePanel(state,container,customer);
         container.add("ContactAftersalePanel",cap);
         layout.next(container);
         // TODO add your handling code here:

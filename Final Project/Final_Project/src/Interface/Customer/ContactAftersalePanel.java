@@ -25,12 +25,12 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
     /**
      * Creates new form ContactAftersalePanel
      */
-    private EcoSystem system;
+    private State state;
     private JPanel container;
     private Customer customer;
-    public ContactAftersalePanel(EcoSystem system,JPanel container,Customer customer) {
+    public ContactAftersalePanel(State state,JPanel container,Customer customer) {
         initComponents();
-        this.system=system;
+        this.state = state;
         this.container=container;
         this.customer = customer;
     }
@@ -110,24 +110,24 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
         if(message.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Invalid");
         }else{
-            State s = null;
-            for(Network network:EcoSystem.getInstance().getNetworkList().getNetworkList()){
-                 if(s!=null){
-                        break;
-                        }
-                for(State state : network.getStateDirectory().getStateList()){
-                     if(s!=null){
-                        break;
-                        }
-                    for(Customer cus :state.getCustomerDirectory().getCustomerList()){
-                        if(cus==customer){
-                            s = state;
-                            break;
-                        }
-                    }
-                }
-            }
-        for(Enterprise e: s.getEnterpriseDirectory().getEnterpriseList()){
+//            State s = null;
+//            for(Network network:EcoSystem.getInstance().getNetworkList().getNetworkList()){
+//                 if(s!=null){
+//                        break;
+//                        }
+//                for(State state : network.getStateDirectory().getStateList()){
+//                     if(s!=null){
+//                        break;
+//                        }
+//                    for(Customer cus :state.getCustomerDirectory().getCustomerList()){
+//                        if(cus==customer){
+//                            s = state;
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+        for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
             if(e instanceof AfterSale){
                 WorkRequest request = new WorkRequest();
                 request.setMessage(message.getText());
