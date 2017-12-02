@@ -5,10 +5,23 @@
  */
 package Business.Organization.UserAccount.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import Interface.Aftersale.CustomerManager.CustomerManagerWorkArea;
+import javax.swing.JPanel;
+
 /**
  *
  * @author BoyangWei
  */
-public class AftersaleRole {
+public class AftersaleRole extends Role{
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
+        return new CustomerManagerWorkArea(system,userProcessContainer,account,enterprise);
+    }
     
 }

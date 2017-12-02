@@ -6,7 +6,6 @@
 package Business.Organization;
 
 import Business.Customer.CustomerDirectory;
-import Business.Organization.UserAccount.Role.AdminRole;
 import Business.Organization.UserAccount.Role.CustomerManagerRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.WorkQueue.WorkQueue;
@@ -24,10 +23,11 @@ public class CustomerManageOrganization extends Organization{
         customerDirectory = new CustomerDirectory();
         workQueue = new WorkQueue();
     }
+
+   
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();
-        roleList.add(new AdminRole());
         roleList.add(new CustomerManagerRole());
         return roleList;
     }

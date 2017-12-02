@@ -5,8 +5,8 @@
  */
 package Business.Enterprise;
 
-import Business.Organization.CustomerManageOrganization;
-import Business.Organization.EquipmentManageOrganization;
+import Business.Equipment.EquipmentDirectory;
+import Business.Organization.Organization;
 import java.util.ArrayList;
 
 /**
@@ -14,15 +14,26 @@ import java.util.ArrayList;
  * @author shinychenw
  */
 public class AfterSale extends Enterprise{
-    
+    private EquipmentDirectory equipmentDirectory;
     public AfterSale(String name){
         super(name,Type.Aftersale);
-        this.getOrganizationDirectory().getOrganizationList().add(new CustomerManageOrganization());
-        this.getOrganizationDirectory().getOrganizationList().add(new EquipmentManageOrganization());
+        this.equipmentDirectory= new EquipmentDirectory();
+//        this.getOrganizationDirectory().getOrganizationList().add(new CustomerManageOrganization("CustomerManageOrganization"));
+//        this.getOrganizationDirectory().getOrganizationList().add(new EquipmentManageOrganization("EquipmentManageOrganization"));
     }
 
-    @Override
-    public ArrayList<Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public EquipmentDirectory getEquipmentDirectory() {
+        return equipmentDirectory;
     }
+
+    
+    @Override
+    public ArrayList<Organization.Type> getSupportedOrg() {
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.Customer);
+        list.add(Organization.Type.Equipment);
+        return list;
+    }
+
 }
+    

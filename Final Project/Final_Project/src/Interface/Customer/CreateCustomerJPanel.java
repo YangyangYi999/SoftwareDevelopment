@@ -60,6 +60,9 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         stateCom = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        locationTxt = new javax.swing.JTextArea();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jLabel1.setText("Welcome to sign up");
@@ -100,6 +103,16 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
 
         stateCom.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
 
+<<<<<<< HEAD
+=======
+        jLabel6.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        jLabel6.setText("Location:");
+
+        locationTxt.setColumns(20);
+        locationTxt.setRows(5);
+        jScrollPane1.setViewportView(locationTxt);
+
+>>>>>>> yyy
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -122,13 +135,23 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+<<<<<<< HEAD
                                     .addComponent(jLabel5))
+=======
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+>>>>>>> yyy
                                 .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(stateCom, 0, 162, Short.MAX_VALUE)
                                     .addComponent(usernameTxt)
                                     .addComponent(passwordTxt)
+<<<<<<< HEAD
                                     .addComponent(confpwTxt))))))
+=======
+                                    .addComponent(confpwTxt)
+                                    .addComponent(jScrollPane1))))))
+>>>>>>> yyy
                 .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,7 +159,11 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
                 .addGap(87, 87, 87)
+=======
+                .addGap(38, 38, 38)
+>>>>>>> yyy
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(stateCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,16 +179,32 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(confpwTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
                 .addGap(57, 57, 57)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap(55, Short.MAX_VALUE))
+=======
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(44, Short.MAX_VALUE))
+>>>>>>> yyy
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+<<<<<<< HEAD
         if(stateCom.getSelectedItem()==null||usernameTxt.getText().isEmpty()||passwordTxt.getPassword().length==0||confpwTxt.getPassword().length==0){
+=======
+        if(stateCom.getSelectedItem()==null||usernameTxt.getText().isEmpty()||passwordTxt.getPassword().length==0||confpwTxt.getPassword().length==0||locationTxt.getText().isEmpty()){
+>>>>>>> yyy
             JOptionPane.showMessageDialog(this, "Invalid");
         }else if(String.valueOf(confpwTxt.getPassword()).equals(String.valueOf(passwordTxt.getPassword()))==false){
             JOptionPane.showMessageDialog(this, "Password not match");
@@ -172,11 +215,19 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             cus.setPassword(String.valueOf(passwordTxt.getPassword()));
             cus.setUsername(usernameTxt.getText());
             state.getCustomerDirectory().getCustomerList().add(cus);
+<<<<<<< HEAD
+=======
+            cus.setLocation(locationTxt.getText());
+>>>>>>> yyy
             JOptionPane.showMessageDialog(this, "Succeeded. Please log in");
             stateCom.setSelectedItem(null);
             usernameTxt.setText("");
             passwordTxt.setText("");
             confpwTxt.setText("");
+<<<<<<< HEAD
+=======
+            locationTxt.setText("");
+>>>>>>> yyy
             }else{
                 JOptionPane.showMessageDialog(this, "The username has been taken"); 
             }
@@ -202,6 +253,12 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea locationTxt;
+>>>>>>> yyy
     private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JComboBox stateCom;
     private javax.swing.JTextField usernameTxt;

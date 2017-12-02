@@ -8,8 +8,9 @@ package Interface.SystemAdmin;
 import Business.EcoSystem;
 import Business.Network.Network;
 import Business.Organization.Employee.Employee;
-import Business.Organization.UserAccount.Role.AdminRole;
+import Business.Organization.UserAccount.Role.StateAdminRole;
 import Business.Organization.UserAccount.UserAccount;
+import Business.Organization.UserAccount.UserAccountDirectory;
 import Business.State.State;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -52,6 +53,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
             Object[] row = new Object[2];
             row[0] = account;
             row[1] = account.getRole();
+            dtm.addRow(row);
         }
     }
 
@@ -231,21 +233,24 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_stateComActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    int select = accountTable.getSelectedRow();
-    if(select<0||userName.getText().isEmpty()||employeeName.getText().isEmpty()){
+
+    if(userName.getText().isEmpty()||employeeName.getText().isEmpty()||stateCom.getSelectedItem()==null){
         JOptionPane.showMessageDialog(this, "Invalid");
-    }else{
+    }else if(UserAccountDirectory.isValid(userName.getText(), system)){
         Employee e = new Employee(employeeName.getText());
         UserAccount acc = new UserAccount();
         acc.setEmployee(e);
         acc.setUsername(userName.getText());
         acc.setPassword(userName.getText());
-        acc.setRole(new AdminRole());
+        acc.setRole(new StateAdminRole());
         ((State)stateCom.getSelectedItem()).getUserAccountDirectory().getUserAccountList().add(acc);
         userName.setText("");
         employeeName.setText("");
         populateTable((State)stateCom.getSelectedItem());
-    }        // TODO add your handling code here:
+    }else{
+        JOptionPane.showMessageDialog(this, "This username has been taken");
+    } 
+    // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

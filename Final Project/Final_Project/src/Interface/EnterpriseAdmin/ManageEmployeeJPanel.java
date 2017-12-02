@@ -33,12 +33,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     }
     void populateCom(){
         orgCom.removeAllItems();
+        if(enterprise.getOrganizationDirectory().getOrganizationList().size()>0){
         for(Organization org: enterprise.getOrganizationDirectory().getOrganizationList()){
             orgCom.addItem(org);
         }
         orgCom.setSelectedIndex(0);
         Organization orga = (Organization)orgCom.getSelectedItem();
         populateTable(orga);
+        }
     }
     
     void populateTable(Organization org){

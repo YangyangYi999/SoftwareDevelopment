@@ -8,6 +8,7 @@ package Interface.Account;
 import Business.Customer.Customer;
 import Business.Organization.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -137,6 +138,7 @@ public class ManageOwnAccountJPanel extends javax.swing.JPanel {
         if(oldPassword.getPassword().length==0||newPassword.getPassword().length==0||confPassword.getPassword().length==0){
             JOptionPane.showMessageDialog(this,"Please fill in all the blanks.");
         }else{
+<<<<<<< HEAD
             if(!String.valueOf(oldPassword.getPassword()).equals(account.getPassword())){
                 JOptionPane.showMessageDialog(this,"Invalid Password");
             }
@@ -144,6 +146,27 @@ public class ManageOwnAccountJPanel extends javax.swing.JPanel {
                 try{account.setPassword(confPassword.getPassword().toString());}
                 catch(Exception e){customer.setPassword(confPassword.getPassword().toString());}
                 JOptionPane.showMessageDialog(this,"New password has been seted.");
+=======
+            if(String.valueOf(newPassword.getPassword()).equals(String.valueOf(confPassword.getPassword()))){
+                if(customer == null){
+                    if(!String.valueOf(oldPassword.getPassword()).equals(account.getPassword())){
+                        JOptionPane.showMessageDialog(this,"Invalid Password");
+                    }else{
+                        account.setPassword(String.valueOf(newPassword.getPassword()));
+                         JOptionPane.showMessageDialog(this,"New password has been seted.");
+                    }
+                    
+                }else{
+                     if(!String.valueOf(oldPassword.getPassword()).equals(customer.getPassword())){
+                        JOptionPane.showMessageDialog(this,"Invalid Password");
+                    }else{
+                         customer.setPassword(String.valueOf(newPassword.getPassword()));
+                          JOptionPane.showMessageDialog(this,"New password has been seted.");
+                     }
+                     
+                }
+              
+>>>>>>> yyy
             }
         }
         // TODO add your handling code here:

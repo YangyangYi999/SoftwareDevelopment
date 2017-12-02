@@ -5,10 +5,16 @@
  */
 package Interface;
 
-import Interface.Aftersale.AftersaleWorkArea;
-import Business.ConfigureAEcoSystem;
+import Business.Customer.Customer;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Equipment.Equipment;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import Interface.Customer.CreateCustomerJPanel;
 import Interface.Customer.CustomerWorkArea;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -24,10 +30,15 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     private EcoSystem system;
+    private JPanel container;
+    private DB4OUtil  dB4OUtil;
     public MainFrame() {
         initComponents();
-        system = ConfigureAEcoSystem.configure();
+        this.dB4OUtil = DB4OUtil.getInstance();
+        system = dB4OUtil.retrieveSystem();
         jButton2.setEnabled(false);
+        this.container= Container;
+        
     }
 
     /**
@@ -47,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         Container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,6 +87,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton3.setText("Sign in");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -93,7 +113,8 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(password)
                             .addComponent(username)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))))
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,7 +132,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addGap(49, 49, 49)
                 .addComponent(jButton2)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jButton3)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -123,7 +146,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 965, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,30 +160,78 @@ public class MainFrame extends javax.swing.JFrame {
         if(username.getText().equals("")||String.valueOf(password.getPassword()).equals("")){
             JOptionPane.showMessageDialog(this, "Invalid");
         }else{
-//         for(Network network : system.getNetworkList().getNetworkList()){
-//             for(State state: network.getStateDirectory().getStateList()){
-//                 for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
-//                 
-//                 }
-//             }
-//         }
-//         if(username.getText().equals("customer")||String.valueOf(password.getPassword()).equals("customer")){
-//         CardLayout layout = (CardLayout)Container.getLayout();
-//         CustomerWorkArea cwa = new CustomerWorkArea(system,Container);
-//         Container.add("CustomerWorkArea",cwa);
-//         layout.next(Container);
-//         jButton1.setEnabled(false);
-//         jButton2.setEnabled(true);
-//         }
-          if(username.getText().equals("aftersale")||String.valueOf(password.getPassword()).equals("aftersale")){
-               CardLayout layout = (CardLayout)Container.getLayout();
-               AftersaleWorkArea awa = new AftersaleWorkArea(system,Container);
-               Container.add("AftersaleWorkArea",awa);
-               layout.next(Container);
-               jButton1.setEnabled(false);
-               jButton2.setEnabled(true);
-         }
-        }
+            String user = username.getText();
+            String pw = String.valueOf(password.getPassword());
+            State state = null;
+            Organization organization = null;
+            Enterprise enterprise = null;
+            UserAccount account = null;
+            Customer customer = null;
+              account = system.getUserAccountDirectory().authenticateUser(user, pw);
+              if(account == null){
+                  for(Network network: system.getNetworkList().getNetworkList()){
+                      for(State s:network.getStateDirectory().getStateList()){
+                              account = s.getUserAccountDirectory().authenticateUser(user, pw);
+                              customer = s.getCustomerDirectory().authenticateCustomer(user, pw);
+                              if(account != null||customer!=null){
+                                  state = s;
+                                  break;
+                              }
+                              else{
+                                  for(Enterprise en: s.getEnterpriseDirectory().getEnterpriseList()){
+                                      account = en.getUserAccountDirectory().authenticateUser(user, pw);
+                                      if(account != null){
+                                          enterprise = en;
+                                          state = s;
+                                          break;
+                                      }else{
+                                          for(Organization org: en.getOrganizationDirectory().getOrganizationList()){
+                                              account = org.getUserAccountDirectory().authenticateUser(user, pw);
+                                              if(account != null){
+                                                organization = org;
+                                                enterprise = en;
+                                                state = s;
+                                                break;
+                                              }
+                                          }
+                                      }
+                                      if(organization!=null){
+                                          break;
+                                      }
+                                  }
+                              }
+                              if(enterprise!=null){
+                                  break;
+                              }
+                      }
+                      if(state!=null){
+                          break;
+                      }
+                      
+                  }
+              }
+              if(account == null){
+                  if(customer!= null){
+                      CardLayout layout = (CardLayout)container.getLayout();
+                      CustomerWorkArea  cwa = new CustomerWorkArea(system,container,customer);
+                      container.add("CustomerWorkArea",cwa);
+                      layout.next(container);
+                      jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
+                  }
+                  else{
+                      JOptionPane.showMessageDialog(this,"Invalid");
+                  }
+              }
+              else{
+                      CardLayout layout = (CardLayout)container.getLayout();
+                      container.add("WorkArea",account.getRole().createWorkArea(container, account,organization, enterprise,system,state));
+                       layout.next(container);
+                       jButton1.setEnabled(false);
+                        jButton2.setEnabled(true);
+                  }
+            }
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -178,9 +249,17 @@ public class MainFrame extends javax.swing.JFrame {
         Container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) Container.getLayout();
         crdLyt.next(Container);
-        //DB4OUtil.storeSystem(system);
+        dB4OUtil.storeSystem(system);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        CardLayout crdLyt = (CardLayout) Container.getLayout();
+        CreateCustomerJPanel ccjp = new CreateCustomerJPanel(system,container);
+        container.add("CreateCustomerJPanel",ccjp);
+        crdLyt.next(container);
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,6 +292,8 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
+                new MainFrame().setLocationRelativeTo(null);
+                new MainFrame().setSize(900, 600);
             }
         });
     }
@@ -221,6 +302,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel Container;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
