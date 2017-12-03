@@ -410,10 +410,8 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         try{
             if(fetchQty<=selectedProduct.getStock()){
                 boolean alreadyPresent=false;
-                for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
-                    for(OrderItem oi :o.getOrderItemList())
-                    {  if(oi.getEquipment()== selectedProduct)
-                        {
+                for(OrderItem oi :order.getOrderItemList()){  
+                       if(oi.getEquipment()== selectedProduct){
                             int oldAvail = selectedProduct.getStock();
                             int newAvail = oldAvail-fetchQty;
                             selectedProduct.setStock(newAvail);
@@ -423,14 +421,12 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                             refreshOrderTable();
                             break;
                         }
-                    }
                 }
                 if(!alreadyPresent){
                     int oldAvail = selectedProduct.getStock();
                     int newAvail = oldAvail-fetchQty;
                     selectedProduct.setStock(newAvail);
                     order.addOrderItem(selectedProduct, fetchQty,selectedProduct.getPrice() );
-                    orderManageOrganization.getMoc().addOrder(order);
                     populateTable();
                     refreshOrderTable();
                 }

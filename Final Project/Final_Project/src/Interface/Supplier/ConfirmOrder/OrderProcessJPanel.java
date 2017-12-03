@@ -42,8 +42,10 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         this.state = state;
         this.supplier = supplier;
         
-        orderComboBox.removeAllItems();
-        
+        for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
+           orderComboBox.addItem(o);
+        }
+        populateTable((Order)orderComboBox.getSelectedItem());
     }
 
  
@@ -66,7 +68,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         lbStatus = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        orderComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orderComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderComboBoxActionPerformed(evt);
@@ -182,10 +183,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
     
     private void orderComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderComboBoxActionPerformed
         // TODO add your handling code here:
-        for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
-           orderComboBox.addItem(o);
-        }
-        orderComboBox.setSelectedIndex(0);
         Order order = (Order)orderComboBox.getSelectedItem();
         lbStatus.setText(order.getStatus());
         populateTable(order);
