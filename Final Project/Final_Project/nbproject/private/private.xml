@@ -52,22 +52,13 @@
             <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/EquipmentManagerRole.java</file>
         </group>
         <group>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderEquipmentJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/ViewOrderStatusJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/AdminWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/EquipmentManager/ManageDisEquipmentInventoryJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEmployeeJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/CreateNewProductJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderManageWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEnterpriseAccounts.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/ManageEquipmentInventoryJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/SupplierManageWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/EquipmentManager/DistributorEquipmentManageWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/StateAdmin/StateAdminWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Distributor/EquipmentManager/ViewProductDetailJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/ConfirmOrder/SupplierOrderConfirmWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/ConfirmOrder/OrderProcessJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/ViewEquipmentDetailJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageStateJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/SupplierManageWorkAreaJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/ManageEquipmentInventoryJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/CreateNewProductJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageNetworkJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SystemAdmin/ManageStateAdminJPanel.java</file>
         </group>
     </open-files>
 </project-private>
