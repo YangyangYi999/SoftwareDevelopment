@@ -47,7 +47,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         populateDistributorCombo();
          if(!isCheckOut){
           order = new Order();
-          order.setName(provider.getName()+"("+order.getOrderNumber()+")");
+          order.setName(provider.getName());
          }
     }
 

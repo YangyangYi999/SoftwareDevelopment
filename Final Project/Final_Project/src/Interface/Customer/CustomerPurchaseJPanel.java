@@ -10,6 +10,9 @@ import Business.CustomerOrder.CustomerOrder;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
 import Business.Equipment.Equipment;
+import Business.Equipment.Order;
+import Business.Organization.OrderManageOrganization;
+import Business.Organization.Organization;
 import Business.Organization.WorkQueue.WorkRequest;
 import Business.State.State;
 import HelperClasses.DatetoString;
@@ -78,7 +81,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         Table = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         Amount = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        btnOrder = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
@@ -120,11 +123,11 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
 
         Amount.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jButton1.setText("Order");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOrder.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        btnOrder.setText("Order");
+        btnOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOrderActionPerformed(evt);
             }
         });
 
@@ -159,7 +162,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                                         .addGap(39, 39, 39)
                                         .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jButton1))
+                                        .addComponent(btnOrder))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
                                         .addGap(37, 37, 37)
@@ -181,7 +184,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(24, 24, 24))
@@ -206,7 +209,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_providerComActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         int select = Table.getSelectedRow();
         int amount = (Integer)Amount.getValue();
         if(select<0){
@@ -217,26 +220,27 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         }else{
             Equipment e = (Equipment)Table.getValueAt(select, 0);
             Provider p = (Provider)providerCom.getSelectedItem();
-//            CustomerOrder co =new CustomerOrder(e,p);
-//            customer.getCustomerOrderDirectory().getCustomerOrderList().add(co);
-            WorkRequest wr = new WorkRequest();
-            wr.setCustomer(customer);
-            wr.setMessage(customer.toString()+" ordered "+e.toString());
-            wr.setRequestDate(new Date());
-            p.getInboundworkQueue().getWorkRequestList().add(wr);
-            customer.getWorkQueue().getWorkRequestList().add(wr);
-             CustomerOrder co = new CustomerOrder(e,customer);
-            p.getCustomerOrderDirectory().getCustomerOrderList().add(co);
-            
+            Order order = new Order();
+            order.setName(customer.getUsername());
+            order.addOrderItem(e, amount, e.getPrice());
+            order.setStatus("Waiting for confirm"); 
+            customer.getOutmoc().addOrder(order);
+            for(Organization org:p.getOrganizationDirectory().getOrganizationList()){
+                if(org instanceof OrderManageOrganization){
+                    OrderManageOrganization omo = (OrderManageOrganization)org;
+                    omo.getInmoc().addOrder(order);
+                }
+            }
+            JOptionPane.showMessageDialog(this, "Successfully orderd !");
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnOrderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Amount;
     private javax.swing.JTable Table;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnOrder;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -97,6 +97,10 @@ public class ProviderOrderManagerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnHandleOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandleOrderActionPerformed
         // TODO add your handling code here:
+        OrderProcessJPanel opj = new OrderProcessJPanel(userProcessContainer, orderManageOrganization, (Provider)enterprise, state);
+        userProcessContainer.add("OrderProcessJPanel", opj);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnHandleOrderActionPerformed
 
     private void btnOrderEquipmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderEquipmentActionPerformed

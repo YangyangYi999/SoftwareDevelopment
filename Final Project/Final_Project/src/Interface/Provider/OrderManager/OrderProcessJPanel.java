@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor.OrderManager;
+package Interface.Provider.OrderManager;
 
+import Interface.Distributor.OrderManager.*;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
@@ -31,17 +32,17 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     OrderManageOrganization orderManageOrganization;
-    Distributor distributor;
+    Provider provider;
     State state;
     
 
 
-    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Distributor distributor, State state) {
+    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Provider provider, State state) {
         initComponents();
         this.userProcessContainer =userProcessContainer;
         this.orderManageOrganization = orderManageOrganization;
         this.state = state;
-        this.distributor = distributor;
+        this.provider = provider;
         
         for(Order o : orderManageOrganization.getInmoc().getOrderCatalog()){
            orderComboBox.addItem(o);
@@ -220,7 +221,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         order.setStatus("Reject");
         lbStatus.setText(order.getStatus());
         for(OrderItem oi: order.getOrderItemList()){
-            for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
+            for(Organization o:provider.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof EquipmentManageOrganization){
                     if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
                         oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());

@@ -19,6 +19,8 @@ public class CustomerOrder {
     private Date orderDate;
     private Provider provider;
     private Customer customer;
+    private int quantity;
+    private String status;
 
     public Customer getCustomer() {
         return customer;
@@ -52,14 +54,11 @@ public class CustomerOrder {
         this.provider = provider;
     }
     
-    public CustomerOrder(Equipment e,Provider p){
+    public CustomerOrder(Equipment e,int quantity,Provider p,Customer c){
         this.orderDate = new Date();
         this.equipment = e;
         this.provider = p;
-    }
-    public CustomerOrder(Equipment e,Customer c){
-        this.orderDate = new Date();
-        this.equipment = e;
         this.customer = c;
+        this.quantity = quantity;
     }
 }

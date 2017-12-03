@@ -43,6 +43,7 @@ public class CustomerWorkArea extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
+        btnPurchase = new javax.swing.JButton();
 
         jButton1.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jButton1.setText("Manage Own Account");
@@ -66,6 +67,14 @@ public class CustomerWorkArea extends javax.swing.JPanel {
         jButton3.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
         jButton3.setText("View Own Requests");
 
+        btnPurchase.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        btnPurchase.setText("Purchase Equipment");
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -81,7 +90,8 @@ public class CustomerWorkArea extends javax.swing.JPanel {
                             .addGap(170, 170, 170)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnPurchase, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(158, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -95,7 +105,9 @@ public class CustomerWorkArea extends javax.swing.JPanel {
                 .addComponent(jButton2)
                 .addGap(26, 26, 26)
                 .addComponent(jButton3)
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnPurchase)
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -116,8 +128,17 @@ public class CustomerWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout)container.getLayout();
+        CustomerPurchaseJPanel cpj = new CustomerPurchaseJPanel(state, container,customer);
+        container.add("CustomerPurchaseJPanel",cpj);
+        layout.next(container);
+    }//GEN-LAST:event_btnPurchaseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPurchase;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
