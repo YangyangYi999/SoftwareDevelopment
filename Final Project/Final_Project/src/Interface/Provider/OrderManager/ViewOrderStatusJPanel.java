@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor.OrderManager;
+package Interface.Provider.OrderManager;
 
 import Business.Enterprise.Distributor;
+import Business.Enterprise.Provider;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
 import Business.Organization.OrderManageOrganization;
@@ -24,13 +25,13 @@ public class ViewOrderStatusJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     State state;
-    Distributor distributor;
+    Provider provider;
     OrderManageOrganization orderManageOrganization;
     
-    ViewOrderStatusJPanel(JPanel userProcessContainer, State state, Distributor distributor, OrderManageOrganization orderManageOrganization) {
+    ViewOrderStatusJPanel(JPanel userProcessContainer, State state, Provider provider, OrderManageOrganization orderManageOrganization) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.distributor = distributor;
+        this.provider = provider;
         this.state = state;
         this.orderManageOrganization = orderManageOrganization;
         for(Order o : orderManageOrganization.getOutmoc().getOrderCatalog()){

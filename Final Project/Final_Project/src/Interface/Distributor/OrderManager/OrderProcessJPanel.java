@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Supplier.ConfirmOrder;
+package Interface.Distributor.OrderManager;
 
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Provider;
 import Business.Enterprise.Supplier;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
@@ -30,17 +31,17 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     OrderManageOrganization orderManageOrganization;
-    Supplier supplier;
+    Distributor distributor;
     State state;
     
 
 
-    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Supplier supplier, State state) {
+    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Distributor distributor, State state) {
         initComponents();
         this.userProcessContainer =userProcessContainer;
         this.orderManageOrganization = orderManageOrganization;
         this.state = state;
-        this.supplier = supplier;
+        this.distributor = distributor;
         
         for(Order o : orderManageOrganization.getInmoc().getOrderCatalog()){
            orderComboBox.addItem(o);
@@ -64,7 +65,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         confirmBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         rejectBtn = new javax.swing.JButton();
-        backJButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         lbStatus = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -103,10 +104,10 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
             }
         });
 
-        backJButton2.setText("<< Back");
-        backJButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -141,14 +142,14 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(backJButton2)))
+                        .addComponent(btnBack)))
                 .addContainerGap(310, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(backJButton2)
+                .addComponent(btnBack)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -219,7 +220,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         order.setStatus("Reject");
         lbStatus.setText(order.getStatus());
         for(OrderItem oi: order.getOrderItemList()){
-            for(Organization o:supplier.getOrganizationDirectory().getOrganizationList()){
+            for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof EquipmentManageOrganization){
                     if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
                         oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
@@ -229,16 +230,16 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_rejectBtnActionPerformed
 
-    private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backJButton2;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton confirmBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

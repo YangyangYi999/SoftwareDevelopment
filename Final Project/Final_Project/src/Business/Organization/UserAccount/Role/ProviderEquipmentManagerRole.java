@@ -11,7 +11,7 @@ import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.Provider.ProviderEquipmentManagerWorkAreaJPanel;
+import Interface.Provider.EquipmentManager.ProviderEquipmentManagerWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**

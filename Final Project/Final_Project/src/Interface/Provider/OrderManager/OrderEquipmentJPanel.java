@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Provider;
+package Interface.Provider.OrderManager;
 
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
@@ -477,10 +477,10 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
  
             if (org!=null){
                 order.setStatus("Waiting for confirm");
-                org.getMoc().addOrder(order);
+                org.getInmoc().addOrder(order);
                 for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
                     if(o instanceof OrderManageOrganization){
-                        ((OrderManageOrganization) o).getMoc().addOrder(order);
+                        ((OrderManageOrganization) o).getOutmoc().addOrder(order);
                     }
                 }
             }

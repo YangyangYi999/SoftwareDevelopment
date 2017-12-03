@@ -31,7 +31,8 @@
                               <Component id="valueLabel" min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnBuyEquip" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
-                          <Component id="btnBuyEquip1" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                          <Component id="btnViewOrder" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
+                          <Component id="btnManageOrder" alignment="0" min="-2" pref="238" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -55,8 +56,10 @@
               <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               <Component id="btnBuyEquip" min="-2" pref="47" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnBuyEquip1" min="-2" pref="47" max="-2" attributes="0"/>
-              <EmptySpace pref="154" max="32767" attributes="0"/>
+              <Component id="btnViewOrder" min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManageOrder" min="-2" pref="47" max="-2" attributes="0"/>
+              <EmptySpace pref="89" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,12 +91,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuyEquipActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnBuyEquip1">
+    <Component class="javax.swing.JButton" name="btnViewOrder">
       <Properties>
         <Property name="text" type="java.lang.String" value="View Order Status"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuyEquip1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewOrderActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnManageOrder">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Manage Order from Provider"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageOrderActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
