@@ -5,8 +5,8 @@
  */
 package Business.Customer;
 
+import Business.CustomerOrder.CustomerOrderDirectory;
 import Business.Organization.WorkQueue.WorkQueue;
-import Business.Organization.WorkQueue.WorkRequest;
 
 
 /**
@@ -18,7 +18,12 @@ public class Customer {
     private String password;
     private WorkQueue workQueue;
     private String Location;
-
+//    private CustomerOrderDirectory customerOrderDirectory;
+//
+//    public CustomerOrderDirectory getCustomerOrderDirectory() {
+//        return customerOrderDirectory;
+//    }
+    
     public String getLocation() {
         return Location;
     }
@@ -50,7 +55,9 @@ public class Customer {
     
     public Customer(){
         workQueue = new WorkQueue();
+//        this.customerOrderDirectory = new CustomerOrderDirectory();
     }
+    
     
     
     

@@ -5,13 +5,15 @@
  */
 package Business.Organization.UserAccount.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import Interface.Aftersale.EquipmentManager.EquipmentManagerWorkArea;
 import javax.swing.JPanel;
-import Interface.Supplier.SupplierManageWorkAreaJPanel;
+import Interface.Supplier.EquipmentManager.SupplierManageWorkAreaJPanel;
 
 /**
  *
@@ -20,8 +22,8 @@ import Interface.Supplier.SupplierManageWorkAreaJPanel;
 public class EquipmentManagerRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization) {
-        return new EquipmentManageWorkAreaJPanel(userProcessContainer, account, (EquipmentManageOrganization)organization);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
+        return new EquipmentManagerWorkArea(userProcessContainer, enterprise, account);
     }
    
 }

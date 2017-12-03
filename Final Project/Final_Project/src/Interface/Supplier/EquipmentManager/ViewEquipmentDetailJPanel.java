@@ -4,7 +4,7 @@
  * Created on September 18, 2008, 2:54 PM
  */
 
-package Interface.Supplier;
+package Interface.Supplier.EquipmentManager;
 
 
 import Business.Equipment.Equipment;
@@ -25,9 +25,9 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         initComponents();
         userProcessContainer = upc;
         this.p= p;
-        txtName.setText(p.getName());
-        txtPrice.setText(String.valueOf(p.getPrice()));
-        txtAvail.setText(String.valueOf(p.getQuantity()));
+        txtAvail.setText(p.getName());
+        txtAvail.setText(String.valueOf(p.getPrice()));
+        txtAvail.setText(String.valueOf(p.getStock()));
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -39,14 +39,14 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtAvail = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnUpdate2 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        txtAvail = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
+        txtPrice1 = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -58,27 +58,13 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         jLabel2.setText("Product Name:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, 30));
 
-        txtName.setEditable(false);
-        txtName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtName.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 159, -1));
-
         jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
         jLabel3.setText("Price:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, 30));
 
-        txtPrice.setEditable(false);
-        txtPrice.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtPrice.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 159, -1));
-
         jLabel6.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
         jLabel6.setText("Availability:");
         add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 80, 30));
-
-        txtAvail.setEditable(false);
-        txtAvail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 170, 30));
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);
@@ -97,7 +83,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         });
         add(btnUpdate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
 
-        btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,18 +91,21 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+        add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 170, 30));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 170, 30));
+        add(txtPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if("".equals(txtName.getText())|| "".equals(txtPrice.getText())||"".equals(txtAvail.getText())){
+        if("".equals(txtAvail.getText())|| "".equals(txtAvail.getText())||"".equals(txtAvail.getText())){
             JOptionPane.showMessageDialog(null,"Please fill in all fields");
         }
         else{
 
-            p.setName(txtName.getText());
-            p.setPrice(Integer.parseInt(txtPrice.getText()));
-            p.setQuantity(Integer.parseInt(txtAvail.getText()));
+            p.setName(txtAvail.getText());
+            p.setPrice(Integer.parseInt(txtAvail.getText()));
+            p.setStock(Integer.parseInt(txtAvail.getText()));
             btnSave.setEnabled(false);
             btnUpdate2.setEnabled(true);
             JOptionPane.showMessageDialog(null,"Account successfully updated!");
@@ -126,8 +115,8 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     private void btnUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate2ActionPerformed
         // TODO add your handling code here:
 
-        txtName.setEnabled(true);
-        txtPrice.setEnabled(true);
+        txtAvail.setEnabled(true);
+        txtAvail.setEnabled(true);
         txtAvail.setEnabled(true);
         btnSave.setEnabled(true);
         btnUpdate2.setEnabled(false);
@@ -151,7 +140,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtAvail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtPrice1;
     // End of variables declaration//GEN-END:variables
     
 }
