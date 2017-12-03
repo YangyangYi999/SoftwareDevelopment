@@ -8,6 +8,7 @@ package Interface.Supplier.ConfirmOrder;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Supplier;
+import Business.Equipment.Equipment;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
 import Business.Organization.EquipmentManageOrganization;
@@ -199,11 +200,14 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                 for(Organization org:((Distributor)dis).getOrganizationDirectory().getOrganizationList()){
                     if(org instanceof EquipmentManageOrganization){
                         for(OrderItem oi:order.getOrderItemList()){
-                            if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                                oi.getEquipment().setStock(oi.getEquipment().getStock()-oi.getQuatity());
-                            }
-                            else{
+                            for(int i =0;i<((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size();i++){
+                                Equipment e = ((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().get(i);
+                                if(e.getName().equals(oi.getEquipment().getName())){
+                                    e.setStock(e.getStock()+oi.getQuatity());
+                                }
+                                else{
                                 ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
+                                }
                             }
                         }
                         

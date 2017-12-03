@@ -34,7 +34,7 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTableEquipment.getModel();
         model.setRowCount(0);
         for (Equipment e :equipmentManageOrganization.getEquipmentDirectory().getEquipmentList()){
-            Object[] row = new Object[2];
+            Object[] row = new Object[5];
             row[0] = e;
             row[1] = e.getStock();
             row[2] = e.getPrice();
