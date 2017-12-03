@@ -8,6 +8,7 @@ package Interface.EnterpriseAdmin;
 import Business.EcoSystem;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Provider;
 import Business.Enterprise.Supplier;
 import Business.Organization.Employee.Employee;
 import Business.Organization.EquipmentManageOrganization;
@@ -15,6 +16,8 @@ import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.OrderManagerRole;
+import Business.Organization.UserAccount.Role.ProviderEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.ProviderOrderManagerRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.UserAccount.Role.SupplierEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.SupplierOrderConfirmRole;
@@ -85,6 +88,12 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         }
         else if(org instanceof OrderManageOrganization && enterprise instanceof Distributor){
                 roleCom.addItem(new OrderManagerRole());
+        }
+        else if(org instanceof EquipmentManageOrganization && enterprise instanceof Provider){
+            roleCom.addItem(new ProviderEquipmentManagerRole());
+        }
+        else if(org instanceof OrderManageOrganization && enterprise instanceof Provider){
+            roleCom.addItem(new ProviderOrderManagerRole());
         }
         else{
             for(Role role: org.getSupportedRole()){
