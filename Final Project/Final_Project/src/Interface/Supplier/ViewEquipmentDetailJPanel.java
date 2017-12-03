@@ -27,7 +27,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         this.p= p;
         txtName.setText(p.getName());
         txtPrice.setText(String.valueOf(p.getPrice()));
-        txtAvail.setText(String.valueOf(p.getQuantity()));
+        txtAvail.setText(String.valueOf(p.getStock()));
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -116,7 +116,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
 
             p.setName(txtName.getText());
             p.setPrice(Integer.parseInt(txtPrice.getText()));
-            p.setQuantity(Integer.parseInt(txtAvail.getText()));
+            p.setStock(Integer.parseInt(txtAvail.getText()));
             btnSave.setEnabled(false);
             btnUpdate2.setEnabled(true);
             JOptionPane.showMessageDialog(null,"Account successfully updated!");

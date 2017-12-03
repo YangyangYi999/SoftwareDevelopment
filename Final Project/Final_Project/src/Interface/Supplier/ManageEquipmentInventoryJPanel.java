@@ -148,7 +148,7 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
         for (Equipment e :organization.getEquipmentDirectory().getEquipmentList()){
             Object[] row = new Object[2];
             row[0] = e;
-            row[1] = e.getQuantity();
+            row[1] = e.getStock();
             
             model.addRow(row);
         }

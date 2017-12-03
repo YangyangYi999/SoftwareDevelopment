@@ -26,7 +26,7 @@ public class ViewProductDetailJPanel extends javax.swing.JPanel {
         this.p= p;
         txtName.setText(p.getName());
         txtPrice.setText(String.valueOf(p.getPrice()));
-        txtAvail.setText(String.valueOf(p.getQuantity()));
+        txtAvail.setText(String.valueOf(p.getStock()));
     }
     /** This method is called from within the constructor to
      * initialize the form.

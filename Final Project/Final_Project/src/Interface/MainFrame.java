@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         this.dB4OUtil = DB4OUtil.getInstance();
-        system = dB4OUtil.retrieveSystem();
+         system = dB4OUtil.retrieveSystem();
         jButton2.setEnabled(false);
         this.container= Container;
         

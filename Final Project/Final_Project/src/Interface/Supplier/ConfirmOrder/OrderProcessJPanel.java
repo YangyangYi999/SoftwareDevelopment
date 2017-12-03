@@ -202,7 +202,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                     if(org instanceof EquipmentManageOrganization){
                         for(OrderItem oi:order.getOrderItemList()){
                             if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                                oi.getEquipment().setQuantity(oi.getEquipment().getQuantity()-oi.getQuatity());
+                                oi.getEquipment().setStock(oi.getEquipment().getStock()-oi.getQuatity());
                             }
                             else{
                                 ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
@@ -224,7 +224,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
             for(Organization o:supplier.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof EquipmentManageOrganization){
                     if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                        oi.getEquipment().setQuantity(oi.getQuatity()+oi.getEquipment().getQuantity());
+                        oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
                     }
                 }
             }

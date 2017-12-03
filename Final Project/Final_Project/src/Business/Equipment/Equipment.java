@@ -22,7 +22,6 @@ import java.util.TimerTask;
  * @author shinychenw
  */
 public class Equipment {
-    private int price;
     private String name;
     private int stock;
     private boolean alert = false;
@@ -80,14 +79,6 @@ public class Equipment {
         return alertDirectory;
     }
     
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
 
     public String getName() {
         return name;

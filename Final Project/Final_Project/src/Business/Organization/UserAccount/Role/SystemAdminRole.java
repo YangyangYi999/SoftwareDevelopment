@@ -7,23 +7,21 @@ package Business.Organization.UserAccount.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.Aftersale.EquipmentManager.EquipmentManagerWorkArea;
+import Interface.SystemAdmin.SystemAdminWorkAreaJPanel;
 import javax.swing.JPanel;
-import Interface.Supplier.SupplierManageWorkAreaJPanel;
 
 /**
  *
- * @author shinychenw
+ * @author BoyangWei
  */
-public class EquipmentManagerRole extends Role{
+public class SystemAdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
-        return new EquipmentManagerWorkArea(userProcessContainer, enterprise, account);
+       return new SystemAdminWorkAreaJPanel(system,userProcessContainer,account);
     }
-   
+    
 }

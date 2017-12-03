@@ -320,7 +320,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                     Object row[] = new Object[4];
                     row[0] = p;
                     row[1] = p.getPrice();
-                    row[2] = p.getQuantity();;
+                    row[2] = p.getStock();
                     model.addRow(row);
                 }
             }
@@ -339,7 +339,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                         Object row[]= new Object[4];
                          row[0] = p;
                          row[1] = p.getPrice();
-                         row[2] = p.getQuantity();
+                         row[2] = p.getStock();
                        
                          model.addRow(row);
                     }
@@ -408,15 +408,15 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             return;
         }
         try{
-            if(fetchQty<=selectedProduct.getQuantity()){
+            if(fetchQty<=selectedProduct.getStock()){
                 boolean alreadyPresent=false;
                 for(Order o : orderManageOrganization.getMoc().getOrderCatalog()){
                     for(OrderItem oi :o.getOrderItemList())
                     {  if(oi.getEquipment()== selectedProduct)
                         {
-                            int oldAvail = selectedProduct.getQuantity();
+                            int oldAvail = selectedProduct.getStock();
                             int newAvail = oldAvail-fetchQty;
-                            selectedProduct.setQuantity(newAvail);
+                            selectedProduct.setStock(newAvail);
                             oi.setQuatity(fetchQty+oi.getQuatity());
                             alreadyPresent=true;
                             populateTable();
@@ -426,9 +426,9 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                     }
                 }
                 if(!alreadyPresent){
-                    int oldAvail = selectedProduct.getQuantity();
+                    int oldAvail = selectedProduct.getStock();
                     int newAvail = oldAvail-fetchQty;
-                    selectedProduct.setQuantity(newAvail);
+                    selectedProduct.setStock(newAvail);
                     order.addOrderItem(selectedProduct, fetchQty,selectedProduct.getPrice() );
                     orderManageOrganization.getMoc().addOrder(order);
                     populateTable();
@@ -456,7 +456,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         
         else{
             OrderItem oi = (OrderItem)orderTable.getValueAt(slectedRow,0);
-            int currentAvail =oi.getEquipment().getQuantity();
+            int currentAvail =oi.getEquipment().getStock();
             int oldQty=oi.getQuatity();
             if(txtNewQuantity.getText() == "")
                 {
@@ -474,7 +474,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
 
                 }
                 oi.setQuatity(newQty);
-                oi.getEquipment().setQuantity(currentAvail+(oldQty-newQty));
+                oi.getEquipment().setStock(currentAvail+(oldQty-newQty));
                 populateTable();
                 refreshOrderTable();
             }
@@ -525,10 +525,10 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             return;
         }
         OrderItem oi = (OrderItem)orderTable.getValueAt(slectedRow,0);
-        int oldAvail =oi.getEquipment().getQuantity();
+        int oldAvail =oi.getEquipment().getStock();
         int oldQty=oi.getQuatity();
         int newQty=oldAvail+oldQty;
-        oi.getEquipment().setQuantity(newQty);
+        oi.getEquipment().setStock(newQty);
         order.removeOrderItem(oi);
         JOptionPane.showMessageDialog(null, "Item has removed form cart!");
         refreshOrderTable();

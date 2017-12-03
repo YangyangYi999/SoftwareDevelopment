@@ -18,10 +18,10 @@ public class EquipmentDirectory {
         equipmentList = new ArrayList();
     }
     
-    public Equipment createEquipment(String name,int quantity,int price) {
+    public Equipment createEquipment(String name,int quantity,double price) {
         
         Equipment equipment = new Equipment(name);
-        equipment.setQuantity(quantity);
+        equipment.setStock(quantity);
         equipment.setPrice(price);
         equipmentList.add(equipment);
         return equipment;
