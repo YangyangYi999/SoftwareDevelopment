@@ -44,7 +44,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
     }
     void populateCom(){
-        typeCom.removeAllItems();;
+        typeCom.removeAllItems();
         for(Type type:Enterprise.Type.values()){
             typeCom.addItem(type);
         }

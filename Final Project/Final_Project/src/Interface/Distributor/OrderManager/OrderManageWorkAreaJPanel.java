@@ -52,7 +52,8 @@ public class OrderManageWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         btnBuyEquip = new javax.swing.JButton();
-        btnBuyEquip1 = new javax.swing.JButton();
+        btnViewOrder = new javax.swing.JButton();
+        btnManageOrder = new javax.swing.JButton();
 
         jLabel1.setText("Distributor Equipment Manage Work Area");
 
@@ -68,10 +69,17 @@ public class OrderManageWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnBuyEquip1.setText("View Order Status");
-        btnBuyEquip1.addActionListener(new java.awt.event.ActionListener() {
+        btnViewOrder.setText("View Order Status");
+        btnViewOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuyEquip1ActionPerformed(evt);
+                btnViewOrderActionPerformed(evt);
+            }
+        });
+
+        btnManageOrder.setText("Manage Order from Provider");
+        btnManageOrder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageOrderActionPerformed(evt);
             }
         });
 
@@ -92,7 +100,8 @@ public class OrderManageWorkAreaJPanel extends javax.swing.JPanel {
                                 .addGap(30, 30, 30)
                                 .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnBuyEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBuyEquip1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnViewOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnManageOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(201, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,8 +118,10 @@ public class OrderManageWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addComponent(btnBuyEquip, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnBuyEquip1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(154, Short.MAX_VALUE))
+                .addComponent(btnViewOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnManageOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -123,19 +134,29 @@ public class OrderManageWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBuyEquipActionPerformed
 
-    private void btnBuyEquip1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyEquip1ActionPerformed
+    private void btnViewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewOrderActionPerformed
         // TODO add your handling code here:
         ViewOrderStatusJPanel vosjp = new ViewOrderStatusJPanel(userProcessContainer,state,distributor,orderManageOrganization );
         userProcessContainer.add("ViewOrderStatusJPanel", vosjp);
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnBuyEquip1ActionPerformed
+    }//GEN-LAST:event_btnViewOrderActionPerformed
+
+    private void btnManageOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageOrderActionPerformed
+        // TODO add your handling code here:
+        OrderProcessJPanel opjp = new OrderProcessJPanel(userProcessContainer,orderManageOrganization,distributor,state);
+        userProcessContainer.add("OrderProcessJPanel", opjp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageOrderActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyEquip;
-    private javax.swing.JButton btnBuyEquip1;
+    private javax.swing.JButton btnManageOrder;
+    private javax.swing.JButton btnViewOrder;
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel valueLabel;

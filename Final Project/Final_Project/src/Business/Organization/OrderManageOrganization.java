@@ -18,19 +18,20 @@ import java.util.ArrayList;
  */
 public class OrderManageOrganization extends Organization{
     
-    private MasterOrderCatalog moc;
+    private MasterOrderCatalog inmoc,outmoc;
 
-    public MasterOrderCatalog getMoc() {
-        return moc;
+    public MasterOrderCatalog getInmoc() {
+        return inmoc;
     }
 
-    public void setMoc(MasterOrderCatalog moc) {
-        this.moc = moc;
+    public MasterOrderCatalog getOutmoc() {
+        return outmoc;
     }
 
     public OrderManageOrganization(String name) {
         super(name);
-        moc = new MasterOrderCatalog();
+        inmoc = new MasterOrderCatalog();
+        outmoc = new MasterOrderCatalog();
     }
 
     @Override

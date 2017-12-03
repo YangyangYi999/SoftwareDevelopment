@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor.OrderManager;
+package Interface.Provider.OrderManager;
 
-import Interface.Distributor.EquipmentManager.ViewProductDetailJPanel;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Provider;
 import Business.Enterprise.Supplier;
 import Business.Equipment.Equipment;
 import Business.Equipment.Order;
@@ -23,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author yiyangyang
+ * @author yuchenwang
  */
 public class OrderEquipmentJPanel extends javax.swing.JPanel {
 
@@ -32,22 +32,22 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
      */
    JPanel userProcessContainer;
    State state;
-   Distributor distributor;
+   Provider provider;
    OrderManageOrganization orderManageOrganization;
    private boolean isCheckOut=false;
    private Order order;
     
 
-    OrderEquipmentJPanel(JPanel userProcessContainer, State state, Distributor distributor, OrderManageOrganization orderManageOrganization) {
+    OrderEquipmentJPanel(JPanel userProcessContainer, State state, Provider provider, OrderManageOrganization orderManageOrganization) {
         initComponents();    
-        this.distributor = distributor;
+        this.provider = provider;
         this.state = state;
         this.userProcessContainer= userProcessContainer; 
         this.orderManageOrganization = orderManageOrganization;
-        populateSupplierCombo();
+        populateDistributorCombo();
          if(!isCheckOut){
           order = new Order();
-          order.setName(distributor.getName());
+          order.setName(provider.getName());
          }
     }
 
@@ -61,16 +61,16 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        suppComboBox1 = new javax.swing.JComboBox();
+        jComDistributor = new javax.swing.JComboBox();
         txtSearchKeyWord = new javax.swing.JTextField();
         btnSearchProduct = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         productTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        viewProdjButton2 = new javax.swing.JButton();
+        btnViewProduct = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         quantitySpinner = new javax.swing.JSpinner();
-        addtoCartButton6 = new javax.swing.JButton();
+        btnAddToCart = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         orderTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -82,11 +82,11 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Supplier");
+        jLabel1.setText("Distributor");
 
-        suppComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        jComDistributor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suppComboBox1ActionPerformed(evt);
+                jComDistributorActionPerformed(evt);
             }
         });
 
@@ -119,14 +119,14 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(productTable);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Supplier Product Catalog");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Distributor Product Catalog");
 
-        viewProdjButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        viewProdjButton2.setText("View Product Detail");
-        viewProdjButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnViewProduct.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnViewProduct.setText("View Product Detail");
+        btnViewProduct.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewProdjButton2ActionPerformed(evt);
+                btnViewProductActionPerformed(evt);
             }
         });
 
@@ -135,10 +135,10 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
 
         quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
 
-        addtoCartButton6.setText("ADD TO CART");
-        addtoCartButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnAddToCart.setText("ADD TO CART");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addtoCartButton6ActionPerformed(evt);
+                btnAddToCartActionPerformed(evt);
             }
         });
 
@@ -163,7 +163,6 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(orderTable);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText(" Item in cart");
 
         btnViewOrderItem.setText("View Item");
@@ -207,94 +206,93 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(viewProdjButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(175, 175, 175)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addtoCartButton6))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(suppComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(76, 76, 76)
-                                .addComponent(txtSearchKeyWord, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addComponent(btnSearchProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(btnViewOrderItem)
-                                    .addGap(72, 72, 72)
-                                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnModifyQuantity)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnRemoveOrderItem))))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(228, 228, 228)
+                            .addComponent(jLabel7))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnModifyQuantity)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnCheckOut)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnRemoveOrderItem)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnViewOrderItem)
+                            .addGap(18, 18, 18)
+                            .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(20, 20, 20)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jComDistributor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSearchKeyWord, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnSearchProduct))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(173, 173, 173)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnViewProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnAddToCart))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(suppComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSearchKeyWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearchProduct))
-                .addGap(26, 26, 26)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtSearchKeyWord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSearchProduct))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComDistributor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnViewProduct)
                     .addComponent(jLabel5)
                     .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewProdjButton2)
-                    .addComponent(addtoCartButton6))
-                .addGap(33, 33, 33)
+                    .addComponent(btnAddToCart))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewOrderItem)
-                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCheckOut)
                     .addComponent(btnModifyQuantity)
-                    .addComponent(btnRemoveOrderItem))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCheckOut, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                    .addComponent(btnRemoveOrderItem)
+                    .addComponent(txtNewQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewOrderItem))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-     public void populateSupplierCombo(){
-       suppComboBox1.removeAllItems();
-       for(Enterprise s : state.getEnterpriseDirectory().getEnterpriseList()){
-           if(s instanceof Supplier){
-            Supplier ss = (Supplier)s;
-            suppComboBox1.addItem(ss);
+     public void populateDistributorCombo(){
+       jComDistributor.removeAllItems();
+       for(Enterprise d : state.getEnterpriseDirectory().getEnterpriseList()){
+           if(d instanceof Distributor){
+            Distributor dd = (Distributor)d;
+            jComDistributor.addItem(dd);
            }
        }
        populateTable();
@@ -303,8 +301,8 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         int rowCount =productTable.getRowCount();
         DefaultTableModel model = (DefaultTableModel)productTable.getModel();
         model.setRowCount(0);
-        Supplier supplier =(Supplier)suppComboBox1.getSelectedItem();
-        for(Organization eq: supplier.getOrganizationDirectory().getOrganizationList()){
+        Distributor distributor =(Distributor)jComDistributor.getSelectedItem();
+        for(Organization eq: distributor.getOrganizationDirectory().getOrganizationList()){
             if(eq instanceof EquipmentManageOrganization){
                 EquipmentManageOrganization ep = (EquipmentManageOrganization)eq;
                 for(Equipment p : ep.getEquipmentDirectory().getEquipmentList()) {
@@ -320,23 +318,23 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
    public void refreshProductTable(String keyword){
         DefaultTableModel model = (DefaultTableModel)productTable.getModel();
         model.setRowCount(0);
-        for(Enterprise s :state.getEnterpriseDirectory().getEnterpriseList()){
-            if(s instanceof Supplier){
-                for(Organization eq: s.getOrganizationDirectory().getOrganizationList()){
-            if(eq instanceof EquipmentManageOrganization){
-                EquipmentManageOrganization ep = (EquipmentManageOrganization)eq;
-                for(Equipment p : ep.getEquipmentDirectory().getEquipmentList()) {
-                    if(p.getName().equalsIgnoreCase(keyword)){
-                        Object row[]= new Object[4];
-                         row[0] = p;
-                         row[1] = p.getPrice();
-                         row[2] = p.getStock();
+        for(Enterprise d :state.getEnterpriseDirectory().getEnterpriseList()){
+            if(d instanceof Distributor){
+                for(Organization eq: d.getOrganizationDirectory().getOrganizationList()){
+                    if(eq instanceof EquipmentManageOrganization){
+                        EquipmentManageOrganization ep = (EquipmentManageOrganization)eq;
+                        for(Equipment p : ep.getEquipmentDirectory().getEquipmentList()) {
+                            if(p.getName().equalsIgnoreCase(keyword)){
+                                Object row[]= new Object[4];
+                                row[0] = p;
+                                row[1] = p.getPrice();
+                                row[2] = p.getStock();
                        
-                         model.addRow(row);
+                                model.addRow(row);
+                            }
+                        }
                     }
                 }
-            }
-        }
             }
         }
    }
@@ -352,24 +350,19 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                      row[3] = oi.getQuatity()*oi.getSalesPrice();
                      model.addRow(row);
                 }
-       
-            
-        
-        
-        
-   }
-    private void suppComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppComboBox1ActionPerformed
+       }
+      
+    private void jComDistributorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComDistributorActionPerformed
         // TODO add your handling code here:
         populateTable();
-
-    }//GEN-LAST:event_suppComboBox1ActionPerformed
+    }//GEN-LAST:event_jComDistributorActionPerformed
 
     private void btnSearchProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchProductActionPerformed
         String productName=txtSearchKeyWord.getText();
         refreshProductTable(productName);
     }//GEN-LAST:event_btnSearchProductActionPerformed
 
-    private void viewProdjButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProdjButton2ActionPerformed
+    private void btnViewProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewProductActionPerformed
         // TODO add your handling code here:
         int row =productTable.getSelectedRow();
         if(row<0){
@@ -382,9 +375,9 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
 
-    }//GEN-LAST:event_viewProdjButton2ActionPerformed
+    }//GEN-LAST:event_btnViewProductActionPerformed
 
-    private void addtoCartButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoCartButton6ActionPerformed
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
         // TODO add your handling code here:
         int slectedRow=productTable.getSelectedRow();
         if(slectedRow<0){
@@ -431,7 +424,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             return;
         }
 
-    }//GEN-LAST:event_addtoCartButton6ActionPerformed
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void btnModifyQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifyQuantityActionPerformed
         // TODO add your handling code here:
@@ -474,28 +467,27 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(order.getOrderItemList().size()>0){
             OrderManageOrganization org = null;
-            Supplier supplier =(Supplier)suppComboBox1.getSelectedItem();
-                    for(Organization organization: supplier.getOrganizationDirectory().getOrganizationList()){
-                        if(organization instanceof OrderManageOrganization && org == null){
-                            org = (OrderManageOrganization)organization;
-                            break;
-                        }
-                    }
- 
-        if (org!=null){
-            order.setStatus("Waiting for confirm");
-            org.getInmoc().addOrder(order);
-            for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
-                if(o instanceof OrderManageOrganization){
-                    ((OrderManageOrganization) o).getOutmoc().addOrder(order);
+            Distributor distributor =(Distributor)jComDistributor.getSelectedItem();
+            for(Organization organization: distributor.getOrganizationDirectory().getOrganizationList()){
+                if(organization instanceof OrderManageOrganization && org == null){
+                    org = (OrderManageOrganization)organization;
+                    break;
                 }
             }
-        }
+ 
+            if (org!=null){
+                order.setStatus("Waiting for confirm");
+                org.getInmoc().addOrder(order);
+                for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
+                    if(o instanceof OrderManageOrganization){
+                        ((OrderManageOrganization) o).getOutmoc().addOrder(order);
+                    }
+                }
+            }
             
             
             JOptionPane.showMessageDialog(null, "Order placed successful!");
             order = new Order();
-            order.setName(distributor.getName());
             refreshOrderTable();
             populateTable();
             
@@ -546,13 +538,15 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addtoCartButton6;
+    private javax.swing.JButton btnAddToCart;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCheckOut;
     private javax.swing.JButton btnModifyQuantity;
     private javax.swing.JButton btnRemoveOrderItem;
     private javax.swing.JButton btnSearchProduct;
     private javax.swing.JButton btnViewOrderItem;
+    private javax.swing.JButton btnViewProduct;
+    private javax.swing.JComboBox jComDistributor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
@@ -562,9 +556,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
     private javax.swing.JTable orderTable;
     private javax.swing.JTable productTable;
     private javax.swing.JSpinner quantitySpinner;
-    private javax.swing.JComboBox suppComboBox1;
     private javax.swing.JTextField txtNewQuantity;
     private javax.swing.JTextField txtSearchKeyWord;
-    private javax.swing.JButton viewProdjButton2;
     // End of variables declaration//GEN-END:variables
 }

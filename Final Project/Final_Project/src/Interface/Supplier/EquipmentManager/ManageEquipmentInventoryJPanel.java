@@ -166,10 +166,9 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        else{
         Equipment e = (Equipment)equipmentMngJTable.getValueAt(row, 0);
         organization.getEquipmentDirectory().deleteEquipment(e);
-        populateTable();}
+        populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -178,12 +177,11 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
         if(row<0){
             JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
-        else{
         Equipment p = (Equipment)equipmentMngJTable.getValueAt(row, 0);
         ViewEquipmentDetailJPanel vpdjp = new ViewEquipmentDetailJPanel(userProcessContainer, p);
         userProcessContainer.add("ViewEquipmentDetailJPanel", vpdjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);}
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate2ActionPerformed
