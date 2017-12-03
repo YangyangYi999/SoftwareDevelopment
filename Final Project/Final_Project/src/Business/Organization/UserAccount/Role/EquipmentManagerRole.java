@@ -13,7 +13,7 @@ import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import Interface.Aftersale.EquipmentManager.EquipmentManagerWorkArea;
 import javax.swing.JPanel;
-import Interface.Supplier.SupplierManageWorkAreaJPanel;
+import Interface.Supplier.EquipmentManager.SupplierManageWorkAreaJPanel;
 
 /**
  *

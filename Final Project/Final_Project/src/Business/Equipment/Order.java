@@ -77,7 +77,7 @@ public class Order {
     
     @Override
     public String toString(){
-        return this.name;
+        return this.name + "Order"+this.getOrderNumber();
     }
     
     

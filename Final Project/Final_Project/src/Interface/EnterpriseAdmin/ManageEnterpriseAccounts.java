@@ -132,12 +132,12 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         usernameTxt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        passwordTxt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         empCom = new javax.swing.JComboBox();
+        passwordTxt = new javax.swing.JPasswordField();
 
         accountTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,8 +185,6 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jLabel4.setText("Password:");
-
-        passwordTxt.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
         jButton1.setText("Create");
@@ -245,14 +243,14 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(roleCom, 0, 125, Short.MAX_VALUE)
-                                    .addComponent(passwordTxt)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                .addComponent(jButton2))))
+                                .addComponent(jButton2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(roleCom, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,7 +355,7 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox orgCom;
-    private javax.swing.JTextField passwordTxt;
+    private javax.swing.JPasswordField passwordTxt;
     private javax.swing.JComboBox roleCom;
     private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables

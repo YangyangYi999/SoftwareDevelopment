@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor;
+package Interface.Distributor.EquipmentManager;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -37,6 +37,7 @@ public class DistributorEquipmentManageWorkAreaJPanel extends javax.swing.JPanel
         this.userProcessContainer = userProcessContainer;
         this.state = state;
         this.enterprise = enterprise;
+        valueLabel.setText(enterprise.getName());
     }   
 
     /**
@@ -91,7 +92,7 @@ public class DistributorEquipmentManageWorkAreaJPanel extends javax.swing.JPanel
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -99,7 +100,7 @@ public class DistributorEquipmentManageWorkAreaJPanel extends javax.swing.JPanel
                         .addComponent(valueLabel)))
                 .addGap(48, 48, 48)
                 .addComponent(btnMngInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

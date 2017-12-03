@@ -3,38 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor;
+package Interface.Supplier.EquipmentManager;
 
-import Business.Enterprise.Enterprise;
 import Business.Equipment.Equipment;
 import Business.Organization.EquipmentManageOrganization;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import Interface.Distributor.EquipmentManager.ViewProductDetailJPanel;
 
 /**
  *
  * @author yiyangyang
  */
-public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
+public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageEquipmentInventoryJPanel
      */
     JPanel userProcessContainer;
-   
-   
-    EquipmentManageOrganization equipmentManageOrganization;
-   
-
-
-   
-    ManageDisEquipmentInventoryJPanel(JPanel userProcessContainer, EquipmentManageOrganization equipmentManageOrganization) {
+    EquipmentManageOrganization organization;
+    ManageEquipmentInventoryJPanel(JPanel userProcessContainer, EquipmentManageOrganization organization) {
         initComponents();
-        this.equipmentManageOrganization = equipmentManageOrganization;
+        this.organization = organization;
         this.userProcessContainer = userProcessContainer;
-        populateTable();         }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,15 +42,13 @@ public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         equipmentMngJTable = new javax.swing.JTable();
         backJButton2 = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+        btnCreate2 = new javax.swing.JButton();
 
         equipmentMngJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Name", "number"
@@ -86,19 +78,27 @@ public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnView.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
-        btnView.setText("View Equipment Detail >>");
+        btnDelete.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
+        btnDelete.setText("Delete Product(s)");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnView.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnView.setText("View Product Detail >>");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnCreate2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnCreate2.setText("Create New Product >>");
+        btnCreate2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                btnCreate2ActionPerformed(evt);
             }
         });
 
@@ -106,40 +106,43 @@ public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(backJButton2)
+                .addGap(615, 615, 615))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(7, Short.MAX_VALUE)
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backJButton2)
-                        .addGap(530, 530, 530))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(167, 167, 167)
-                            .addComponent(btnView))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(39, 39, 39))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCreate2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(backJButton2)
-                .addGap(37, 37, 37)
+                .addGap(52, 52, 52)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnView)
-                    .addComponent(btnDelete))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCreate2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-     private void populateTable(){
+    public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) equipmentMngJTable.getModel();
         
         model.setRowCount(0);
         
-        for (Equipment e :equipmentManageOrganization.getEquipmentDirectory().getEquipmentList()){
+        for (Equipment e :organization.getEquipmentDirectory().getEquipmentList()){
             Object[] row = new Object[2];
             row[0] = e;
             row[1] = e.getStock();
@@ -154,19 +157,6 @@ public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButton2ActionPerformed
 
-    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
-
-        int row = equipmentMngJTable.getSelectedRow();
-        if(row<0){
-            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        Equipment p = (Equipment)equipmentMngJTable.getValueAt(row, 0);
-        ViewProductDetailJPanel vpdjp = new ViewProductDetailJPanel(userProcessContainer, p);
-        userProcessContainer.add("ViewProductDetailJPanel", vpdjp);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnViewActionPerformed
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
         int row = equipmentMngJTable.getSelectedRow();
@@ -175,14 +165,35 @@ public class ManageDisEquipmentInventoryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        Equipment s = (Equipment)equipmentMngJTable.getValueAt(row, 0);
-        equipmentManageOrganization.getEquipmentDirectory().deleteEquipment(s);
+        Equipment e = (Equipment)equipmentMngJTable.getValueAt(row, 0);
+        organization.getEquipmentDirectory().deleteEquipment(e);
         populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+
+        int row = equipmentMngJTable.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        Equipment p = (Equipment)equipmentMngJTable.getValueAt(row, 0);
+        ViewEquipmentDetailJPanel vpdjp = new ViewEquipmentDetailJPanel(userProcessContainer, p);
+        userProcessContainer.add("ViewEquipmentDetailJPanel", vpdjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnCreate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate2ActionPerformed
+        CreateNewProductJPanel sfpjp = new CreateNewProductJPanel (userProcessContainer, organization);
+        userProcessContainer.add("CreateNewProductl", sfpjp);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnCreate2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton2;
+    private javax.swing.JButton btnCreate2;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnView;
     private javax.swing.JTable equipmentMngJTable;
