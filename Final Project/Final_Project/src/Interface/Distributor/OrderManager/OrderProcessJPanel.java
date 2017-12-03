@@ -201,7 +201,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                     if(org instanceof EquipmentManageOrganization){
                         for(OrderItem oi:order.getOrderItemList()){
                             if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                                oi.getEquipment().setStock(oi.getEquipment().getStock()-oi.getQuatity());
+                                oi.getEquipment().setStock(oi.getEquipment().getStock()+oi.getQuatity());
                             }
                             else{
                                 ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());

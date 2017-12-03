@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
 import Business.Equipment.Equipment;
 import Business.Equipment.Order;
+import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.WorkQueue.WorkRequest;
@@ -39,6 +40,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         this.container = container;
         this.customer = customer;
         this.state = state;
+        populateCom();
     }
     void populateCom(){
         providerCom.removeAllItems();
@@ -82,7 +84,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         Amount = new javax.swing.JSpinner();
         btnOrder = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jLabel1.setText("Welcome");
@@ -131,11 +133,11 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-        jButton2.setText("<< Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -155,7 +157,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(67, 67, 67)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton2)
+                                .addComponent(btnBack)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3)
@@ -186,17 +188,17 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                     .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnOrder))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnBack)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         CardLayout layout = (CardLayout)container.getLayout();
         container.remove(this);
         layout.previous(container);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
     private void providerComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_providerComActionPerformed
         if(providerCom.getSelectedItem()==null){
@@ -225,6 +227,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
             order.addOrderItem(e, amount, e.getPrice());
             order.setStatus("Waiting for confirm"); 
             customer.getOutmoc().addOrder(order);
+            e.setStock(e.getStock()-amount);
             for(Organization org:p.getOrganizationDirectory().getOrganizationList()){
                 if(org instanceof OrderManageOrganization){
                     OrderManageOrganization omo = (OrderManageOrganization)org;
@@ -232,6 +235,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                 }
             }
             JOptionPane.showMessageDialog(this, "Successfully orderd !");
+            populateTable(p);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnOrderActionPerformed
@@ -240,8 +244,8 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner Amount;
     private javax.swing.JTable Table;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnOrder;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
