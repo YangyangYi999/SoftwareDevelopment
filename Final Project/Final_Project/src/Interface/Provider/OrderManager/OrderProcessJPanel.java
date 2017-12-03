@@ -5,11 +5,13 @@
  */
 package Interface.Provider.OrderManager;
 
+import Business.Customer.Customer;
 import Interface.Distributor.OrderManager.*;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
 import Business.Enterprise.Supplier;
+import Business.Equipment.Equipment;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
 import Business.Organization.EquipmentManageOrganization;
@@ -196,23 +198,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         Order order = (Order)orderComboBox.getSelectedItem();
         order.setStatus("Confirmed");
         lbStatus.setText(order.getStatus());
-        for(Enterprise pro:state.getEnterpriseDirectory().getEnterpriseList()){
-            if(order.getName().equals(pro.getName())&& pro instanceof Provider){
-                for(Organization org:((Provider)pro).getOrganizationDirectory().getOrganizationList()){
-                    if(org instanceof EquipmentManageOrganization){
-                        for(OrderItem oi:order.getOrderItemList()){
-                            if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                                oi.getEquipment().setStock(oi.getEquipment().getStock()-oi.getQuatity());
-                            }
-                            else{
-                                ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
-                            }
-                        }
-                        
-                    }
-                }
-            }
-        }
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed

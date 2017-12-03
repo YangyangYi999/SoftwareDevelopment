@@ -52,16 +52,30 @@
             <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/EquipmentManagerRole.java</file>
         </group>
         <group>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderEquipmentJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/OrderProcessJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/ManageUndeliveredAlertJpanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageOrganizationJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/EquipmentManager/ProviderEquipmentManagerWorkAreaJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/AdminWorkAreaJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/Enterprise/Enterprise.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/ProviderOrderManagerRole.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Customer/ContactAftersalePanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/ConfigureAEcoSystem.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/ProviderEquipmentManagerRole.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Customer/CustomerPurchaseJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/ManageHandledAlertJPanel.java</file>
             <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Supplier/ConfirmOrder/OrderProcessJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/SecureGuard/HandleAlertJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/Customer/Customer.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderProcessJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderManageWorkAreaJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/SecureOfficerWorkAreaJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/OrderEquipmentJPanel.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEnterpriseAccounts.java</file>
+            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/EquipmentManager/ManageProviderEquipmentJPanel.java</file>
             <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/ProviderOrderManagerWorkAreaJPanel.java</file>
             <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/SystemAdminRole.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageOrganizationJPanel.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/OrderProcessJPanel.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/AdminWorkAreaJPanel.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/EnterpriseAdmin/ManageEnterpriseAccounts.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Business/ConfigureAEcoSystem.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderManageWorkAreaJPanel.java</file>
-            <file>file:/Users/shinychenw/Documents/git/bitbucket/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderEquipmentJPanel.java</file>
         </group>
     </open-files>
 </project-private>
