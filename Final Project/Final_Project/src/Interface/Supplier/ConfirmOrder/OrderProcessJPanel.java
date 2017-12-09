@@ -17,6 +17,7 @@ import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -122,11 +123,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(183, 183, 183)
-                        .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(rejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(199, 199, 199)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -142,8 +138,13 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(backJButton2)))
-                .addContainerGap(310, Short.MAX_VALUE))
+                        .addComponent(backJButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(rejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +161,11 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(38, 38, 38)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rejectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63))
+                .addGap(144, 144, 144))
         );
     }// </editor-fold>//GEN-END:initComponents
     
@@ -193,27 +194,34 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
-        order.setStatus("Confirmed");
-        lbStatus.setText(order.getStatus());
-        for(Enterprise dis:state.getEnterpriseDirectory().getEnterpriseList()){
-            if(dis.getName().equals(order.getName())&& dis instanceof Distributor){
-                for(Organization org:((Distributor)dis).getOrganizationDirectory().getOrganizationList()){
-                    if(org instanceof EquipmentManageOrganization){
-                        for(OrderItem oi:order.getOrderItemList()){
-                            for(int i =0;i<((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size();i++){
-                                Equipment e = ((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().get(i);
-                                if(e.getName().equals(oi.getEquipment().getName())){
-                                    e.setStock(e.getStock()+oi.getQuatity());
+        if(!"Confirmed".equals(order.getStatus())){
+            order.setStatus("Confirmed");
+            lbStatus.setText(order.getStatus());
+            for(Enterprise dis:state.getEnterpriseDirectory().getEnterpriseList()){
+                if(dis.getName().equals(order.getName())&& dis instanceof Distributor){
+                    for(Organization org:((Distributor)dis).getOrganizationDirectory().getOrganizationList()){
+                        if(org instanceof EquipmentManageOrganization){
+                            for(OrderItem oi:order.getOrderItemList()){
+                                if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size()!=0){
+                                    for(int i =0;i<((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size();i++){
+                                        Equipment e = ((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().get(i);
+                                        if(e.getName().equals(oi.getEquipment().getName())){
+                                            e.setStock(e.getStock()+oi.getQuatity());
+                                        }
+                                    }
                                 }
-                                else{
-                                ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
-                                }
+                                 else{
+                                    ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
+                                    }
                             }
+
                         }
-                        
                     }
                 }
             }
+        }
+        else if ("Confirmed".equals(order.getStatus())){
+           JOptionPane.showMessageDialog(null, "Order has been processed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
 

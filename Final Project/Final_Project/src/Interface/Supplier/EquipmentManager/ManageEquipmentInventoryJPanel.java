@@ -46,6 +46,7 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         btnCreate2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         equipmentMngJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -79,29 +80,33 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setFont(new java.awt.Font("Al Bayan", 0, 12)); // NOI18N
-        btnDelete.setText("Delete Product(s)");
+        btnDelete.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnDelete.setText("Delete Equipment(s)");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        btnView.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnView.setText("View Product Detail >>");
+        btnView.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnView.setText("View Equipment Detail >>");
         btnView.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewActionPerformed(evt);
             }
         });
 
-        btnCreate2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnCreate2.setText("Create New Product >>");
+        btnCreate2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        btnCreate2.setText("Create New Equipment >>");
         btnCreate2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreate2ActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Manage Equipment Inventory");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,15 +116,17 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backJButton2)
                 .addGap(615, 615, 615))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnCreate2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnDelete)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(275, 275, 275)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCreate2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,15 +134,17 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(backJButton2)
-                .addGap(52, 52, 52)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(45, 45, 45)
                 .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCreate2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void populateTable(){
@@ -166,9 +175,11 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table first", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
+        else{
         Equipment e = (Equipment)equipmentMngJTable.getValueAt(row, 0);
         organization.getEquipmentDirectory().deleteEquipment(e);
         populateTable();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
@@ -177,16 +188,17 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
         if(row<0){
             JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
+        else{
         Equipment p = (Equipment)equipmentMngJTable.getValueAt(row, 0);
         ViewEquipmentDetailJPanel vpdjp = new ViewEquipmentDetailJPanel(userProcessContainer, p);
         userProcessContainer.add("ViewEquipmentDetailJPanel", vpdjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        layout.next(userProcessContainer);}
     }//GEN-LAST:event_btnViewActionPerformed
 
     private void btnCreate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreate2ActionPerformed
         CreateNewProductJPanel sfpjp = new CreateNewProductJPanel (userProcessContainer, organization);
-        userProcessContainer.add("CreateNewProductl", sfpjp);
+        userProcessContainer.add("CreateNewProductJPanel", sfpjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnCreate2ActionPerformed
@@ -198,6 +210,7 @@ public class ManageEquipmentInventoryJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnView;
     private javax.swing.JTable equipmentMngJTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

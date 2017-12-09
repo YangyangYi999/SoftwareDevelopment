@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Rushabh
+ * @author yiyangyang
  */
 public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
 
@@ -23,10 +23,10 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     private Equipment p;
     public ViewEquipmentDetailJPanel(JPanel upc, Equipment p) {
         initComponents();
-        userProcessContainer = upc;
+        this.userProcessContainer = upc;
         this.p= p;
-        txtAvail.setText(p.getName());
-        txtAvail.setText(String.valueOf(p.getPrice()));
+        txtName.setText(p.getName());
+        txtPrice.setText(String.valueOf(p.getPrice()));
         txtAvail.setText(String.valueOf(p.getStock()));
     }
     /** This method is called from within the constructor to
@@ -46,25 +46,26 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         txtAvail = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
-        txtPrice1 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("View Equipment Detail");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1, 70, 700, -1));
 
         jLabel2.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
         jLabel2.setText("Product Name:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, 30));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 160, -1, 30));
 
         jLabel3.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
         jLabel3.setText("Price:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, -1, 30));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, -1, 30));
 
         jLabel6.setFont(new java.awt.Font("Al Bayan", 0, 14)); // NOI18N
         jLabel6.setText("Availability:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, 80, 30));
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 80, 30));
 
         btnSave.setText("Save");
         btnSave.setEnabled(false);
@@ -73,7 +74,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
                 btnSaveActionPerformed(evt);
             }
         });
-        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
+        add(btnSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, -1, -1));
 
         btnUpdate2.setText("Update");
         btnUpdate2.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +82,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
                 btnUpdate2ActionPerformed(evt);
             }
         });
-        add(btnUpdate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 340, -1, -1));
+        add(btnUpdate2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 350, -1, -1));
 
         btnBack.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnBack.setText("<< Back");
@@ -91,20 +92,20 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
-        add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 250, 170, 30));
-        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 170, 30));
-        add(txtPrice1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 200, 170, 30));
+        add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 170, 30));
+        add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 170, 30));
+        add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if("".equals(txtAvail.getText())|| "".equals(txtAvail.getText())||"".equals(txtAvail.getText())){
+        if("".equals(txtName.getText())|| "".equals(txtPrice.getText())||"".equals(txtAvail.getText())){
             JOptionPane.showMessageDialog(null,"Please fill in all fields");
         }
         else{
 
-            p.setName(txtAvail.getText());
-            p.setPrice(Integer.parseInt(txtAvail.getText()));
+            p.setName(txtName.getText());
+            p.setPrice(Integer.parseInt(txtPrice.getText()));
             p.setStock(Integer.parseInt(txtAvail.getText()));
             btnSave.setEnabled(false);
             btnUpdate2.setEnabled(true);
@@ -116,8 +117,8 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
 
         txtAvail.setEnabled(true);
-        txtAvail.setEnabled(true);
-        txtAvail.setEnabled(true);
+        txtPrice.setEnabled(true);
+        txtName.setEnabled(true);
         btnSave.setEnabled(true);
         btnUpdate2.setEnabled(false);
     }//GEN-LAST:event_btnUpdate2ActionPerformed
@@ -140,7 +141,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtAvail;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPrice1;
+    private javax.swing.JTextField txtPrice;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -17,7 +17,7 @@ import javax.swing.JPanel;
  *
  * @author yiyangyang
  */
-public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
+public class InsuranceOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProviderAdminWorkAreaJPanel
@@ -31,7 +31,7 @@ public class InsuranceAdminWorkAreaJPanel extends javax.swing.JPanel {
 
   
 
-    public InsuranceAdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, State state) {
+    public InsuranceOfficerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, State state) {
         initComponents();
         this.enterprise = enterprise;
         this.userProcessContainer = userProcessContainer;

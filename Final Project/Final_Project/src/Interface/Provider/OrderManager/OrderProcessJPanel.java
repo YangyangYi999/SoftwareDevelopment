@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Distributor.OrderManager;
+package Interface.Provider.OrderManager;
 
+import Business.Customer.Customer;
+import Interface.Distributor.OrderManager.*;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
@@ -32,17 +34,17 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     OrderManageOrganization orderManageOrganization;
-    Distributor distributor;
+    Provider provider;
     State state;
     
 
 
-    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Distributor distributor, State state) {
+    OrderProcessJPanel(JPanel userProcessContainer, OrderManageOrganization orderManageOrganization, Provider provider, State state) {
         initComponents();
         this.userProcessContainer =userProcessContainer;
         this.orderManageOrganization = orderManageOrganization;
         this.state = state;
-        this.distributor = distributor;
+        this.provider = provider;
         
         for(Order o : orderManageOrganization.getInmoc().getOrderCatalog()){
            orderComboBox.addItem(o);
@@ -196,27 +198,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         Order order = (Order)orderComboBox.getSelectedItem();
         order.setStatus("Confirmed");
         lbStatus.setText(order.getStatus());
-        for(Enterprise pro:state.getEnterpriseDirectory().getEnterpriseList()){
-            if(pro.getName().equals(order.getName())&& pro instanceof Provider){
-                for(Organization org:((Provider)pro).getOrganizationDirectory().getOrganizationList()){
-                    if(org instanceof EquipmentManageOrganization){
-                        for(OrderItem oi:order.getOrderItemList()){
-                            if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size()!=0){
-                                for(int i =0;i<((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size();i++){
-                                    Equipment e = ((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().get(i);
-                                    if(e.getName().equals(oi.getEquipment().getName())){
-                                        e.setStock(e.getStock()+oi.getQuatity());
-                                    }
-                                }
-                            }
-                             else{
-                                ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
-                                }
-                        }
-                    }
-                }
-            }
-        }
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
@@ -225,7 +206,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
         order.setStatus("Reject");
         lbStatus.setText(order.getStatus());
         for(OrderItem oi: order.getOrderItemList()){
-            for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
+            for(Organization o:provider.getOrganizationDirectory().getOrganizationList()){
                 if(o instanceof EquipmentManageOrganization){
                     if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
                         oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());

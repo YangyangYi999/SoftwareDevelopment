@@ -252,7 +252,7 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
                                     .addComponent(btnModifyQuantity)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnRemoveOrderItem))))))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

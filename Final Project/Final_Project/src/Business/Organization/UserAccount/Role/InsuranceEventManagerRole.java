@@ -11,7 +11,7 @@ import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import javax.swing.JPanel;
-import Interface.Insurance.Officer.InsuranceAdminWorkAreaJPanel;
+import Interface.Insurance.Officer.InsuranceOfficerWorkAreaJPanel;
 
 /**
  *
@@ -21,7 +21,7 @@ public class InsuranceEventManagerRole extends Role{
 
      @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization,Enterprise enterprise,EcoSystem system,State state) {
-        return new InsuranceAdminWorkAreaJPanel(userProcessContainer, account, enterprise,state);
+        return new InsuranceOfficerWorkAreaJPanel(userProcessContainer, account, enterprise,state);
     }
 
     

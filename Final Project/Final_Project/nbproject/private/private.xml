@@ -52,16 +52,9 @@
             <file>file:/C:/Users/BoyangWei/Weiboyang_5100/wei_boyang_001883667/wolf/Final%20Project/Final_Project/src/Business/Organization/UserAccount/Role/EquipmentManagerRole.java</file>
         </group>
         <group>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/ConfirmOrder/OrderProcessJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/SupplierManageWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Provider/EquipmentManager/ManageProviderEquipmentJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/ManageEquipmentInventoryJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/ProviderOrderManagerWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Supplier/EquipmentManager/CreateNewProductJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Provider/EquipmentManager/ProviderEquipmentManagerWorkAreaJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/OrderEquipmentJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Provider/OrderManager/ViewOrderStatusJPanel.java</file>
-            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/Distributor/OrderManager/OrderProcessJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/ManageUndeliveredAlertJpanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/SecureOfficerWorkAreaJPanel.java</file>
+            <file>file:/Users/yiyangyang/Desktop/IS/5100/wolf/Final%20Project/Final_Project/src/Interface/SecureOfficer/ManageHandledAlertJPanel.java</file>
         </group>
     </open-files>
 </project-private>
