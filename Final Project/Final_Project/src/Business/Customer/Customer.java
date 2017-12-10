@@ -17,12 +17,21 @@ public class Customer {
     private String username;
     private String password;
     private WorkQueue workQueue;
+    private String email; 
     private String Location;
 //    private CustomerOrderDirectory customerOrderDirectory;
 //
 //    public CustomerOrderDirectory getCustomerOrderDirectory() {
 //        return customerOrderDirectory;
 //    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     
     public String getLocation() {
         return Location;

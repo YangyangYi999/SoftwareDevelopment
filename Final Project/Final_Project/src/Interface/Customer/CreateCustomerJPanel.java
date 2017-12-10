@@ -10,8 +10,11 @@ import Business.Customer.CustomerDirectory;
 import Business.EcoSystem;
 import Business.Network.Network;
 import Business.State.State;
+import HelperClasses.SendMail;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -63,6 +66,8 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         locationTxt = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        emailTxt = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
         jLabel1.setText("Welcome to sign up");
@@ -110,6 +115,11 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
         locationTxt.setRows(5);
         jScrollPane1.setViewportView(locationTxt);
 
+        jLabel7.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+        jLabel7.setText("E-mail:");
+
+        emailTxt.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,14 +143,16 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
                                 .addGap(78, 78, 78)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(stateCom, 0, 162, Short.MAX_VALUE)
                                     .addComponent(usernameTxt)
                                     .addComponent(passwordTxt)
                                     .addComponent(confpwTxt)
-                                    .addComponent(jScrollPane1))))))
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(emailTxt))))))
                 .addContainerGap(218, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -165,6 +177,10 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(confpwTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,12 +188,15 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(48, 48, 48))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    boolean validEmail(Pattern pattern, String address){
+        Matcher matcher = pattern.matcher(address);
+        return matcher.matches();
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(stateCom.getSelectedItem()==null||usernameTxt.getText().isEmpty()||passwordTxt.getPassword().length==0||confpwTxt.getPassword().length==0||locationTxt.getText().isEmpty()){
+        if(stateCom.getSelectedItem()==null||usernameTxt.getText().isEmpty()||passwordTxt.getPassword().length==0||confpwTxt.getPassword().length==0||locationTxt.getText().isEmpty()||emailTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Invalid");
         }else if(String.valueOf(confpwTxt.getPassword()).equals(String.valueOf(passwordTxt.getPassword()))==false){
             JOptionPane.showMessageDialog(this, "Password not match");
@@ -189,12 +208,30 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
             cus.setUsername(usernameTxt.getText());
             state.getCustomerDirectory().getCustomerList().add(cus);
             cus.setLocation(locationTxt.getText());
-            JOptionPane.showMessageDialog(this, "Succeeded. Please log in");
+            String regx = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+		+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+            Pattern pattern = Pattern.compile(regx);
+            if(validEmail(pattern,emailTxt.getText())){
+                cus.setEmail(emailTxt.getText());
+                JOptionPane.showMessageDialog(this, "Succeeded. Please log in");
+                 stateCom.setSelectedItem(null);
+                usernameTxt.setText("");
+                passwordTxt.setText("");
+                confpwTxt.setText("");
+                locationTxt.setText("");
+                emailTxt.setText("");
+                SendMail.Send(emailTxt.getText(),usernameTxt.getText());
+            }else{
+               JOptionPane.showMessageDialog(this, "Invalid e-mail address.");
+               emailTxt.setText("");
+               emailTxt.requestFocus();
+            }
             stateCom.setSelectedItem(null);
             usernameTxt.setText("");
             passwordTxt.setText("");
             confpwTxt.setText("");
             locationTxt.setText("");
+            emailTxt.setText("");
             }else{
                 JOptionPane.showMessageDialog(this, "The username has been taken"); 
             }
@@ -213,6 +250,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField confpwTxt;
+    private javax.swing.JTextField emailTxt;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -221,6 +259,7 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea locationTxt;
     private javax.swing.JPasswordField passwordTxt;

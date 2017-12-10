@@ -11,7 +11,6 @@ import Business.Organization.UserAccount.UserAccount;
 import Interface.Account.ManageOwnAccountJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-
 /**
  *
  * @author BoyangWei
