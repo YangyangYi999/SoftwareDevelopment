@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.Policeman;
+package Interface.Insurance.employee;
 
-import Business.Enterprise.Police;
+import Business.Enterprise.Insurance;
 import Business.Organization.AlertHandleOrganization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
@@ -14,26 +14,27 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author shinychenw
+ * @author yiyangyang
  */
-public class PolicemanWorkAreaJPanel extends javax.swing.JPanel {
+public class InsuranceEmployeeWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form SecureGuardWorkAreaJPanel
+     * Creates new form InsuranceEmployeeWorkAreaJPanel
      */
-    
-    JPanel userProcessContainer;
-    UserAccount account;
-    AlertHandleOrganization alertHandleOrganization;
-    Police police;
-    State state;
-    public PolicemanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertHandleOrganization alertHandleOrganization, Police police, State state) {
+JPanel userProcessContainer;
+UserAccount account;
+AlertHandleOrganization alertHandleOrganization;
+Insurance insurance;
+State state;
+
+    public InsuranceEmployeeWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertHandleOrganization alertHandleOrganization, Insurance insurance, State state) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.alertHandleOrganization = alertHandleOrganization;
-        this.userProcessContainer = userProcessContainer;
-        this.police = police;
         this.state = state;
+        this.insurance = insurance;
+        labelName.setText(insurance.getName());
     }
 
     /**
@@ -46,52 +47,52 @@ public class PolicemanWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnHandleAlert = new javax.swing.JButton();
         labelName = new javax.swing.JLabel();
+        btnHandleAlert = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Policeman Work Area");
+        jLabel1.setText("Insurance Employee Work Area");
 
-        btnHandleAlert.setText("Handle Alert");
+        labelName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        labelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelName.setText("name");
+
+        btnHandleAlert.setText("Check Insurance Status");
         btnHandleAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHandleAlertActionPerformed(evt);
             }
         });
 
-        labelName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        labelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelName.setText("name");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(197, Short.MAX_VALUE)
+                .addContainerGap(204, Short.MAX_VALUE)
                 .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(186, 186, 186))
+                .addGap(178, 178, 178))
+            .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jLabel1)
-                .addGap(71, 71, 71)
+                .addGap(32, 32, 32)
                 .addComponent(labelName)
-                .addGap(66, 66, 66)
-                .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(311, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHandleAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandleAlertActionPerformed
         // TODO add your handling code here:
-        PolicemanHandleAlertJPanel haj = new PolicemanHandleAlertJPanel(userProcessContainer,alertHandleOrganization,police,state,account);
-        userProcessContainer.add("HandleAlertJPanel", haj);
+        ProcessInsuranceJPanel apjp = new ProcessInsuranceJPanel(userProcessContainer, account,alertHandleOrganization,insurance,state);
+        userProcessContainer.add("ProcessInsuranceJPanel", apjp);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnHandleAlertActionPerformed

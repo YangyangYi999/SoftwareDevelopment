@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.SecureGuard;
+package Interface.PoliceOfficer;
 
 import Business.Alert.Alert;
-import Business.Enterprise.Secure;
-import Business.Equipment.Equipment;
-import Business.Organization.AlertHandleOrganization;
-import Business.Organization.UserAccount.UserAccount;
+import Business.Enterprise.Police;
+import Business.Organization.AlertManageOrganization;
 import Business.State.State;
-import Interface.Supplier.EquipmentManager.ViewEquipmentDetailJPanel;
+import Interface.SecureOfficer.*;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,24 +19,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shinychenw
  */
-public class HandleAlertJPanel extends javax.swing.JPanel {
+public class PoliceManageHandledAlertJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageAlertJPanel
+     * Creates new form ManageHandledAlertJPanel
      */
-     private JPanel userProcessContainer;
-    private AlertHandleOrganization alertHandleOrganization;
-    private State state;
-    private Secure secure;
-    private UserAccount account;
-    HandleAlertJPanel(JPanel userProcessContainer, AlertHandleOrganization alertHandleOrganization, Secure secure, State state,UserAccount account) {
+    JPanel userProcessContainer;
+    AlertManageOrganization alertManageOrganization;
+    Police police;
+    State state;
+
+    PoliceManageHandledAlertJPanel(JPanel userProcessContainer, AlertManageOrganization alertManageOrganization, Police police, State state) {
         initComponents();
-        this.alertHandleOrganization = alertHandleOrganization;
         this.userProcessContainer = userProcessContainer;
-        this.secure = secure;
-        this.state = state;
-        this.account = account;
-        populateTable();        
+        this.alertManageOrganization=alertManageOrganization;
+        this.police=police;
+        this.state=state;
+        populateTable();
     }
 
     /**
@@ -53,32 +50,38 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAlert = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        handleBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         backJButton2 = new javax.swing.JButton();
 
         jTableAlert.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Equipment Name", "Alert ID", "Date", "Address"
+                "Equipment ID", "Date", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTableAlert);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Handle Alert");
+        jLabel1.setText("Manage Handled Alert");
 
-        handleBtn.setText("Start to handle");
-        handleBtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("View Result");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                handleBtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setEnabled(false);
+        jScrollPane2.setViewportView(jTextArea1);
 
         backJButton2.setText("<< Back");
         backJButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -91,44 +94,50 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(166, 166, 166))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backJButton2))
+                        .addGap(138, 138, 138)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(140, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(handleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(282, 282, 282))
+                        .addGap(27, 27, 27)
+                        .addComponent(backJButton2)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addGap(20, 20, 20)
                 .addComponent(backJButton2)
-                .addGap(29, 29, 29)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(handleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) jTableAlert.getModel();
         model.setRowCount(0);
         
-        for (Alert a : secure.getAlertDirectory().getAlertList()){
-            if("waiting for handling".equals(a.getStatus())&& a.getGuard().equals(account.getUsername())){
-            Object[] row = new Object[4];
+        for (Alert a : police.getAlertDirectory().getAlertList()){
+            if("handled".equals(a.getPolStatus())){
+            Object[] row = new Object[3];
             row[0] = a;
-            row[1] = a.getAlertID();
             row[1] = a.getDate();
             row[2] = a.getEquipment().getCustomer().getLocation();          
             model.addRow(row);
@@ -142,27 +151,27 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButton2ActionPerformed
 
-    private void handleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int row = jTableAlert.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         else{
-            Alert a = (Alert)jTableAlert.getValueAt(row, 0);
-            AlertProcessJPanel apjp = new AlertProcessJPanel(userProcessContainer, a);
-            userProcessContainer.add("AlertProcessJPanel", apjp);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
+             jTextArea1.setText(a.getPolResult());
         }
-    }//GEN-LAST:event_handleBtnActionPerformed
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton2;
-    private javax.swing.JButton handleBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAlert;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

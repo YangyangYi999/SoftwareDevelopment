@@ -3,15 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.SecureGuard;
+package Interface.Insurance.employee;
 
 import Business.Alert.Alert;
-import Business.Enterprise.Secure;
-import Business.Equipment.Equipment;
+import Business.Enterprise.Insurance;
 import Business.Organization.AlertHandleOrganization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.Supplier.EquipmentManager.ViewEquipmentDetailJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,26 +17,27 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author shinychenw
+ * @author yiyangyang
  */
-public class HandleAlertJPanel extends javax.swing.JPanel {
+public class ProcessInsuranceJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageAlertJPanel
+     * Creates new form DistributeInsuranceJPanel
      */
-     private JPanel userProcessContainer;
-    private AlertHandleOrganization alertHandleOrganization;
-    private State state;
-    private Secure secure;
-    private UserAccount account;
-    HandleAlertJPanel(JPanel userProcessContainer, AlertHandleOrganization alertHandleOrganization, Secure secure, State state,UserAccount account) {
+    JPanel userProcessContainer;
+    UserAccount account;
+    AlertHandleOrganization alertHandleOrganization;
+    Insurance insurance;
+    State state;
+
+    ProcessInsuranceJPanel(JPanel userProcessContainer, UserAccount account, AlertHandleOrganization alertHandleOrganization, Insurance insurance, State state) {
         initComponents();
-        this.alertHandleOrganization = alertHandleOrganization;
         this.userProcessContainer = userProcessContainer;
-        this.secure = secure;
-        this.state = state;
         this.account = account;
-        populateTable();        
+        this.alertHandleOrganization = alertHandleOrganization;
+        this.state = state;
+        this.insurance = insurance;
+        populateTable();
     }
 
     /**
@@ -50,11 +49,15 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAlert = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         handleBtn = new javax.swing.JButton();
         backJButton2 = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Handle Insurance");
 
         jTableAlert.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,11 +72,7 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableAlert);
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Handle Alert");
-
-        handleBtn.setText("Start to handle");
+        handleBtn.setText("Start to Process");
         handleBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 handleBtnActionPerformed(evt);
@@ -100,7 +99,7 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(124, 124, 124)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(handleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,15 +116,15 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(handleBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) jTableAlert.getModel();
         model.setRowCount(0);
         
-        for (Alert a : secure.getAlertDirectory().getAlertList()){
-            if("waiting for handling".equals(a.getStatus())&& a.getGuard().equals(account.getUsername())){
+        for (Alert a : insurance.getAlertDirectory().getAlertList()){
+            if("waiting for handling".equals(a.getInsStatus())&& a.getInsurance().equals(account.getUsername())){
             Object[] row = new Object[4];
             row[0] = a;
             row[1] = a.getAlertID();
@@ -135,13 +134,6 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
             }
         }
     }
-    private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backJButton2ActionPerformed
-
     private void handleBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_handleBtnActionPerformed
         // TODO add your handling code here:
         int row = jTableAlert.getSelectedRow();
@@ -150,12 +142,19 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         }
         else{
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
-            AlertProcessJPanel apjp = new AlertProcessJPanel(userProcessContainer, a);
-            userProcessContainer.add("AlertProcessJPanel", apjp);
+            InsuranceResultJPanel irjp = new InsuranceResultJPanel(userProcessContainer, a);
+            userProcessContainer.add("InsuranceResultJPanel", irjp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
     }//GEN-LAST:event_handleBtnActionPerformed
+
+    private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

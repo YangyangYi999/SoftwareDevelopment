@@ -7,6 +7,8 @@ package Interface.Insurance.Officer;
 
 
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Insurance;
+import Business.Organization.AlertManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
@@ -24,20 +26,21 @@ public class InsuranceOfficerWorkAreaJPanel extends javax.swing.JPanel {
      */
     
     JPanel userProcessContainer;
-    Enterprise enterprise;
+    Insurance insurance;
     UserAccount account ;
     State state;
-    
+    AlertManageOrganization alertManageOrganization;
 
   
 
-    public InsuranceOfficerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, State state) {
+
+    public InsuranceOfficerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertManageOrganization alertManageOrganization, Insurance insurance, State state) {
         initComponents();
-        this.enterprise = enterprise;
+        this.insurance = insurance;
         this.userProcessContainer = userProcessContainer;
         this.account =account;
         this.state = state;
-        valueLabel.setText(enterprise.getName()); 
+        this.alertManageOrganization = alertManageOrganization;
     }
 
     /**
@@ -50,97 +53,72 @@ public class InsuranceOfficerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnMngEmployee = new javax.swing.JButton();
-        btnMngUserAccount = new javax.swing.JButton();
-        valueLabel = new javax.swing.JLabel();
-        enterpriseLabel = new javax.swing.JLabel();
+        btnManageAlert = new javax.swing.JButton();
+        btnManageHandledAlert = new javax.swing.JButton();
 
-        jLabel1.setText(" Admin Work Area");
+        jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Insurance Officer Work Area");
 
-        btnMngEmployee.setText("Manage Employee");
-        btnMngEmployee.addActionListener(new java.awt.event.ActionListener() {
+        btnManageAlert.setText("Manage Unhandled Insurance");
+        btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMngEmployeeActionPerformed(evt);
+                btnManageAlertActionPerformed(evt);
             }
         });
 
-        btnMngUserAccount.setText("Manage User Account");
-        btnMngUserAccount.addActionListener(new java.awt.event.ActionListener() {
+        btnManageHandledAlert.setText("Manage Handled Insurance");
+        btnManageHandledAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMngUserAccountActionPerformed(evt);
+                btnManageHandledAlertActionPerformed(evt);
             }
         });
-
-        valueLabel.setText("<value>");
-
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(184, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnMngEmployee, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMngUserAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(jLabel1)))
-                .addContainerGap(185, Short.MAX_VALUE))
+                    .addComponent(btnManageHandledAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(198, 198, 198))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(107, 107, 107)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(valueLabel)))
-                .addGap(42, 42, 42)
-                .addComponent(btnMngEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnMngUserAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGap(95, 95, 95)
+                .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(btnManageHandledAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(255, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMngEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMngEmployeeActionPerformed
+    private void btnManageAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAlertActionPerformed
         // TODO add your handling code here:
-        ManageInsuranceEmployeeJPanel manageInsuranceEmployeeJPanel = new ManageInsuranceEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageInsuranceEmployeeJPanel", manageInsuranceEmployeeJPanel);
-
+        ManageUnhandledInsuranceJPanel muij = new ManageUnhandledInsuranceJPanel(userProcessContainer,alertManageOrganization,insurance,state);
+        userProcessContainer.add("ManageUnhandledInsuranceJpanel", muij);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-        
-    }//GEN-LAST:event_btnMngEmployeeActionPerformed
+    }//GEN-LAST:event_btnManageAlertActionPerformed
 
-    private void btnMngUserAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMngUserAccountActionPerformed
+    private void btnManageHandledAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHandledAlertActionPerformed
         // TODO add your handling code here:
-        ManageInsuranceUserAccountJPanel mIuajp = new ManageInsuranceUserAccountJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("ManageInsuranceUserAccountJPanel", mIuajp);
-
+        ManageHandledInsuranceJPanel mhij = new ManageHandledInsuranceJPanel(userProcessContainer,alertManageOrganization,insurance,state);
+        userProcessContainer.add("ManageHandledAlertJPanel", mhij);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnMngUserAccountActionPerformed
+    }//GEN-LAST:event_btnManageHandledAlertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMngEmployee;
-    private javax.swing.JButton btnMngUserAccount;
-    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton btnManageAlert;
+    private javax.swing.JButton btnManageHandledAlert;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -25,7 +25,12 @@ public abstract class Organization {
     private WorkQueue outboundworkQueue;
     
     public enum Type{
-        Basic("Basic Organization"),Equipment("Equipment Manage Organization"),Customer("Customer Manage Organization"),Order("Order Manage Organization");
+        Basic("Basic Organization"),
+        Equipment("Equipment Manage Organization"),
+        Customer("Customer Manage Organization"),
+        Order("Order Manage Organization"),
+        AlertManage("Alert Manage Organization"),
+        AlertHandle("Alert handle Organization");
         private String value;
         private Type(String value) {
             this.value = value;

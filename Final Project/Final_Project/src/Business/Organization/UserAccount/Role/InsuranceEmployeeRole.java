@@ -7,24 +7,22 @@ package Business.Organization.UserAccount.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import static Business.Enterprise.Enterprise.Type.Secure;
-import Business.Enterprise.Secure;
+import Business.Enterprise.Insurance;
 import Business.Organization.AlertHandleOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
-import Interface.SecureGuard.SecureGuardWorkAreaJPanel;
+import Interface.Insurance.employee.InsuranceEmployeeWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author shinychenw
+ * @author yiyangyang
  */
-public class SecureGuardRole extends Role {
-
+public class InsuranceEmployeeRole extends Role {
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, State state) {
-        return new SecureGuardWorkAreaJPanel(userProcessContainer,account,(AlertHandleOrganization)organization,(Secure)enterprise,state);    
+        return new InsuranceEmployeeWorkAreaJPanel(userProcessContainer,account,(AlertHandleOrganization)organization,(Insurance)enterprise,state);    
     }
     
 }

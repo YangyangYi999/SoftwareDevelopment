@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Interface.SecureOfficer;
+package Interface.PoliceOfficer;
 
 import Business.Alert.Alert;
-import Business.Enterprise.Secure;
+import Business.Enterprise.Police;
 import Business.Organization.AlertHandleOrganization;
 import Business.Organization.AlertManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
+import Interface.SecureOfficer.*;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,22 +22,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author shinychenw
  */
-public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
+public class PoliceManageUndeliveredAlertJpanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ManageAlertJpanel
      */
+    
    JPanel userProcessContainer;
    AlertManageOrganization alertManageOrganization;
-   Secure secure;
+   Police police;
    State state;
-    ManageUndeliveredAlertJpanel(JPanel userProcessContainer, AlertManageOrganization alertManageOrganization, Secure secure, State state) {
+    PoliceManageUndeliveredAlertJpanel(JPanel userProcessContainer, AlertManageOrganization alertManageOrganization, Police police, State state) {
         initComponents();
         this.alertManageOrganization = alertManageOrganization;
-        this.secure = secure;
+        this.police = police;
         this.state= state;
         this.userProcessContainer = userProcessContainer;
-        for(Organization o : secure.getOrganizationDirectory().getOrganizationList()){
+        for(Organization o : police.getOrganizationDirectory().getOrganizationList()){
             if(o instanceof AlertHandleOrganization){
                 jComboBoxOrg.addItem(o);
 //                for(UserAccount ua:o.getUserAccountDirectory().getUserAccountList())
@@ -59,7 +61,7 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
         jTableAlert = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxGuard = new javax.swing.JComboBox();
+        jComboBoxPolice = new javax.swing.JComboBox();
         btnDeliver = new javax.swing.JButton();
         jComboBoxOrg = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
@@ -78,10 +80,9 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableAlert);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Undelivered Alert");
 
-        jLabel2.setText("Choose a guard to handle:");
+        jLabel2.setText("Choose a policeman to handle:");
 
         btnDeliver.setText("Deliver");
         btnDeliver.addActionListener(new java.awt.event.ActionListener() {
@@ -110,59 +111,63 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(backJButton2)
-                .addContainerGap(571, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(269, 269, 269)
+                        .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
-                .addGap(96, 96, 96))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(299, 299, 299))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jComboBoxPolice, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 112, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(155, 155, 155)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(backJButton2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(17, 17, 17)
                 .addComponent(backJButton2)
-                .addGap(34, 34, 34)
+                .addGap(52, 52, 52)
                 .addComponent(jLabel1)
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(37, 37, 37)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47)
+                        .addComponent(btnDeliver))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(btnDeliver)
-                .addGap(26, 26, 26))
+                        .addComponent(jComboBoxPolice, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 public void populateTable(){
         DefaultTableModel model = (DefaultTableModel) jTableAlert.getModel();
         model.setRowCount(0);
         
-        for (Alert a : secure.getAlertDirectory().getAlertList()){
-            if("unhandled".equals(a.getStatus())){
+        for (Alert a : police.getAlertDirectory().getAlertList()){
+            if("unhandled".equals(a.getPolStatus())){
             Object[] row = new Object[3];
             row[0] = a;
             row[1] = a.getDate();
@@ -171,27 +176,11 @@ public void populateTable(){
             }
         }
     }
-    private void btnDeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverActionPerformed
-        // TODO add your handling code here:
-        int row = jTableAlert.getSelectedRow();
-        if(row<0){
-            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        else if(jComboBoxGuard.getSelectedItem()!=null&&row>=0){
-            UserAccount ua = (UserAccount)jComboBoxGuard.getSelectedItem();
-            Alert a = (Alert)jTableAlert.getValueAt(row, 0);
-            a.setGuard(ua.getUsername());
-            a.setStatus("waiting for handling");
-            populateTable();
-        }
-        
-    }//GEN-LAST:event_btnDeliverActionPerformed
-
     private void jComboBoxOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrgActionPerformed
         // TODO add your handling code here:
         Organization o = (Organization)jComboBoxOrg.getSelectedItem();
-            for(UserAccount ua:o.getUserAccountDirectory().getUserAccountList())
-                    jComboBoxGuard.addItem(ua);
+        for(UserAccount ua:o.getUserAccountDirectory().getUserAccountList())
+        jComboBoxPolice.addItem(ua);
     }//GEN-LAST:event_jComboBoxOrgActionPerformed
 
     private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
@@ -201,12 +190,27 @@ public void populateTable(){
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButton2ActionPerformed
 
+    private void btnDeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverActionPerformed
+        // TODO add your handling code here:
+        int row = jTableAlert.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(jComboBoxPolice.getSelectedItem()!=null&&row>=0){
+            UserAccount ua = (UserAccount)jComboBoxPolice.getSelectedItem();
+            Alert a = (Alert)jTableAlert.getValueAt(row, 0);
+            a.setPolice(ua.getUsername());
+            a.setPolStatus("waiting for handling");
+            populateTable();
+        }
+    }//GEN-LAST:event_btnDeliverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton2;
     private javax.swing.JButton btnDeliver;
-    private javax.swing.JComboBox jComboBoxGuard;
     private javax.swing.JComboBox jComboBoxOrg;
+    private javax.swing.JComboBox jComboBoxPolice;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

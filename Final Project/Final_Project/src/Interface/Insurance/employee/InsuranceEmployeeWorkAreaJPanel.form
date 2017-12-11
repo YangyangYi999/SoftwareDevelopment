@@ -17,12 +17,12 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jLabel1" max="32767" attributes="0"/>
-          <Component id="labelName" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="197" max="32767" attributes="0"/>
+              <EmptySpace pref="204" max="32767" attributes="0"/>
               <Component id="btnHandleAlert" min="-2" pref="318" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="178" max="-2" attributes="0"/>
           </Group>
+          <Component id="labelName" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -30,11 +30,11 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               <Component id="labelName" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-              <Component id="btnHandleAlert" min="-2" pref="56" max="-2" attributes="0"/>
-              <EmptySpace pref="242" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="btnHandleAlert" min="-2" pref="51" max="-2" attributes="0"/>
+              <EmptySpace pref="311" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,19 +43,11 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="sansserif" size="24" style="1"/>
+          <Font name="Lucida Grande" size="24" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Policeman Work Area"/>
+        <Property name="text" type="java.lang.String" value="Insurance Employee Work Area"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnHandleAlert">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Handle Alert"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHandleAlertActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelName">
       <Properties>
@@ -65,6 +57,14 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="name"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnHandleAlert">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Check Insurance Status"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHandleAlertActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
