@@ -138,22 +138,35 @@ public class CreateNewProductJPanel extends javax.swing.JPanel {
                 .addContainerGap(171, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    public static boolean isInt(String s){
+        for(int i = 0; i < s.length(); i++){
+            if(!Character.isDigit(s.charAt(i))){
+                 return false;
+            }
+        }
+        return true;
+    }          
     private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
         // TODO add your handling code here:
            
             String name = nameField1.getText();
-            int quan = Integer.parseInt(txtAvail.getText());
             String stringPrice = priceField.getText();
-            if(stringPrice.isEmpty()==false) {
+            if("".equals(nameField1.getText())||"".equals(txtAvail.getText())||"".equals(priceField.getText())){
+                JOptionPane.showMessageDialog(null, "Please finish all blank", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+            else if(stringPrice.isEmpty()==false&&isInt(txtAvail.getText())&&isInt(stringPrice)) {
                 int price = Integer.parseInt(stringPrice);
+                int quan = Integer.parseInt(txtAvail.getText());
                 Equipment p = organization.getEquipmentDirectory().createEquipment(name, quan,price);
                 JOptionPane.showMessageDialog(null, "Product successfully added", "Warning", JOptionPane.INFORMATION_MESSAGE);
                 nameField1.setText("");
                 priceField.setText("");
                 txtAvail.setText("");
             }
-        
+            else{
+                JOptionPane.showMessageDialog(null, "Please input only integers in price and Quantity", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
         
         
 

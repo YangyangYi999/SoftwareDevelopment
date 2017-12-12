@@ -188,7 +188,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
      if(networkName.getText().equals("")){
-         JOptionPane.showMessageDialog(this, "Invalid");
+         JOptionPane.showMessageDialog(this, "Please input the network name!");
      }else{
          system.getNetworkList().getNetworkList().add(new Network(networkName.getText()));
          networkName.setText("");

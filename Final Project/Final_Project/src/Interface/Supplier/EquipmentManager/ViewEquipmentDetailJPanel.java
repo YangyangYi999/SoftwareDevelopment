@@ -8,6 +8,7 @@ package Interface.Supplier.EquipmentManager;
 
 
 import Business.Equipment.Equipment;
+import static Interface.Supplier.EquipmentManager.CreateNewProductJPanel.isInt;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -92,8 +93,14 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+
+        txtAvail.setEnabled(false);
         add(txtAvail, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 260, 170, 30));
+
+        txtName.setEnabled(false);
         add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 170, 30));
+
+        txtPrice.setEnabled(false);
         add(txtPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
@@ -102,7 +109,7 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
         if("".equals(txtName.getText())|| "".equals(txtPrice.getText())||"".equals(txtAvail.getText())){
             JOptionPane.showMessageDialog(null,"Please fill in all fields");
         }
-        else{
+        else if(txtPrice.getText().isEmpty()==false&&isInt(txtAvail.getText())&&isInt(txtPrice.getText())){
 
             p.setName(txtName.getText());
             p.setPrice(Integer.parseInt(txtPrice.getText()));
@@ -111,6 +118,9 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
             btnUpdate2.setEnabled(true);
             JOptionPane.showMessageDialog(null,"Account successfully updated!");
         }
+        else{
+                JOptionPane.showMessageDialog(null, "Please input only integers in price and Quantity", "Warning", JOptionPane.INFORMATION_MESSAGE);
+            }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnUpdate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate2ActionPerformed

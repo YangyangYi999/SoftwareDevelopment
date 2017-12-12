@@ -194,7 +194,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
-        if(!"Confirmed".equals(order.getStatus())){
+        if("Waiting for confirm".equals(order.getStatus())){
             order.setStatus("Confirmed");
             lbStatus.setText(order.getStatus());
             for(Enterprise dis:state.getEnterpriseDirectory().getEnterpriseList()){
@@ -221,23 +221,35 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
             }
         }
         else if ("Confirmed".equals(order.getStatus())){
-           JOptionPane.showMessageDialog(null, "Order has been processed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
+           JOptionPane.showMessageDialog(null, "Order has been confirmed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Order has been Rejected", "Warning", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
+        if ("Waiting for confirm".equals(order.getStatus())){
         order.setStatus("Reject");
         lbStatus.setText(order.getStatus());
-        for(OrderItem oi: order.getOrderItemList()){
-            for(Organization o:supplier.getOrganizationDirectory().getOrganizationList()){
-                if(o instanceof EquipmentManageOrganization){
-                    if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                        oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
+            for(OrderItem oi: order.getOrderItemList()){
+                for(Organization o:supplier.getOrganizationDirectory().getOrganizationList()){
+                    if(o instanceof EquipmentManageOrganization){
+                        if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
+                            oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
+                        }
                     }
                 }
             }
+        }
+        else if ("Confirmed".equals(order.getStatus())){
+           JOptionPane.showMessageDialog(null, "Order has been confirmed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Order has been Rejected", "Warning", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }//GEN-LAST:event_rejectBtnActionPerformed
 
