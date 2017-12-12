@@ -478,13 +478,12 @@ public class OrderEquipmentJPanel extends javax.swing.JPanel {
             if (org!=null){
                 order.setStatus("Waiting for confirm");
                 org.getInmoc().addOrder(order);
-                for(Organization o:distributor.getOrganizationDirectory().getOrganizationList()){
+                for(Organization o:provider.getOrganizationDirectory().getOrganizationList()){
                     if(o instanceof OrderManageOrganization){
                         ((OrderManageOrganization) o).getOutmoc().addOrder(order);
                     }
                 }
             }
-            
             
             JOptionPane.showMessageDialog(null, "Order placed successful!");
             order = new Order();

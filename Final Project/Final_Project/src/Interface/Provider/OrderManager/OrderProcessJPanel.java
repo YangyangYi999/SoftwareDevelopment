@@ -20,6 +20,7 @@ import Business.Organization.Organization;
 import Business.Organization.UserAccount.UserAccount;
 import Business.State.State;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -196,23 +197,43 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
-        order.setStatus("Confirmed");
-        lbStatus.setText(order.getStatus());
+        if("Waiting for confirm".equals(order.getStatus())){
+            order.setStatus("Confirmed");
+            lbStatus.setText(order.getStatus());
+            JOptionPane.showMessageDialog(null, "Order confirmed Successfully", "Warning", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+        else if ("Confirmed".equals(order.getStatus())){
+           JOptionPane.showMessageDialog(null, "Order has been confirmed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+           JOptionPane.showMessageDialog(null, "Order has been Rejected", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
-        order.setStatus("Reject");
-        lbStatus.setText(order.getStatus());
-        for(OrderItem oi: order.getOrderItemList()){
-            for(Organization o:provider.getOrganizationDirectory().getOrganizationList()){
-                if(o instanceof EquipmentManageOrganization){
-                    if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
-                        oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
+        if ("Waiting for confirm".equals(order.getStatus())){
+            order.setStatus("Reject");
+            lbStatus.setText(order.getStatus());
+            for(OrderItem oi: order.getOrderItemList()){
+                for(Organization o:provider.getOrganizationDirectory().getOrganizationList()){
+                    if(o instanceof EquipmentManageOrganization){
+                        if(((EquipmentManageOrganization)o).getEquipmentDirectory().getEquipmentList().contains(oi.getEquipment())){
+                            oi.getEquipment().setStock(oi.getQuatity()+oi.getEquipment().getStock());
+                        }
                     }
                 }
             }
+        }
+        else if ("Confirmed".equals(order.getStatus())){
+           JOptionPane.showMessageDialog(null, "Order has been confirmed already", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Order has been Rejected", "Warning", JOptionPane.INFORMATION_MESSAGE);
+
         }
     }//GEN-LAST:event_rejectBtnActionPerformed
 

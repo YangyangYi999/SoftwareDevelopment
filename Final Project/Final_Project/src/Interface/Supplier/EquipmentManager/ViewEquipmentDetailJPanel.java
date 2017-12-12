@@ -10,6 +10,7 @@ package Interface.Supplier.EquipmentManager;
 import Business.Equipment.Equipment;
 import static Interface.Supplier.EquipmentManager.CreateNewProductJPanel.isInt;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -106,20 +107,26 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        
+        
         if("".equals(txtName.getText())|| "".equals(txtPrice.getText())||"".equals(txtAvail.getText())){
             JOptionPane.showMessageDialog(null,"Please fill in all fields");
         }
-        else if(txtPrice.getText().isEmpty()==false&&isInt(txtAvail.getText())&&isInt(txtPrice.getText())){
-
+        else try{
             p.setName(txtName.getText());
-            p.setPrice(Integer.parseInt(txtPrice.getText()));
+            p.setPrice(Double.parseDouble(txtPrice.getText()));
             p.setStock(Integer.parseInt(txtAvail.getText()));
             btnSave.setEnabled(false);
             btnUpdate2.setEnabled(true);
             JOptionPane.showMessageDialog(null,"Account successfully updated!");
+            txtAvail.setEnabled(false);
+            txtPrice.setEnabled(false);
+            txtName.setEnabled(false);
+            btnSave.setEnabled(false);
+            btnUpdate2.setEnabled(true);
         }
-        else{
-                JOptionPane.showMessageDialog(null, "Please input only integers in price and Quantity", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Please input integers in  Quantity and number in Price", "Warning", JOptionPane.INFORMATION_MESSAGE);
             }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -136,7 +143,11 @@ public class ViewEquipmentDetailJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
         userProcessContainer.remove(this);
-        CardLayout layout =(CardLayout) userProcessContainer.getLayout();
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManageEquipmentInventoryJPanel manageEquipmentInventoryJPanel = (ManageEquipmentInventoryJPanel) component;
+        manageEquipmentInventoryJPanel.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
     
