@@ -73,14 +73,6 @@ public class CustomerWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jButton4.setText("Purchase");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         btnPurchase.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         btnPurchase.setText("Purchase Equipment");
         btnPurchase.addActionListener(new java.awt.event.ActionListener() {

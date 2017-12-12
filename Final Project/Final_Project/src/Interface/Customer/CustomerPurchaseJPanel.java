@@ -55,12 +55,17 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
     void populateTable(Provider p){
         DefaultTableModel dtm = (DefaultTableModel)Table.getModel();
         dtm.setRowCount(0);
-        if(p.getEqupmentDirectory().getEquipmentList().size()>0){
-            for(Equipment equ: p.getEqupmentDirectory().getEquipmentList()){
-                Object[] row = new Object[3];
-                row[0] = equ;
-                row[1] = equ.getPrice();
-                row[2] = equ.getStock();
+        for(Organization o: p.getOrganizationDirectory().getOrganizationList()){
+            if(o instanceof EquipmentManageOrganization){
+                EquipmentManageOrganization eo = (EquipmentManageOrganization)o;
+                for(Equipment e :eo.getEquipmentDirectory().getEquipmentList()){
+                    Object[] row = new Object[3];
+                    row[0] = e;
+                    row[1] = e.getPrice();
+                    row[2] = e.getStock();
+                    
+                    dtm.addRow(row);
+                }
             }
         }
     }
