@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         this.dB4OUtil = DB4OUtil.getInstance();
-        system = dB4OUtil.retrieveSystem();
+         system = dB4OUtil.retrieveSystem();
         jButton2.setEnabled(false);
         this.container= Container;
         
@@ -65,13 +65,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         jSplitPane1.setDividerLocation(180);
 
-        jLabel1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jPanel1.setBackground(javax.swing.UIManager.getDefaults().getColor("SplitPane.highlight"));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel1.setText("Username");
 
-        pwd.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        pwd.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         pwd.setText("Password");
 
-        jButton1.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton1.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton1.setText("Log in");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +82,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton2.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton2.setText("Log out");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +91,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton3.setText("Sign in");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,41 +105,35 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(pwd))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(password)
-                            .addComponent(username)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(username)
+                    .addComponent(password)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pwd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pwd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(jButton1)
                 .addGap(49, 49, 49)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(46, 46, 46)
                 .addComponent(jButton3)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -146,11 +145,11 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
         );
 
         pack();
@@ -163,6 +162,7 @@ public class MainFrame extends javax.swing.JFrame {
             String user = username.getText();
             String pw = String.valueOf(password.getPassword());
             State state = null;
+            Organization organization = null;
             Enterprise enterprise = null;
             UserAccount account = null;
             Customer customer = null;
@@ -187,15 +187,26 @@ public class MainFrame extends javax.swing.JFrame {
                                           for(Organization org: en.getOrganizationDirectory().getOrganizationList()){
                                               account = org.getUserAccountDirectory().authenticateUser(user, pw);
                                               if(account != null){
+                                                organization = org;
                                                 enterprise = en;
                                                 state = s;
                                                 break;
                                               }
                                           }
                                       }
+                                      if(organization!=null){
+                                          break;
+                                      }
                                   }
                               }
+                              if(enterprise!=null){
+                                  break;
+                              }
                       }
+                      if(state!=null){
+                          break;
+                      }
+                      
                   }
               }
               if(account == null){
@@ -213,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame {
               }
               else{
                       CardLayout layout = (CardLayout)container.getLayout();
-                      container.add("WorkArea",account.getRole().createWorkArea(container, account, state, enterprise, system, state));
+                      container.add("WorkArea",account.getRole().createWorkArea(container, account,organization, enterprise,system,state));
                        layout.next(container);
                        jButton1.setEnabled(false);
                         jButton2.setEnabled(true);

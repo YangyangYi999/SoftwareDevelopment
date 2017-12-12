@@ -23,6 +23,8 @@ public class CustomerManageOrganization extends Organization{
         customerDirectory = new CustomerDirectory();
         workQueue = new WorkQueue();
     }
+
+   
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();

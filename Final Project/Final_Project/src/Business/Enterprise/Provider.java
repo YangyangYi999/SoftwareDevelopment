@@ -8,6 +8,10 @@ package Business.Enterprise;
 import Business.CustomerOrder.CustomerOrderDirectory;
 import Business.Equipment.EquipmentDirectory;
 import Business.Organization.Organization;
+import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.ProviderEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.ProviderOrderManagerRole;
+import Business.Organization.UserAccount.Role.Role;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +38,18 @@ public class Provider extends Enterprise{
 
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.Order);
+        list.add(Organization.Type.Equipment);
+        return list;
     }
     
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roleList = new ArrayList<>();
+        roleList.add(new ProviderEquipmentManagerRole());
+        roleList.add(new ProviderOrderManagerRole());
+        return roleList;
+    }
 }

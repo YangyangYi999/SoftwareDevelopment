@@ -28,7 +28,10 @@ public class Insurance extends Enterprise{
 
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.AlertManage);
+        list.add(Organization.Type.AlertHandle);
+        return list;
     }
     
 }
