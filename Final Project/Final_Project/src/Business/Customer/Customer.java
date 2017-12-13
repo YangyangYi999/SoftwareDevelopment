@@ -19,6 +19,7 @@ public class Customer {
     private String username;
     private String password;
     private WorkQueue workQueue;
+    private String email; 
     private MasterOrderCatalog outmoc;
     private String Location;
 //    private CustomerOrderDirectory customerOrderDirectory;
@@ -27,6 +28,13 @@ public class Customer {
 //        return customerOrderDirectory;
 //    }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
     public MasterOrderCatalog getOutmoc() {
         return outmoc;
     }
@@ -62,6 +70,7 @@ public class Customer {
     
     public Customer(){
         workQueue = new WorkQueue();
+        outmoc = new MasterOrderCatalog();
 //        this.customerOrderDirectory = new CustomerOrderDirectory();
     }
     

@@ -5,17 +5,38 @@
  */
 package Interface.SecureGuard;
 
+import static Business.Enterprise.Enterprise.Type.Secure;
+import Business.Enterprise.Secure;
+import Business.Organization.AlertHandleOrganization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author shinychenw
  */
 public class SecureGuardWorkAreaJPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private AlertHandleOrganization alertHandleOrganization;
+    private State state;
+    private Secure secure;
     /**
      * Creates new form SecureGuardWorkAreaJPanel
      */
-    public SecureGuardWorkAreaJPanel() {
+   
+
+    public SecureGuardWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertHandleOrganization alertHandleOrganization,Secure secure, State state) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.alertHandleOrganization=alertHandleOrganization;
+        this.state= state;
+        this.secure = secure;
+        labelName.setText(alertHandleOrganization.getName());
     }
 
     /**
@@ -35,6 +56,11 @@ public class SecureGuardWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Secure Guard Work Area");
 
         btnHandleAlert.setText("Handle Alert");
+        btnHandleAlert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHandleAlertActionPerformed(evt);
+            }
+        });
 
         labelName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         labelName.setText("name");
@@ -44,16 +70,15 @@ public class SecureGuardWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addComponent(labelName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(236, 236, 236)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(353, 353, 353)
+                            .addComponent(labelName))))
                 .addContainerGap(258, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -63,11 +88,20 @@ public class SecureGuardWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(33, 33, 33)
                 .addComponent(labelName)
-                .addGap(72, 72, 72)
-                .addComponent(btnHandleAlert)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(49, 49, 49)
+                .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(169, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHandleAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandleAlertActionPerformed
+        // TODO add your handling code here:
+        HandleAlertJPanel haj = new HandleAlertJPanel(userProcessContainer,alertHandleOrganization,secure,state,account);
+        userProcessContainer.add("HandleAlertJPanel", haj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnHandleAlertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

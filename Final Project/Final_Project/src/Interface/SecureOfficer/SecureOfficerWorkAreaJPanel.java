@@ -5,6 +5,14 @@
  */
 package Interface.SecureOfficer;
 
+import Business.Enterprise.Secure;
+import Business.Organization.AlertManageOrganization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import Interface.Supplier.ConfirmOrder.OrderProcessJPanel;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author shinychenw
@@ -14,8 +22,19 @@ public class SecureOfficerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SecureOfficerWorkAreaJPanel
      */
-    public SecureOfficerWorkAreaJPanel() {
+    JPanel userProcessContainer;
+    UserAccount account;
+    AlertManageOrganization alertManageOrganization;
+    Secure secure;
+    State state;
+
+    public SecureOfficerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertManageOrganization alertManageOrganization, Secure secure, State state) {
         initComponents();
+        this.account = account;
+        this.alertManageOrganization =alertManageOrganization;
+        this.secure = secure;
+        this.state=state;
+        this.userProcessContainer = userProcessContainer;
     }
 
     /**
@@ -36,9 +55,19 @@ public class SecureOfficerWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("Secure Officer Work Area");
 
         btnManageAlert.setText("Manage Undelivered Alert");
+        btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageAlertActionPerformed(evt);
+            }
+        });
 
         btnManageGuard.setText("Manage Guard");
         btnManageGuard.setEnabled(false);
+        btnManageGuard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageGuardActionPerformed(evt);
+            }
+        });
 
         btnManageHandledAlert.setText("Manage Handled Alert");
         btnManageHandledAlert.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +85,7 @@ public class SecureOfficerWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
+                .addContainerGap(232, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnManageHandledAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnManageGuard, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -80,7 +109,25 @@ public class SecureOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
     private void btnManageHandledAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHandledAlertActionPerformed
         // TODO add your handling code here:
+         ManageHandledAlertJPanel mhaj = new ManageHandledAlertJPanel(userProcessContainer,alertManageOrganization,secure,state);
+        userProcessContainer.add("ManageHandledAlertJPanel", mhaj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManageHandledAlertActionPerformed
+
+    private void btnManageAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAlertActionPerformed
+        // TODO add your handling code here:
+        ManageUndeliveredAlertJpanel muaj = new ManageUndeliveredAlertJpanel(userProcessContainer,alertManageOrganization,secure,state);
+        userProcessContainer.add("ManageUndeliveredAlertJPanel", muaj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageAlertActionPerformed
+
+    private void btnManageGuardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageGuardActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnManageGuardActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

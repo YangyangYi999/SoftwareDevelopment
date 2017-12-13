@@ -5,7 +5,12 @@
  */
 package Interface.Policeman;
 
-import Interface.SecureGuard.*;
+import Business.Enterprise.Police;
+import Business.Organization.AlertHandleOrganization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +21,19 @@ public class PolicemanWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SecureGuardWorkAreaJPanel
      */
-    public PolicemanWorkAreaJPanel() {
+    
+    JPanel userProcessContainer;
+    UserAccount account;
+    AlertHandleOrganization alertHandleOrganization;
+    Police police;
+    State state;
+    public PolicemanWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertHandleOrganization alertHandleOrganization, Police police, State state) {
         initComponents();
+        this.account = account;
+        this.alertHandleOrganization = alertHandleOrganization;
+        this.userProcessContainer = userProcessContainer;
+        this.police = police;
+        this.state = state;
     }
 
     /**
@@ -34,42 +50,51 @@ public class PolicemanWorkAreaJPanel extends javax.swing.JPanel {
         labelName = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Policeman Work Area");
 
         btnHandleAlert.setText("Handle Alert");
+        btnHandleAlert.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHandleAlertActionPerformed(evt);
+            }
+        });
 
         labelName.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        labelName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelName.setText("name");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(353, 353, 353)
-                        .addComponent(labelName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(261, 261, 261)
-                        .addComponent(jLabel1)))
-                .addContainerGap(258, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(197, Short.MAX_VALUE)
+                .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(186, 186, 186))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(116, 116, 116)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(71, 71, 71)
                 .addComponent(labelName)
-                .addGap(72, 72, 72)
-                .addComponent(btnHandleAlert)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(btnHandleAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(242, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHandleAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHandleAlertActionPerformed
+        // TODO add your handling code here:
+        PolicemanHandleAlertJPanel haj = new PolicemanHandleAlertJPanel(userProcessContainer,alertHandleOrganization,police,state,account);
+        userProcessContainer.add("HandleAlertJPanel", haj);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnHandleAlertActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

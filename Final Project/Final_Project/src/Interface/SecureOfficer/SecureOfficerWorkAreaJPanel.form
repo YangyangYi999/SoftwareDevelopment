@@ -22,7 +22,7 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="220" max="32767" attributes="0"/>
+              <EmptySpace pref="232" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnManageHandledAlert" min="-2" pref="318" max="-2" attributes="0"/>
                   <Component id="btnManageGuard" min="-2" pref="318" max="-2" attributes="0"/>
@@ -61,12 +61,18 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Undelivered Alert"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageAlertActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnManageGuard">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manage Guard"/>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManageGuardActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnManageHandledAlert">
       <Properties>

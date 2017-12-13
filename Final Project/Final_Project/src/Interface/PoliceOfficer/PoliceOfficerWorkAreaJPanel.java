@@ -5,7 +5,13 @@
  */
 package Interface.PoliceOfficer;
 
+import Business.Enterprise.Police;
+import Business.Organization.AlertManageOrganization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
 import Interface.SecureOfficer.*;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
@@ -16,8 +22,19 @@ public class PoliceOfficerWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SecureOfficerWorkAreaJPanel
      */
-    public PoliceOfficerWorkAreaJPanel() {
+    
+    JPanel userProcessContainer;
+    UserAccount account;
+    AlertManageOrganization alertManageOrganization; 
+    Police police;
+    State state;
+    public PoliceOfficerWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, AlertManageOrganization alertManageOrganization, Police police, State state) {
         initComponents();
+        this.account = account;
+        this.alertManageOrganization = alertManageOrganization;
+        this.userProcessContainer = userProcessContainer;
+        this.police = police;
+        this.state = state;
     }
 
     /**
@@ -31,21 +48,22 @@ public class PoliceOfficerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         btnManageAlert = new javax.swing.JButton();
-        btnManageGuard = new javax.swing.JButton();
-        btnManageHandledAlert = new javax.swing.JButton();
+        btnManageHandledAlert2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setText("Police Officer Work Area");
 
         btnManageAlert.setText("Manage Undelivered Alert");
-
-        btnManageGuard.setText("Manage Policeman");
-        btnManageGuard.setEnabled(false);
-
-        btnManageHandledAlert.setText("Manage Handled Alert");
-        btnManageHandledAlert.addActionListener(new java.awt.event.ActionListener() {
+        btnManageAlert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnManageHandledAlertActionPerformed(evt);
+                btnManageAlertActionPerformed(evt);
+            }
+        });
+
+        btnManageHandledAlert2.setText("Manage Handled Alert");
+        btnManageHandledAlert2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageHandledAlert2ActionPerformed(evt);
             }
         });
 
@@ -54,41 +72,50 @@ public class PoliceOfficerWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(232, 232, 232)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(220, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnManageHandledAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageGuard, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(218, 218, 218))
+                .addGap(217, 217, 217)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnManageHandledAlert2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(112, 112, 112)
                 .addComponent(jLabel1)
-                .addGap(46, 46, 46)
-                .addComponent(btnManageAlert)
+                .addGap(64, 64, 64)
+                .addComponent(btnManageAlert, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnManageHandledAlert)
-                .addGap(18, 18, 18)
-                .addComponent(btnManageGuard)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addComponent(btnManageHandledAlert2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnManageHandledAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHandledAlertActionPerformed
+    private void btnManageAlertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageAlertActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnManageHandledAlertActionPerformed
+        PoliceManageUndeliveredAlertJpanel pmuaj = new PoliceManageUndeliveredAlertJpanel(userProcessContainer,alertManageOrganization,police,state);
+        userProcessContainer.add("PoliceManageUndeliveredAlertJpanel", pmuaj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageAlertActionPerformed
+
+    private void btnManageHandledAlert2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageHandledAlert2ActionPerformed
+        // TODO add your handling code here:
+        PoliceManageHandledAlertJPanel pmhaj = new PoliceManageHandledAlertJPanel(userProcessContainer,alertManageOrganization,police,state);
+        userProcessContainer.add("PoliceManageHandledAlertJPanel", pmhaj);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManageHandledAlert2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnManageAlert;
-    private javax.swing.JButton btnManageGuard;
     private javax.swing.JButton btnManageHandledAlert;
+    private javax.swing.JButton btnManageHandledAlert1;
+    private javax.swing.JButton btnManageHandledAlert2;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

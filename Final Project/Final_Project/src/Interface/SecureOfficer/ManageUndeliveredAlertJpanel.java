@@ -5,6 +5,18 @@
  */
 package Interface.SecureOfficer;
 
+import Business.Alert.Alert;
+import Business.Enterprise.Secure;
+import Business.Organization.AlertHandleOrganization;
+import Business.Organization.AlertManageOrganization;
+import Business.Organization.Organization;
+import Business.Organization.UserAccount.UserAccount;
+import Business.State.State;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author shinychenw
@@ -14,8 +26,26 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageAlertJpanel
      */
-    public ManageUndeliveredAlertJpanel() {
+   JPanel userProcessContainer;
+   AlertManageOrganization alertManageOrganization;
+   Secure secure;
+   State state;
+    ManageUndeliveredAlertJpanel(JPanel userProcessContainer, AlertManageOrganization alertManageOrganization, Secure secure, State state) {
         initComponents();
+        this.alertManageOrganization = alertManageOrganization;
+        this.secure = secure;
+        this.state= state;
+        this.userProcessContainer = userProcessContainer;
+//        secure.getAlertDirectory().getAlertList().clear();
+        populateTable();
+        for(Organization o : secure.getOrganizationDirectory().getOrganizationList()){
+            if(o instanceof AlertHandleOrganization){
+                jComboBoxOrg.addItem(o);
+//                for(UserAccount ua:o.getUserAccountDirectory().getUserAccountList())
+//                    jComboBoxGuard.addItem(ua);
+//            }
+            }
+        }
     }
 
     /**
@@ -31,8 +61,11 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
         jTableAlert = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxGuard = new javax.swing.JComboBox<>();
+        jComboBoxGuard = new javax.swing.JComboBox();
         btnDeliver = new javax.swing.JButton();
+        jComboBoxOrg = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        backJButton2 = new javax.swing.JButton();
 
         jTableAlert.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -41,66 +74,144 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Equipment ID", "Date", "Address"
+                "Customer Name", "Date", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTableAlert);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Manage Undelivered Alert");
 
         jLabel2.setText("Choose a guard to handle:");
 
-        jComboBoxGuard.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         btnDeliver.setText("Deliver");
+        btnDeliver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeliverActionPerformed(evt);
+            }
+        });
+
+        jComboBoxOrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOrgActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Choose Organization to handle:");
+
+        backJButton2.setText("<< Back");
+        backJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(120, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(254, 254, 254))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(316, 316, 316))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(309, 309, 309)
+                .addGap(26, 26, 26)
+                .addComponent(backJButton2)
+                .addContainerGap(571, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))))
+                .addGap(96, 96, 96))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnDeliver, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(299, 299, 299))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addGap(14, 14, 14)
+                .addComponent(backJButton2)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxOrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxGuard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(btnDeliver)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
     }// </editor-fold>//GEN-END:initComponents
+public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) jTableAlert.getModel();
+        model.setRowCount(0);
+        
+        for (Alert a : secure.getAlertDirectory().getAlertList()){
+            if("Unhandled".equals(a.getStatus())){
+            Object[] row = new Object[3];
+            row[0] = a;
+            row[1] = a.getDate();
+            row[2] = a.getCustomer().getLocation();          
+            model.addRow(row);
+            }
+        }
+    }
+    private void btnDeliverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeliverActionPerformed
+        // TODO add your handling code here:
+        int row = jTableAlert.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else if(jComboBoxGuard.getSelectedItem()!=null&&row>=0){
+            UserAccount ua = (UserAccount)jComboBoxGuard.getSelectedItem();
+            Alert a = (Alert)jTableAlert.getValueAt(row, 0);
+            a.setGuard(ua.getUsername());
+            a.setStatus("waiting for handling");
+            populateTable();
+        }
+        
+    }//GEN-LAST:event_btnDeliverActionPerformed
+
+    private void jComboBoxOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOrgActionPerformed
+        // TODO add your handling code here:
+        Organization o = (Organization)jComboBoxOrg.getSelectedItem();
+            for(UserAccount ua:o.getUserAccountDirectory().getUserAccountList())
+                    jComboBoxGuard.addItem(ua);
+    }//GEN-LAST:event_jComboBoxOrgActionPerformed
+
+    private void backJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButton2ActionPerformed
+
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backJButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backJButton2;
     private javax.swing.JButton btnDeliver;
-    private javax.swing.JComboBox<String> jComboBoxGuard;
+    private javax.swing.JComboBox jComboBoxGuard;
+    private javax.swing.JComboBox jComboBoxOrg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAlert;
     // End of variables declaration//GEN-END:variables

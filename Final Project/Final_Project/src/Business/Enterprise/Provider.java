@@ -8,7 +8,6 @@ package Business.Enterprise;
 import Business.CustomerOrder.CustomerOrderDirectory;
 import Business.Equipment.EquipmentDirectory;
 import Business.Organization.Organization;
-import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.ProviderEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.ProviderOrderManagerRole;
 import Business.Organization.UserAccount.Role.Role;

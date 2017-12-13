@@ -53,7 +53,7 @@ public class CustomerOrder {
     public void setProvider(Provider provider) {
         this.provider = provider;
     }
-    
+   
     public CustomerOrder(Equipment e,int quantity,Provider p,Customer c){
         this.orderDate = new Date();
         this.equipment = e;

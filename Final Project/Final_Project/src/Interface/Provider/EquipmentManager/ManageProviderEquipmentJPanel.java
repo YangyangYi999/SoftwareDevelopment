@@ -5,8 +5,12 @@
  */
 package Interface.Provider.EquipmentManager;
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Insurance;
+import Business.Enterprise.Secure;
 import Business.Equipment.Equipment;
 import Business.Organization.EquipmentManageOrganization;
+import Business.State.State;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -20,16 +24,29 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
 
     JPanel userProcessContainer;
     EquipmentManageOrganization equipmentManageOrganization;
+    State state;
     /**
      * Creates new form ManageEquipmentJPanel
      */
-    public ManageProviderEquipmentJPanel(JPanel userProcessContainer,EquipmentManageOrganization equipmentManageOrganization) {
+    public ManageProviderEquipmentJPanel(JPanel userProcessContainer,EquipmentManageOrganization equipmentManageOrganization, State state) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.equipmentManageOrganization = equipmentManageOrganization;
+        this.state = state;
         populate();
     }
 
+    public void pupulateCombo(){
+        jComboSecure.removeAllItems();
+        jComboInsurance.removeAllItems();
+         
+        for(Enterprise en : state.getEnterpriseDirectory().getEnterpriseList()){
+                if(en instanceof Secure)
+                    jComboSecure.addItem((Secure)en);
+                if(en instanceof Insurance)
+                    jComboInsurance.addItem((Insurance)en);
+        } 
+    }
     public void populate(){
         DefaultTableModel model = (DefaultTableModel) jTableEquipment.getModel();
         model.setRowCount(0);
@@ -62,11 +79,10 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jComboSecure = new javax.swing.JComboBox<>();
-        jComboBoxInsurance = new javax.swing.JComboBox<>();
+        jComboSecure = new javax.swing.JComboBox();
+        jComboInsurance = new javax.swing.JComboBox();
         txtEquipmentName = new javax.swing.JTextField();
         jSpinnerQuantity = new javax.swing.JSpinner();
-        btnCreate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         txtPrice = new javax.swing.JTextField();
@@ -115,18 +131,11 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
 
         jComboSecure.setEnabled(false);
 
-        jComboBoxInsurance.setEnabled(false);
+        jComboInsurance.setEnabled(false);
 
         txtEquipmentName.setEnabled(false);
 
         jSpinnerQuantity.setEnabled(false);
-
-        btnCreate.setText("Create");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -157,8 +166,7 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGap(60, 60, 60)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -177,7 +185,7 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jComboBoxInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jComboInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,7 +214,7 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtEquipmentName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate))
+                    .addComponent(btnDelete))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -222,16 +230,13 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(btnSave)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnDelete)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jComboSecure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jComboBoxInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(jComboSecure, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jComboInsurance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -243,8 +248,23 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
         txtPrice.setEnabled(true);
         jSpinnerQuantity.setEnabled(true);
         jComboSecure.setEnabled(true);
-        jComboBoxInsurance.setEnabled(true);
+        jComboInsurance.setEnabled(true);
         btnUpdate.setEnabled(false);
+        
+        int selectRow = jTableEquipment.getSelectedRow();
+        Equipment e = (Equipment)jTableEquipment.getValueAt(selectRow, 0);
+
+        if(selectRow<0){
+            JOptionPane.showMessageDialog(this, "Please select an offer first!");
+        }
+        else{
+            txtEquipmentName.setText(e.getName());
+            jSpinnerQuantity.setValue(e.getStock());
+            txtPrice.setText(String.valueOf(e.getPrice()));
+            pupulateCombo();
+            jComboSecure.setSelectedItem(e.getSecure());
+            jComboInsurance.setSelectedItem(e.getInsurance());
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -274,6 +294,8 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
         e.setName(name);
         e.setStock(stock);
         e.setPrice(price);
+        e.setSecure((Secure)jComboSecure.getSelectedItem());
+        e.setInsurance((Insurance)jComboInsurance.getSelectedItem());
         populate();
         
         btnSave.setEnabled(false);
@@ -281,20 +303,9 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
         txtPrice.setEnabled(false);
         jSpinnerQuantity.setEnabled(false);
         jComboSecure.setEnabled(false);
-        jComboBoxInsurance.setEnabled(false);
+        jComboInsurance.setEnabled(false);
         btnUpdate.setEnabled(true);
     }//GEN-LAST:event_btnSaveActionPerformed
-
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
-        Equipment e = equipmentManageOrganization.getEquipmentDirectory().createEquipment(null, 0, 0);
-        String name = txtEquipmentName.getText();
-        int stock = (int)jSpinnerQuantity.getValue();
-        double price = Double.parseDouble(txtPrice.getText());
-        e.setName(name);
-        e.setStock(stock);
-        e.setPrice(price);
-    }//GEN-LAST:event_btnCreateActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
 
@@ -306,12 +317,11 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> jComboBoxInsurance;
-    private javax.swing.JComboBox<String> jComboSecure;
+    private javax.swing.JComboBox jComboInsurance;
+    private javax.swing.JComboBox jComboSecure;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -25,7 +25,6 @@ public class Equipment {
     private String name;
     private int stock;
     private boolean alert = false;
-    private Customer customer;
     private WorkQueue sendedRequests;
     private Date manufacturedDate;
     private ArrayList<UpdateRecord> updatedRecords;
@@ -35,6 +34,32 @@ public class Equipment {
     private String status;
     private double price;
 
+
+    public void setSendedRequests(WorkQueue sendedRequests) {
+        this.sendedRequests = sendedRequests;
+    }
+
+    public void setManufacturedDate(Date manufacturedDate) {
+        this.manufacturedDate = manufacturedDate;
+    }
+
+    public void setUpdatedRecords(ArrayList<UpdateRecord> updatedRecords) {
+        this.updatedRecords = updatedRecords;
+    }
+
+    public void setAlertDirectory(AlertDirectory alertDirectory) {
+        this.alertDirectory = alertDirectory;
+    }
+
+    public void setInsurance(Insurance insurance) {
+        this.insurance = insurance;
+    }
+
+    public void setSecure(Secure secure) {
+        this.secure = secure;
+    }
+
+    
     public double getPrice() {
         return price;
     }
@@ -42,9 +67,6 @@ public class Equipment {
     public void setPrice(double price) {
         this.price = price;
     }
-    
-
-    
 
     public String getStatus() {
         return status;
@@ -71,9 +93,6 @@ public class Equipment {
         return secure;
     } 
 
-    public Customer getCustomer() {
-        return customer;
-    }
 
     public AlertDirectory getAlertDirectory() {
         return alertDirectory;
@@ -111,19 +130,21 @@ public class Equipment {
     
     public Equipment(String name){
         this.sendedRequests = new WorkQueue();
-        this.customer = null;
         this.updatedRecords = new ArrayList();
         this.manufacturedDate = new Date();
         this.name= name;
         this.status = "on sale";
     }
     
-    private void sendAlert(){
-        if(alert){
-          Alert a = new Alert(this);
+    private void sendAlert(Customer c){
+        if(!alert){
+            double i = Math.random()*100;
+            if(i>50) {
+            Alert a = new Alert(c);
           secure.getAlertDirectory().getAlertList().add(a);
-          insurance.getAlertDirectory().getAlertList().add(a);
-          this.alertDirectory.getAlertList().add(a);
+          alert = true;
+            }
+                
         }
     }
     
@@ -136,15 +157,16 @@ public class Equipment {
         }
     }
     
-    private void startTimer(){
+    public void startTimer(Customer customer){
          TimerTask task = new TimerTask(){
              @Override
              public void run() {
                 sendStatus();
+                sendAlert(customer);
              } 
          };
           Timer timer = new Timer();
-          timer.schedule(task, 0, 1000*60*20);//20min
+          timer.schedule(task, 0, 1000*5);//20min
     }
     
     @Override
