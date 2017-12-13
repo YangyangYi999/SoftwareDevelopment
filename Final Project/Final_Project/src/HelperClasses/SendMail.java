@@ -19,6 +19,7 @@ public class SendMail {
         
       // 收件人电子邮箱
       String to = address;
+   
  
       // 发件人电子邮箱
       String from = "wangyuchen2017@outlook.com";

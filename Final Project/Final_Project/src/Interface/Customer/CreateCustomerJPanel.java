@@ -219,8 +219,8 @@ public class CreateCustomerJPanel extends javax.swing.JPanel {
                 passwordTxt.setText("");
                 confpwTxt.setText("");
                 locationTxt.setText("");
-                emailTxt.setText("");
                 SendMail.Send(emailTxt.getText(),usernameTxt.getText());
+                emailTxt.setText("");
             }else{
                JOptionPane.showMessageDialog(this, "Invalid e-mail address.");
                emailTxt.setText("");

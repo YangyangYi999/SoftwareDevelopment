@@ -127,6 +127,15 @@ public class Equipment {
         }
     }
     
+    private void detectAlert(){
+        if(!alert){
+             double i = Math.random()*100;
+             if(i>90){
+             this.setAlert(true);
+             }
+        }
+    }
+    
     private void sendStatus(){
         if(this.status=="normal"){
             double i = Math.random()*100;
