@@ -27,6 +27,7 @@ public abstract class Organization {
     public enum Type{
         Basic("Basic Organization"),
         Equipment("Equipment Manage Organization"),
+        AfterEquipment("Aftersale Equipment"),
         Customer("Customer Manage Organization"),
         Order("Order Manage Organization"),
         AlertManage("Alert Manage Organization"),

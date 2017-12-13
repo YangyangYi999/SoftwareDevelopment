@@ -6,7 +6,7 @@
 package Interface.Customer;
 
 import Business.Customer.Customer;
-import Business.CustomerOrder.CustomerOrder;
+import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
 import Business.Equipment.Equipment;
@@ -14,11 +14,8 @@ import Business.Equipment.Order;
 import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
-import Business.Organization.WorkQueue.WorkRequest;
 import Business.State.State;
-import HelperClasses.DatetoString;
 import java.awt.CardLayout;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -229,6 +226,8 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "The amount should not be Zero!");
         }else{
             Equipment e = (Equipment)Table.getValueAt(select, 0);
+            e.setLocation(customer.getLocation());
+            e.setStatus("normal");
             Provider p = (Provider)providerCom.getSelectedItem();
             Order order = new Order();
             order.setName(customer.getUsername());
@@ -236,6 +235,10 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
             order.setStatus("Waiting for confirm"); 
             customer.getOutmoc().addOrder(order);
             e.setStock(e.getStock()-amount);
+            for(Organization o: state.getEnterpriseDirectory().getEnterpriseList()){
+                if(o instanceof AfterSale)
+                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(e);
+            }
             for(Organization org:p.getOrganizationDirectory().getOrganizationList()){
                 if(org instanceof OrderManageOrganization){
                     OrderManageOrganization omo = (OrderManageOrganization)org;

@@ -93,7 +93,7 @@ public class CustomerManagerWorkArea extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CardLayout layout = (CardLayout)container.getLayout();
-        CheckFeedbackPanel cfp = new  CheckFeedbackPanel(system,container);
+        CheckFeedbackPanel cfp = new  CheckFeedbackPanel(enterprise,container);
         container.add(" CheckFeedbackPanel",cfp);
         layout.next(container);
         // TODO add your handling code here:

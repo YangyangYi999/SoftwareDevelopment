@@ -33,6 +33,15 @@ public class Equipment {
     private Secure secure;
     private String status;
     private double price;
+    private String location;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
 
     public void setSendedRequests(WorkQueue sendedRequests) {
@@ -158,9 +167,10 @@ public class Equipment {
     }
     
     private void sendStatus(){
-        if(this.status=="normal"){
+        System.out.print("#");
+        if(this.status.equals("normal")){
             double i = Math.random()*100;
-            if(i>98){
+            if(i>80){
                 this.status = "abnormal";
             }
         }

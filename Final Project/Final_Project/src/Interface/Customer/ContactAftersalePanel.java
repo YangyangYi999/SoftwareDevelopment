@@ -6,10 +6,9 @@
 package Interface.Customer;
 
 import Business.Customer.Customer;
-import Business.EcoSystem;
 import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
-import Business.Network.Network;
+import Business.Enterprise.Statistic;
 import Business.Organization.WorkQueue.WorkRequest;
 import Business.State.State;
 import java.awt.CardLayout;
@@ -119,23 +118,6 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
         if(message.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Invalid");
         }else{
-//            State s = null;
-//            for(Network network:EcoSystem.getInstance().getNetworkList().getNetworkList()){
-//                 if(s!=null){
-//                        break;
-//                        }
-//                for(State state : network.getStateDirectory().getStateList()){
-//                     if(s!=null){
-//                        break;
-//                        }
-//                    for(Customer cus :state.getCustomerDirectory().getCustomerList()){
-//                        if(cus==customer){
-//                            s = state;
-//                            break;
-//                        }
-//                    }
-//                }
-//            }
         for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
             if(e instanceof AfterSale){
                 WorkRequest request = new WorkRequest();
@@ -145,6 +127,13 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
                 e.getInboundworkQueue().getWorkRequestList().add(request);
                 customer.getWorkQueue().getWorkRequestList().add(request);
             }
+            if(e instanceof Statistic){
+                WorkRequest request = new WorkRequest();
+                request.setMessage(message.getText());
+                request.setCustomer(customer);
+                request.setStatus("Unhandled");
+                e.getCustomerRequestsDirectory.getWorkRequestList.add(request);
+           }
         }
         JOptionPane.showMessageDialog(this, "Done");
         }

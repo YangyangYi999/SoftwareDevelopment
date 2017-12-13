@@ -29,19 +29,22 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
         this.container=container;
         this.enterprise=enterprise;
         populateTable();
+        populateCom();
     }
-    
+    void populateCom(){
+        fliterCom.removeAllItems();
+          fliterCom.addItem("");
+        fliterCom.addItem("Show abnormal only");
+        fliterCom.setSelectedIndex(0);
+    }
     void populateTable(){
         DefaultTableModel dtm = (DefaultTableModel) equTable.getModel();
         dtm.setRowCount(0);
         for(Equipment e : ((AfterSale)enterprise).getEquipmentDirectory().getEquipmentList()){
-            Object[] row = new Object[4];
+            Object[] row = new Object[3];
             row[0] = e;
-            for(Alert a:e.getAlertDirectory().getAlertList()){
-                row[1] = (a.getCustomer()==null ? null:a.getCustomer());
-                row[2] = (a.getCustomer()==null ? null:a.getCustomer().getLocation());
-            }
-            row[3] = e.getStatus();
+            row[1] = e.getLocation();
+            row[2] = e.getStatus();
             dtm.addRow(row);
         }
     }
@@ -57,23 +60,23 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         equTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        fliterCom = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         equTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Equipemnt", "Customer", "Location", "Status"
+                "Equipemnt", "Location", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -85,7 +88,12 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel1.setText("Select your fliter:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fliterCom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fliterCom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fliterComActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("<< Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +121,7 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(285, 285, 285)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fliterCom, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -131,7 +139,7 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fliterCom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(148, Short.MAX_VALUE))
@@ -145,11 +153,29 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void fliterComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fliterComActionPerformed
+        if(fliterCom.getSelectedItem()!=null&&fliterCom.getSelectedItem().toString().equals("Show abnormal only")){
+            DefaultTableModel dtm = (DefaultTableModel) equTable.getModel();
+            dtm.setRowCount(0);
+            for(Equipment e : ((AfterSale)enterprise).getEquipmentDirectory().getEquipmentList()){
+                if(e.getStatus().equals("abnormal")){
+                Object[] row = new Object[3];
+                row[0] = e;
+                row[1] = e.getLocation();
+                row[2] = e.getStatus();
+                dtm.addRow(row);
+                }
+            }
+        }else
+            populateTable();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fliterComActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable equTable;
+    private javax.swing.JComboBox<String> fliterCom;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

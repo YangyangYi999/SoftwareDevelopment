@@ -5,10 +5,10 @@
  */
 package Interface.Aftersale.CustomerManager;
 
-import Business.EcoSystem;
-import Interface.Account.ManageOwnAccountJPanel;
-import Interface.Customer.ContactAftersalePanel;
+import Business.Enterprise.Enterprise;
+import Business.Organization.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,23 +21,26 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
     /**
      * Creates new form CheckFeedbackPanel
      */
-    private EcoSystem system;
+    private Enterprise enterprise;
     private JPanel container;
-    public CheckFeedbackPanel(EcoSystem system,JPanel container) {
+    public CheckFeedbackPanel(Enterprise enterprise,JPanel container) {
         initComponents();
-        this.system=system;
         this.container=container;
+        this.enterprise = enterprise;
         PopulateTable();
     }
     void PopulateTable(){
-//        DefaultTableModel dtm = (DefaultTableModel)messageTable.getModel();
-//        dtm.setRowCount(0);
-//        for(String str: ContactAftersalePanel.messageList){
-//            Object[] row = new Object[2];
-//            row[0]="Mr.Jones";
-//            row[1] = str;
-//            dtm.addRow(row);
-//        }
+        DefaultTableModel dtm = (DefaultTableModel)messageTable.getModel();
+        dtm.setRowCount(0);
+        for(WorkRequest wr: enterprise.getInboundworkQueue().getWorkRequestList()){
+            if(wr.getCustomer()!=null){
+                Object[] row = new Object[3];
+                row[0] = wr.getCustomer().toString();
+                row[1] = wr.getStatus();
+                row[2] = wr;
+                dtm.addRow(row);
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,24 +51,31 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         messageTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Com = new javax.swing.JComboBox<>();
+
+        jLabel3.setText("jLabel3");
 
         messageTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Customer", "Message"
+                "Customer", "Status", "Message"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -74,7 +84,7 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(messageTable);
         if (messageTable.getColumnModel().getColumnCount() > 0) {
-            messageTable.getColumnModel().getColumn(1).setPreferredWidth(200);
+            messageTable.getColumnModel().getColumn(2).setPreferredWidth(200);
         }
 
         jButton1.setText("<< Back");
@@ -88,30 +98,74 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Feedback Check");
 
+        jButton2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jButton2.setText("Handle");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jLabel2.setText("Select a request to update:");
+
+        jLabel4.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        jLabel4.setText("Fliter:");
+
+        Com.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
+        Com.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show all", "Show unhandled only" }));
+        Com.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(109, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(46, 46, 46)
+                        .addComponent(jButton2)
+                        .addGap(158, 158, 158))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(Com, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jButton1)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(Com, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel2))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -122,10 +176,46 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        int select = messageTable.getSelectedRow();
+        if(select<0){
+            JOptionPane.showMessageDialog(this, "Please select any request first.");
+        }else{
+            WorkRequest wr =( WorkRequest)messageTable.getValueAt(select, 2);
+            wr.setStatus("Finished");
+            PopulateTable();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComActionPerformed
+        if(Com.getSelectedItem()!=null&&Com.getSelectedItem().equals(("Show unhandled only"))){
+            DefaultTableModel dtm = (DefaultTableModel)messageTable.getModel();
+            dtm.setRowCount(0);
+            for(WorkRequest wr: enterprise.getInboundworkQueue().getWorkRequestList()){
+                if(wr.getCustomer()!=null&&wr.getStatus().equals("Unhandled")){
+                    Object[] row = new Object[3];
+                    row[0] = wr.getCustomer().toString();
+                    row[1] = wr.getStatus();
+                    row[2] = wr;
+                    dtm.addRow(row);
+                }
+        }
+        }else{
+        PopulateTable();
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Com;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable messageTable;
     // End of variables declaration//GEN-END:variables

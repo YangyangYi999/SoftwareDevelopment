@@ -31,7 +31,7 @@ public class AfterSale extends Enterprise{
     public ArrayList<Organization.Type> getSupportedOrg() {
         ArrayList<Organization.Type> list = new ArrayList();
         list.add(Organization.Type.Customer);
-        list.add(Organization.Type.Equipment);
+        list.add(Organization.Type.AfterEquipment);
         return list;
     }
 

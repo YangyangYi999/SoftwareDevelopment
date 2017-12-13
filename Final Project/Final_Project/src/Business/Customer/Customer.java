@@ -74,6 +74,9 @@ public class Customer {
 //        this.customerOrderDirectory = new CustomerOrderDirectory();
     }
     
+    public String toString(){
+        return this.username;
+    }
     
     
     
