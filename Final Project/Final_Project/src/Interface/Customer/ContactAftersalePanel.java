@@ -9,6 +9,7 @@ import Business.Customer.Customer;
 import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Statistic;
+import Business.Network.Network;
 import Business.Organization.WorkQueue.WorkRequest;
 import Business.State.State;
 import java.awt.CardLayout;
@@ -119,8 +120,8 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Invalid");
         }else{
         for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
+            WorkRequest request = new WorkRequest();
             if(e instanceof AfterSale){
-                WorkRequest request = new WorkRequest();
                 request.setMessage(message.getText());
                 request.setCustomer(customer);
                 request.setStatus("Unhandled");
@@ -128,11 +129,10 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
                 customer.getWorkQueue().getWorkRequestList().add(request);
             }
             if(e instanceof Statistic){
-                WorkRequest request = new WorkRequest();
                 request.setMessage(message.getText());
                 request.setCustomer(customer);
                 request.setStatus("Unhandled");
-                e.getCustomerRequestsDirectory.getWorkRequestList.add(request);
+                ((Statistic) e).getCustomerRequestDirectory().getWorkRequestList().add(request);
            }
         }
         JOptionPane.showMessageDialog(this, "Done");

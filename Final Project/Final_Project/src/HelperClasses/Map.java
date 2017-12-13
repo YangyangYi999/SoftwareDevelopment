@@ -37,7 +37,7 @@ public class Map extends javax.swing.JFrame {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void showMap() {
 		JFrame frame = new JFrame("Google Map");
 		final JFXPanel webBrowser = new JFXPanel();
 		frame.setLayout(new BorderLayout());

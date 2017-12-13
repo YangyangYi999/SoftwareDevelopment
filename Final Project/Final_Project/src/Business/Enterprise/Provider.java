@@ -37,7 +37,6 @@ public class Provider extends Enterprise{
 
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-
         ArrayList<Organization.Type> list = new ArrayList();
         list.add(Organization.Type.Order);
         list.add(Organization.Type.Equipment);

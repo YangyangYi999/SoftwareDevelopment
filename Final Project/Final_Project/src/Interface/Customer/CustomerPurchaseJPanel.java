@@ -6,6 +6,7 @@
 package Interface.Customer;
 
 import Business.Customer.Customer;
+import Business.CustomerOrder.CustomerOrder;
 import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.Provider;
@@ -246,6 +247,10 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                 }
             }
             e.startTimer(customer);
+            for(Organization o: state.getEnterpriseDirectory().getEnterpriseList()){
+                if(o instanceof AfterSale)
+                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(e);
+            }
             JOptionPane.showMessageDialog(this, "Successfully orderd !");
             populateTable(p);
         }

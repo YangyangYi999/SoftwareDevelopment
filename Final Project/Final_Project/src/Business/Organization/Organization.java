@@ -31,7 +31,8 @@ public abstract class Organization {
         Customer("Customer Manage Organization"),
         Order("Order Manage Organization"),
         AlertManage("Alert Manage Organization"),
-        AlertHandle("Alert handle Organization");
+        AlertHandle("Alert handle Organization"),
+        DataManage("Data Manage Organization");
         private String value;
         private Type(String value) {
             this.value = value;

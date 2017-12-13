@@ -243,21 +243,24 @@ public class ManageProviderEquipmentJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        btnSave.setEnabled(true);
-        txtEquipmentName.setEnabled(true);
-        txtPrice.setEnabled(true);
-        jSpinnerQuantity.setEnabled(true);
-        jComboSecure.setEnabled(true);
-        jComboInsurance.setEnabled(true);
-        btnUpdate.setEnabled(false);
+        
         
         int selectRow = jTableEquipment.getSelectedRow();
-        Equipment e = (Equipment)jTableEquipment.getValueAt(selectRow, 0);
+        
 
         if(selectRow<0){
             JOptionPane.showMessageDialog(this, "Please select an offer first!");
         }
         else{
+            Equipment e = (Equipment)jTableEquipment.getValueAt(selectRow, 0);
+            btnSave.setEnabled(true);
+            txtEquipmentName.setEnabled(true);
+            txtPrice.setEnabled(true);
+            jSpinnerQuantity.setEnabled(true);
+            jComboSecure.setEnabled(true);
+            jComboInsurance.setEnabled(true);
+            btnUpdate.setEnabled(false);
+        
             txtEquipmentName.setText(e.getName());
             jSpinnerQuantity.setValue(e.getStock());
             txtPrice.setText(String.valueOf(e.getPrice()));

@@ -154,7 +154,7 @@ public class PolicemanHandleAlertJPanel extends javax.swing.JPanel {
         }
         else{
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
-            PoliceAlertProcessJPanel papjp = new PoliceAlertProcessJPanel(userProcessContainer, a);
+            PoliceAlertProcessJPanel papjp = new PoliceAlertProcessJPanel(userProcessContainer, a, state);
             userProcessContainer.add("PoliceAlertProcessJPanel", papjp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

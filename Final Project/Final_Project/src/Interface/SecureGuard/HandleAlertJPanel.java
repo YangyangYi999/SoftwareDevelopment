@@ -150,7 +150,7 @@ public class HandleAlertJPanel extends javax.swing.JPanel {
         }
         else{
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
-            AlertProcessJPanel apjp = new AlertProcessJPanel(userProcessContainer, a);
+            AlertProcessJPanel apjp = new AlertProcessJPanel(userProcessContainer, a, state);
             userProcessContainer.add("AlertProcessJPanel", apjp);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

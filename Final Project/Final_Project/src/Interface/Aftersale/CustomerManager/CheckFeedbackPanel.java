@@ -8,6 +8,7 @@ package Interface.Aftersale.CustomerManager;
 import Business.Enterprise.Enterprise;
 import Business.Organization.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -113,7 +114,7 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
         jLabel4.setText("Fliter:");
 
         Com.setFont(new java.awt.Font("宋体", 0, 18)); // NOI18N
-        Com.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show all", "Show unhandled only" }));
+        Com.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show all", "Show Urgent only", "Show Unhandled only", " " }));
         Com.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComActionPerformed(evt);
@@ -183,17 +184,19 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
         }else{
             WorkRequest wr =( WorkRequest)messageTable.getValueAt(select, 2);
             wr.setStatus("Finished");
+            wr.setResolveDate(new Date());
             PopulateTable();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ComActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComActionPerformed
-        if(Com.getSelectedItem()!=null&&Com.getSelectedItem().equals(("Show unhandled only"))){
+        if(Com.getSelectedItem()!=null&&Com.getSelectedItem().equals(("Show Unhandled only"))){
             DefaultTableModel dtm = (DefaultTableModel)messageTable.getModel();
             dtm.setRowCount(0);
             for(WorkRequest wr: enterprise.getInboundworkQueue().getWorkRequestList()){
-                if(wr.getCustomer()!=null&&wr.getStatus().equals("Unhandled")){
+//                System.out.println(wr.getStatus());
+                if(wr.getCustomer()!=null&&!(wr.getStatus().equals("Finished"))){
                     Object[] row = new Object[3];
                     row[0] = wr.getCustomer().toString();
                     row[1] = wr.getStatus();
@@ -201,9 +204,21 @@ public class CheckFeedbackPanel extends javax.swing.JPanel {
                     dtm.addRow(row);
                 }
         }
+        }else if(Com.getSelectedItem()!=null&&Com.getSelectedItem().equals(("Show Urgent only"))){
+            DefaultTableModel dtm = (DefaultTableModel)messageTable.getModel();
+            dtm.setRowCount(0);
+            for(WorkRequest wr: enterprise.getInboundworkQueue().getWorkRequestList()){
+                if(wr.getCustomer()!=null&&wr.getStatus().equals("Urgent")){
+                    Object[] row = new Object[3];
+                    row[0] = wr.getCustomer().toString();
+                    row[1] = wr.getStatus();
+                    row[2] = wr;
+                    dtm.addRow(row);
+                }
+            }
         }else{
-        PopulateTable();
-        }
+             PopulateTable();
+                }
         // TODO add your handling code here:
     }//GEN-LAST:event_ComActionPerformed
 

@@ -36,6 +36,7 @@ public class OrganizationDirectory {
             case Equipment:org = new EquipmentManageOrganization(name); break;
             case Order:org = new OrderManageOrganization(name); break;
             case  AfterEquipment:org = new AfterSaleEquipment(name);break;
+            case DataManage: org = new DataManageOrganization(name);break;
         }
         this.organizationList.add(org);
     }
