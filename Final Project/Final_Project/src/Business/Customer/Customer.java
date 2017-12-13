@@ -6,6 +6,8 @@
 package Business.Customer;
 
 import Business.CustomerOrder.CustomerOrderDirectory;
+import Business.Equipment.MasterOrderCatalog;
+import Business.Equipment.Order;
 import Business.Organization.WorkQueue.WorkQueue;
 
 
@@ -18,6 +20,7 @@ public class Customer {
     private String password;
     private WorkQueue workQueue;
     private String email; 
+    private MasterOrderCatalog outmoc;
     private String Location;
 //    private CustomerOrderDirectory customerOrderDirectory;
 //
@@ -31,6 +34,9 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+    public MasterOrderCatalog getOutmoc() {
+        return outmoc;
     }
     
     public String getLocation() {
@@ -64,8 +70,10 @@ public class Customer {
     
     public Customer(){
         workQueue = new WorkQueue();
+        outmoc = new MasterOrderCatalog();
 //        this.customerOrderDirectory = new CustomerOrderDirectory();
     }
+    
     
     
     

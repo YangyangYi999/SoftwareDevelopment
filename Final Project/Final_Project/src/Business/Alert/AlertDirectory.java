@@ -5,6 +5,7 @@
  */
 package Business.Alert;
 
+import Business.Equipment.Equipment;
 import java.util.ArrayList;
 
 /**
@@ -20,6 +21,10 @@ public class AlertDirectory {
     public AlertDirectory(){
         this.alertList = new ArrayList();
     }
+
     
+    public void deleteAlert(Alert a){
+        alertList.remove(a);
+    }
     
 }

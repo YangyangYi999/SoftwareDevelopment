@@ -34,4 +34,6 @@ public class AfterSale extends Enterprise{
         list.add(Organization.Type.Equipment);
         return list;
     }
+
 }
+    

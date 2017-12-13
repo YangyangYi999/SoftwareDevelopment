@@ -29,9 +29,12 @@ public class OrganizationDirectory {
     public void addOrganization(String name,Organization.Type type){
         Organization org = null;
         switch(type){
+            case AlertManage: org = new AlertManageOrganization(name);break;
+            case AlertHandle: org = new AlertHandleOrganization(name);break;
             case Basic: org = new BasicOrganization(name); break;
             case Customer:org = new CustomerManageOrganization(name); break;
-            case Equipment:org = new EquipmentManageOrganization(name); break;   
+            case Equipment:org = new EquipmentManageOrganization(name); break;
+            case Order:org = new OrderManageOrganization(name); break;
         }
         this.organizationList.add(org);
     }

@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Network.Network;
 import Business.Organization.Employee.Employee;
 import Business.Organization.UserAccount.Role.SystemAdminRole;
 
@@ -23,10 +24,9 @@ public class ConfigureAEcoSystem {
         //have some employees 
         //create user account
         
-        
         Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
         SystemAdminRole role = new SystemAdminRole();
-        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee,role );       
+        system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, role);       
         return system;
     }
 }

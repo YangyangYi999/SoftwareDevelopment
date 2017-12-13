@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Equipment.EquipmentDirectory;
 import Business.Organization.BasicOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 public abstract class Enterprise extends BasicOrganization{
     private OrganizationDirectory organizationDirectory;
     private Type type;
-
     public void setType(Type type) {
         this.type = type;
     }
@@ -62,10 +62,12 @@ public abstract class Enterprise extends BasicOrganization{
         super(name);
         this.type= type;
         organizationDirectory = new OrganizationDirectory();
+        
     }
 
     
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
+    
 }

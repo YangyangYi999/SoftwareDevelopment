@@ -43,7 +43,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="stateCom" pref="162" max="32767" attributes="0"/>
+                                  <Component id="stateCom" max="32767" attributes="0"/>
                                   <Component id="usernameTxt" max="32767" attributes="0"/>
                                   <Component id="passwordTxt" alignment="0" max="32767" attributes="0"/>
                                   <Component id="confpwTxt" alignment="0" max="32767" attributes="0"/>

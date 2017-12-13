@@ -7,6 +7,11 @@ package Business.Enterprise;
 
 import Business.Alert.AlertDirectory;
 import Business.Organization.Organization;
+import Business.Organization.UserAccount.Role.PoliceOfficerRole;
+import Business.Organization.UserAccount.Role.PolicemanRole;
+import Business.Organization.UserAccount.Role.Role;
+import Business.Organization.UserAccount.Role.SecureGuardRole;
+import Business.Organization.UserAccount.Role.SecureOfficerRole;
 import java.util.ArrayList;
 
 /**
@@ -14,7 +19,7 @@ import java.util.ArrayList;
  * @author shinychenw
  */
 public class Secure extends Enterprise{
-       private AlertDirectory alertDirectory;
+    private AlertDirectory alertDirectory;
 
     public AlertDirectory getAlertDirectory() {
         return alertDirectory;
@@ -26,7 +31,12 @@ public class Secure extends Enterprise{
 
     @Override
     public ArrayList<Organization.Type> getSupportedOrg() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ArrayList<Organization.Type> list = new ArrayList();
+        list.add(Organization.Type.AlertManage);
+        list.add(Organization.Type.AlertHandle);
+        return list;
     }
+    
+    
        
 }
