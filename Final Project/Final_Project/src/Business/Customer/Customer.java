@@ -5,12 +5,8 @@
  */
 package Business.Customer;
 
-import Business.CustomerOrder.CustomerOrderDirectory;
 import Business.Equipment.MasterOrderCatalog;
-import Business.Equipment.Order;
 import Business.Organization.WorkQueue.WorkQueue;
-
-
 /**
  *
  * @author shinychenw

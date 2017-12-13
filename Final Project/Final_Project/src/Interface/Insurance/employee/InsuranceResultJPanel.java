@@ -188,6 +188,7 @@ public class InsuranceResultJPanel extends javax.swing.JPanel {
             a.setInsResult(jTextArea1.getText());
             a.setInsStatus("handled");
             JOptionPane.showMessageDialog(null,"Result successfully processed!");
+            
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

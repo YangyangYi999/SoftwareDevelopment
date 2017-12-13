@@ -184,6 +184,7 @@ public void populateTable(){
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
             a.setGuard(ua.getUsername());
             a.setStatus("waiting for handling");
+            JOptionPane.showMessageDialog(null, "Deliver successful!", "Warning", JOptionPane.WARNING_MESSAGE);
             populateTable();
         }
         

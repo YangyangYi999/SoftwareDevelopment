@@ -6,9 +6,7 @@
 package Business.Organization;
 
 import Business.Equipment.EquipmentDirectory;
-import Business.Organization.UserAccount.Role.AdminRole;
 import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
-import Business.Organization.UserAccount.Role.EquipmentManagerRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.UserAccount.Role.SupplierEquipmentManagerRole;
 import Business.Organization.WorkQueue.WorkQueue;

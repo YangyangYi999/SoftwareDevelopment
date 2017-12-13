@@ -204,6 +204,7 @@ public class ManageUnhandledInsuranceJPanel extends javax.swing.JPanel {
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
             a.setInsurance(ua.getUsername());
             a.setInsStatus("waiting for handling");
+            JOptionPane.showMessageDialog(null, "Deliver successful!", "Warning", JOptionPane.WARNING_MESSAGE);
             populateTable();
         }
     }//GEN-LAST:event_btnDeliverActionPerformed

@@ -209,6 +209,7 @@ public void populateTable(){
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
             a.setPolice(ua.getUsername());
             a.setPolStatus("waiting for handling");
+            JOptionPane.showMessageDialog(null, "Deliver successful!", "Warning", JOptionPane.WARNING_MESSAGE);
             populateTable();
         }
     }//GEN-LAST:event_btnDeliverActionPerformed

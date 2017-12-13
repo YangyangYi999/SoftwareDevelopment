@@ -194,6 +194,7 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
         // TODO add your handling code here:
         Order order = (Order)orderComboBox.getSelectedItem();
+        boolean flag = false;
         if("Waiting for confirm".equals(order.getStatus())){
             order.setStatus("Confirmed");
             lbStatus.setText(order.getStatus());
@@ -202,17 +203,19 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
                     for(Organization org:((Distributor)dis).getOrganizationDirectory().getOrganizationList()){
                         if(org instanceof EquipmentManageOrganization){
                             for(OrderItem oi:order.getOrderItemList()){
-                                if(((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size()!=0){
                                     for(int i =0;i<((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().size();i++){
                                         Equipment e = ((EquipmentManageOrganization) org).getEquipmentDirectory().getEquipmentList().get(i);
                                         if(e.getName().equals(oi.getEquipment().getName())){
                                             e.setStock(e.getStock()+oi.getQuatity());
+                                            flag = true;
+                                            break;
                                         }
                                     }
-                                }
-                                 else{
+                                    if(flag==false){
                                     ((EquipmentManageOrganization) org).getEquipmentDirectory().createEquipment(oi.getEquipment().getName(), oi.getQuatity(), oi.getEquipment().getPrice());
                                     }
+                                
+                                 
                             }
 
                         }

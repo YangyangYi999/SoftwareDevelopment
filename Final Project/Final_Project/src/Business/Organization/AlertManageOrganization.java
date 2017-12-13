@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package Business.Organization;
-
-import Business.Alert.AlertDirectory;
 import Business.Organization.UserAccount.Role.InsuranceEventManagerRole;
 import Business.Organization.UserAccount.Role.PoliceOfficerRole;
 import Business.Organization.UserAccount.Role.Role;

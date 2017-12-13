@@ -202,7 +202,6 @@ public class OrderProcessJPanel extends javax.swing.JPanel {
             order.setStatus("Confirmed");
             lbStatus.setText(order.getStatus());
             JOptionPane.showMessageDialog(null, "Order confirmed Successfully", "Warning", JOptionPane.INFORMATION_MESSAGE);
-
         }
         else if ("Confirmed".equals(order.getStatus())){
            JOptionPane.showMessageDialog(null, "Order has been confirmed already", "Warning", JOptionPane.INFORMATION_MESSAGE);

@@ -13,6 +13,7 @@ import Business.Organization.UserAccount.UserAccount;
 import Business.Organization.UserAccount.UserAccountDirectory;
 import Business.State.State;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -289,7 +290,7 @@ public class ManageStateAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-          CardLayout layout = (CardLayout)container.getLayout();
+        CardLayout layout = (CardLayout)container.getLayout();
         container.remove(this);
         layout.previous(container);
         // TODO add your handling code here:
