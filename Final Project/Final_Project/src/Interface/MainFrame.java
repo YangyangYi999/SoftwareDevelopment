@@ -161,8 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
         }else{
             String user = username.getText();
             String pw = String.valueOf(password.getPassword());
-            username.setEnabled(false);
-            password.setEnabled(false);
+            
             State state = null;
             Organization organization = null;
             Enterprise enterprise = null;
@@ -219,6 +218,8 @@ public class MainFrame extends javax.swing.JFrame {
                       layout.next(container);
                       jButton1.setEnabled(false);
                         jButton2.setEnabled(true);
+                        username.setEnabled(false);
+            password.setEnabled(false);
                   }
                   else{
                       JOptionPane.showMessageDialog(this,"Invalid");
@@ -230,6 +231,8 @@ public class MainFrame extends javax.swing.JFrame {
                        layout.next(container);
                        jButton1.setEnabled(false);
                         jButton2.setEnabled(true);
+                        username.setEnabled(false);
+                        password.setEnabled(false);
                   }
             }
         

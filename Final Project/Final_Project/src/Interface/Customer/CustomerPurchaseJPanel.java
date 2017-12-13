@@ -84,8 +84,6 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         providerCom = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        Amount = new javax.swing.JSpinner();
         btnOrder = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -124,11 +122,6 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(Table);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel3.setText("Select to purchase:");
-
-        Amount.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-
         btnOrder.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         btnOrder.setText("Order");
         btnOrder.addActionListener(new java.awt.event.ActionListener() {
@@ -160,10 +153,6 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
                         .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(222, 222, 222)))
                 .addContainerGap())
@@ -191,10 +180,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Amount, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addComponent(btnOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -219,26 +205,28 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
 
     private void btnOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrderActionPerformed
         int select = Table.getSelectedRow();
-        int amount = (Integer)Amount.getValue();
         if(select<0){
             JOptionPane.showMessageDialog(this, "Please select an offer first!");
         }
-        else if(amount==0){
-            JOptionPane.showMessageDialog(this, "The amount should not be Zero!");
-        }else{
+        else{
             Equipment e = (Equipment)Table.getValueAt(select, 0);
-            e.setLocation(customer.getLocation());
-            e.setStatus("normal");
+            Equipment ne = new Equipment(e.getName());
+           
+            ne.setInsurance(e.getInsurance());
+            ne.setSecure(e.getSecure());
+            ne.setPrice(e.getPrice());
+            ne.setLocation(customer.getLocation());
+            ne.setStatus("normal");
             Provider p = (Provider)providerCom.getSelectedItem();
             Order order = new Order();
             order.setName(customer.getUsername());
-            order.addOrderItem(e, amount, e.getPrice());
+            order.addOrderItem(ne, 1, ne.getPrice());
             order.setStatus("Waiting for confirm"); 
             customer.getOutmoc().addOrder(order);
-            e.setStock(e.getStock()-amount);
+            e.setStock(e.getStock()-1);
             for(Organization o: state.getEnterpriseDirectory().getEnterpriseList()){
                 if(o instanceof AfterSale)
-                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(e);
+                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(ne);
             }
             for(Organization org:p.getOrganizationDirectory().getOrganizationList()){
                 if(org instanceof OrderManageOrganization){
@@ -246,10 +234,10 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                     omo.getInmoc().addOrder(order);
                 }
             }
-            e.startTimer(customer);
+            ne.startTimer(customer);
             for(Organization o: state.getEnterpriseDirectory().getEnterpriseList()){
                 if(o instanceof AfterSale)
-                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(e);
+                    ((AfterSale) o).getEquipmentDirectory().getEquipmentList().add(ne);
             }
             JOptionPane.showMessageDialog(this, "Successfully orderd !");
             populateTable(p);
@@ -259,13 +247,11 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner Amount;
     private javax.swing.JTable Table;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnOrder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox providerCom;
     // End of variables declaration//GEN-END:variables

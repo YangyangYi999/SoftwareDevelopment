@@ -170,7 +170,7 @@ public class Equipment {
         System.out.print("#");
         if(this.status.equals("normal")){
             double i = Math.random()*100;
-            if(i>80){
+            if(i>20){
                 this.status = "abnormal";
             }
         }
