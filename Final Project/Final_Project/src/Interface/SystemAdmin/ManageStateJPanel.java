@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import Business.State.State;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -215,8 +216,12 @@ public class ManageStateJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_networkComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         CardLayout layout = (CardLayout)container.getLayout();
         container.remove(this);
+        Component[] componentArray = container.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) container.getLayout();
         layout.previous(container);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
