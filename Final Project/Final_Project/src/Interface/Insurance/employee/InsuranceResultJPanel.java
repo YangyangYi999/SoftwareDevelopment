@@ -6,6 +6,8 @@
 package Interface.Insurance.employee;
 
 import Business.Alert.Alert;
+import Business.Equipment.Order;
+import Business.Equipment.OrderItem;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -27,8 +29,12 @@ public class InsuranceResultJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.a = a;
         aIDtxt.setText(String.valueOf(a.getAlertID()));
-        equipNameTxt.setText(a.getEquipment().getName());
-        addressTxt.setText(a.getEquipment().getCustomer().getLocation());
+        for(Order order:a.getCustomer().getOutmoc().getOrderCatalog()){
+                for(OrderItem oi: order.getOrderItemList()){    
+                    equipNameTxt.setText(oi.getEquipment().getName());
+                }
+            }
+        addressTxt.setText(a.getCustomer().getLocation());
     }
 
     /**

@@ -7,6 +7,8 @@ package Interface.PoliceOfficer;
 
 import Business.Alert.Alert;
 import Business.Enterprise.Police;
+import Business.Equipment.Order;
+import Business.Equipment.OrderItem;
 import Business.Organization.AlertHandleOrganization;
 import Business.Organization.AlertManageOrganization;
 import Business.Organization.Organization;
@@ -46,6 +48,7 @@ public class PoliceManageUndeliveredAlertJpanel extends javax.swing.JPanel {
 //            }
             }
         }
+        populateTable();
     }
 
     /**
@@ -69,12 +72,12 @@ public class PoliceManageUndeliveredAlertJpanel extends javax.swing.JPanel {
 
         jTableAlert.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Equipment ID", "Date", "Address"
+                "Customer Name ", "Date", "Address", "Equipment ID"
             }
         ));
         jScrollPane1.setViewportView(jTableAlert);
@@ -168,10 +171,15 @@ public void populateTable(){
         
         for (Alert a : police.getAlertDirectory().getAlertList()){
             if("unhandled".equals(a.getPolStatus())){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = a;
             row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getCustomer().getLocation(); 
+            for(Order o:a.getCustomer().getOutmoc().getOrderCatalog()){
+                for(OrderItem oi:o.getOrderItemList()){
+                    row[3] = oi.getEquipment().getName();
+                }
+            }
             model.addRow(row);
             }
         }

@@ -6,6 +6,8 @@
 package Business.Organization;
 
 import Business.Alert.AlertDirectory;
+import Business.Organization.UserAccount.Role.InsuranceEventManagerRole;
+import Business.Organization.UserAccount.Role.PoliceOfficerRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.UserAccount.Role.SecureOfficerRole;
 import java.util.ArrayList;
@@ -24,6 +26,8 @@ public class AlertManageOrganization extends Organization{
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roleList = new ArrayList<>();
         roleList.add(new SecureOfficerRole());
+        roleList.add(new InsuranceEventManagerRole());
+        roleList.add(new PoliceOfficerRole());
         return roleList;        
     }
     

@@ -102,7 +102,7 @@ public class ProviderEquipmentManagerWorkAreaJPanel extends javax.swing.JPanel {
     private void btnMngInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMngInventoryActionPerformed
         // TODO add your handling code here:
 
-        ManageProviderEquipmentJPanel mpej = new ManageProviderEquipmentJPanel(userProcessContainer, equipmentManageOrganization);
+        ManageProviderEquipmentJPanel mpej = new ManageProviderEquipmentJPanel(userProcessContainer, equipmentManageOrganization, state);
         userProcessContainer.add("ManageProviderEquipmentInventoryJPanel", mpej);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

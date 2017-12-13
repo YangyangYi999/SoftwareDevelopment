@@ -5,6 +5,7 @@
  */
 package Business.Alert;
 
+import Business.Customer.Customer;
 import Business.Equipment.Equipment;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ import java.util.Date;
  * @author BoyangWei
  */
 public class Alert {
-    private Equipment equipment;
+    private Customer customer;
     private Date date;
     private String status;
     private int alertID;
@@ -27,6 +28,15 @@ public class Alert {
     private String police;
     private String polResult;
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    
     public String getPolStatus() {
         return polStatus;
     }
@@ -97,9 +107,6 @@ public class Alert {
         return alertID;
     }
     
-    public Equipment getEquipment() {
-        return equipment;
-    }
 
     public Date getDate() {
         return date;
@@ -113,16 +120,18 @@ public class Alert {
         this.status = status;
     }
     
-    public Alert(Equipment equ){
+    public Alert(Customer customer){
         count++;
         alertID = count;
-        this.equipment = equ;
+        this.customer = customer;
         this.date = new Date();
         this.status = "Unhandled";
+        this.insStatus="";
+        this.polStatus="";
         this.message = "";
     }
     @Override
     public String toString(){
-        return this.equipment.getName();
+        return this.customer.getUsername();
     }
 }

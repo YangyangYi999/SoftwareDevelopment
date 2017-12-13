@@ -140,7 +140,7 @@ public class ManageHandledInsuranceJPanel extends javax.swing.JPanel {
             Object[] row = new Object[3];
             row[0] = a;
             row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getCustomer().getLocation();          
             model.addRow(row);
             }
         }

@@ -36,6 +36,8 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
         this.secure = secure;
         this.state= state;
         this.userProcessContainer = userProcessContainer;
+//        secure.getAlertDirectory().getAlertList().clear();
+        populateTable();
         for(Organization o : secure.getOrganizationDirectory().getOrganizationList()){
             if(o instanceof AlertHandleOrganization){
                 jComboBoxOrg.addItem(o);
@@ -72,7 +74,7 @@ public class ManageUndeliveredAlertJpanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Equipment ID", "Date", "Address"
+                "Customer Name", "Date", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTableAlert);
@@ -162,11 +164,11 @@ public void populateTable(){
         model.setRowCount(0);
         
         for (Alert a : secure.getAlertDirectory().getAlertList()){
-            if("unhandled".equals(a.getStatus())){
+            if("Unhandled".equals(a.getStatus())){
             Object[] row = new Object[3];
             row[0] = a;
             row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getCustomer().getLocation();          
             model.addRow(row);
             }
         }

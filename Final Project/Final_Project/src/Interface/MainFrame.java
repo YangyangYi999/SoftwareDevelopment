@@ -93,7 +93,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         jButton3.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.shadow"));
         jButton3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton3.setText("Sign in");
+        jButton3.setText("Sign up");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -149,7 +149,7 @@ public class MainFrame extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
 
         pack();

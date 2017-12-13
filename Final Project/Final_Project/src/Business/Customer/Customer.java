@@ -70,6 +70,7 @@ public class Customer {
     
     public Customer(){
         workQueue = new WorkQueue();
+        outmoc = new MasterOrderCatalog();
 //        this.customerOrderDirectory = new CustomerOrderDirectory();
     }
     
