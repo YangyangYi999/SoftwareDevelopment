@@ -6,8 +6,12 @@
 package Interface.SecureGuard;
 
 import Business.Alert.Alert;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Statistic;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
+import Business.State.State;
+import HelperClasses.Map;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -24,8 +28,10 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Alert a;
-    AlertProcessJPanel(JPanel userProcessContainer, Alert a) {
+    State state;
+    AlertProcessJPanel(JPanel userProcessContainer, Alert a,State state) {
         initComponents();
+        this.state = state;
         this.a = a;
         this.userProcessContainer = userProcessContainer;
         aIDtxt.setText(String.valueOf(a.getAlertID()));
@@ -58,6 +64,7 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
         equipNameTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         addressTxt = new javax.swing.JTextField();
+        btnViewMap = new javax.swing.JButton();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -100,6 +107,13 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
         addressTxt.setEditable(false);
         addressTxt.setEnabled(false);
 
+        btnViewMap.setText("View address  on Google map");
+        btnViewMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewMapActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,7 +148,9 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel5)
                                     .addGap(18, 18, 18)
                                     .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(27, 27, 27)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnViewMap)
+                            .addContainerGap()))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(199, 199, 199))))
@@ -157,8 +173,9 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel5)
+                    .addComponent(btnViewMap))
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,15 +204,27 @@ public class AlertProcessJPanel extends javax.swing.JPanel {
         else{
             a.setMessage(jTextArea1.getText());
             a.setStatus("handled");
+            for(Enterprise en : state.getEnterpriseDirectory().getEnterpriseList()){
+                if(en instanceof Statistic){
+                    Statistic st = (Statistic)en;
+                    st.getSecureAlertDirectory().getAlertList().add(a);
+                }
+            }
             JOptionPane.showMessageDialog(null,"Result successfully processed!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnViewMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMapActionPerformed
+        // TODO add your handling code here:
+        Map.showMap();
+    }//GEN-LAST:event_btnViewMapActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aIDtxt;
     private javax.swing.JTextField addressTxt;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnViewMap;
     private javax.swing.JTextField equipNameTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

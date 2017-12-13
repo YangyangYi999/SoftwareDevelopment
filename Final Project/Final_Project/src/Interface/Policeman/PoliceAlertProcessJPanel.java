@@ -6,8 +6,12 @@
 package Interface.Policeman;
 import javax.swing.JOptionPane;
 import Business.Alert.Alert;
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.Statistic;
 import Business.Equipment.Order;
 import Business.Equipment.OrderItem;
+import Business.State.State;
+import HelperClasses.Map;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -23,8 +27,10 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
      */
     JPanel userProcessContainer;
     Alert a;
-    PoliceAlertProcessJPanel(JPanel userProcessContainer, Alert a) {
+    State state;
+    PoliceAlertProcessJPanel(JPanel userProcessContainer, Alert a, State state) {
         initComponents();
+        this.state = state;
         this.a = a;
         this.userProcessContainer = userProcessContainer;
         aIDtxt.setText(String.valueOf(a.getAlertID()));
@@ -57,6 +63,7 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
         jTextArea1 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btnViewMap = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,6 +106,13 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnViewMap.setText("View address  on Google map");
+        btnViewMap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewMapActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +150,8 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel5)
                                             .addGap(18, 18, 18)
                                             .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(27, 27, 27)))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(btnViewMap)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(199, 199, 199)))))
@@ -160,8 +175,9 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel5)
+                    .addComponent(btnViewMap))
+                .addGap(30, 30, 30)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,6 +195,12 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
         else{
             a.setPolResult(jTextArea1.getText());
             a.setPolStatus("handled");
+            for(Enterprise en : state.getEnterpriseDirectory().getEnterpriseList()){
+                if(en instanceof Statistic){
+                    Statistic st = (Statistic)en;
+                    st.getPoliceAlertDirectory().getAlertList().add(a);
+                }
+            }
             JOptionPane.showMessageDialog(null,"Result successfully processed!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -194,11 +216,16 @@ public class PoliceAlertProcessJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnViewMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewMapActionPerformed
+        Map.showMap();
+    }//GEN-LAST:event_btnViewMapActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField aIDtxt;
     private javax.swing.JTextField addressTxt;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnViewMap;
     private javax.swing.JTextField equipNameTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

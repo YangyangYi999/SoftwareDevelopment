@@ -9,6 +9,7 @@ import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Statistic;
 import Business.Network.Network;
 import Business.Organization.WorkQueue.WorkRequest;
 import Business.State.State;
@@ -137,14 +138,20 @@ public class ContactAftersalePanel extends javax.swing.JPanel {
 //                }
 //            }
         for(Enterprise e: state.getEnterpriseDirectory().getEnterpriseList()){
+            WorkRequest request = new WorkRequest();
             if(e instanceof AfterSale){
-                WorkRequest request = new WorkRequest();
                 request.setMessage(message.getText());
                 request.setCustomer(customer);
                 request.setStatus("Unhandled");
                 e.getInboundworkQueue().getWorkRequestList().add(request);
                 customer.getWorkQueue().getWorkRequestList().add(request);
             }
+            if(e instanceof Statistic){
+                request.setMessage(message.getText());
+                request.setCustomer(customer);
+                request.setStatus("Unhandled");
+                ((Statistic) e).getCustomerRequestDirectory().getWorkRequestList().add(request);
+           }
         }
         JOptionPane.showMessageDialog(this, "Done");
         }
