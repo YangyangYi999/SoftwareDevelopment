@@ -11,6 +11,8 @@ import static Business.Enterprise.Enterprise.Type.Police;
 import Business.Enterprise.Insurance;
 import Business.Enterprise.Police;
 import Business.Enterprise.Secure;
+import Business.Equipment.Order;
+import Business.Equipment.OrderItem;
 import Business.Organization.AlertManageOrganization;
 import Business.State.State;
 import java.awt.CardLayout;
@@ -49,7 +51,7 @@ public class ManageHandledAlertJPanel extends javax.swing.JPanel {
             Object[] row = new Object[3];
             row[0] = a;
             row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getCustomer().getLocation();          
             model.addRow(row);
             }
         }
@@ -83,7 +85,7 @@ public class ManageHandledAlertJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Equipment ID", "Date", "Address"
+                "Customer Name", "Date", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTableAlert);
@@ -241,11 +243,30 @@ public class ManageHandledAlertJPanel extends javax.swing.JPanel {
         if(row<0){
             JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
+        
         else{
             Alert a = (Alert)jTableAlert.getValueAt(row, 0);
+//              for(Enterprise in:state.getEnterpriseDirectory().getEnterpriseList()){
+//                if(in instanceof Insurance){
+//                    Insurance ins;
+//                    ins = (Insurance) in;
+//                    a.setPolStatus("unhandled");
+//                    ins.getAlertDirectory().getAlertList().add(a);
+//                }
+//            }
+            if(a.getInsStatus()==""){
+                   
             a.setInsStatus("unhandled");
-            a.getEquipment().getInsurance().getAlertDirectory().getAlertList().add(a);
-            
+            for(Order order:a.getCustomer().getOutmoc().getOrderCatalog()){
+                for(OrderItem oi: order.getOrderItemList()){    
+                    oi.getEquipment().getInsurance().getAlertDirectory().getAlertList().add(a);
+                }
+            }
+        }
+            else{
+                JOptionPane.showMessageDialog(null, "This alert has been sent already!!", "Warning", JOptionPane.WARNING_MESSAGE);
+
+            }
         }
     }//GEN-LAST:event_btnSend1ActionPerformed
 

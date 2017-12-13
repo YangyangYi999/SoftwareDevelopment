@@ -128,8 +128,8 @@ public class ProcessInsuranceJPanel extends javax.swing.JPanel {
             Object[] row = new Object[4];
             row[0] = a;
             row[1] = a.getAlertID();
-            row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getDate();
+            row[3] = a.getCustomer().getLocation();          
             model.addRow(row);
             }
         }

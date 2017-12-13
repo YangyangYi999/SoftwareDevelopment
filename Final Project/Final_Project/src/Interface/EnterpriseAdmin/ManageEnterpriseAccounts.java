@@ -8,17 +8,28 @@ package Interface.EnterpriseAdmin;
 import Business.EcoSystem;
 import Business.Enterprise.Distributor;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.Insurance;
+import Business.Enterprise.Police;
 import Business.Enterprise.Provider;
+import Business.Enterprise.Secure;
 import Business.Enterprise.Supplier;
+import Business.Organization.AlertHandleOrganization;
+import Business.Organization.AlertManageOrganization;
 import Business.Organization.Employee.Employee;
 import Business.Organization.EquipmentManageOrganization;
 import Business.Organization.OrderManageOrganization;
 import Business.Organization.Organization;
 import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.InsuranceEmployeeRole;
+import Business.Organization.UserAccount.Role.InsuranceEventManagerRole;
 import Business.Organization.UserAccount.Role.OrderManagerRole;
+import Business.Organization.UserAccount.Role.PoliceOfficerRole;
+import Business.Organization.UserAccount.Role.PolicemanRole;
 import Business.Organization.UserAccount.Role.ProviderEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.ProviderOrderManagerRole;
 import Business.Organization.UserAccount.Role.Role;
+import Business.Organization.UserAccount.Role.SecureGuardRole;
+import Business.Organization.UserAccount.Role.SecureOfficerRole;
 import Business.Organization.UserAccount.Role.SupplierEquipmentManagerRole;
 import Business.Organization.UserAccount.Role.SupplierOrderConfirmRole;
 import Business.Organization.UserAccount.UserAccount;
@@ -94,6 +105,24 @@ public class ManageEnterpriseAccounts extends javax.swing.JPanel {
         }
         else if(org instanceof OrderManageOrganization && enterprise instanceof Provider){
             roleCom.addItem(new ProviderOrderManagerRole());
+        }
+        else if(org instanceof AlertManageOrganization && enterprise instanceof Insurance){
+            roleCom.addItem(new InsuranceEventManagerRole());
+        }
+        else if(org instanceof AlertHandleOrganization && enterprise instanceof Insurance){
+            roleCom.addItem(new InsuranceEmployeeRole());
+        }
+        else if(org instanceof AlertManageOrganization && enterprise instanceof Police){
+            roleCom.addItem(new PoliceOfficerRole());
+        }
+        else if(org instanceof AlertHandleOrganization && enterprise instanceof Police){
+            roleCom.addItem(new PolicemanRole());
+        }
+        else if(org instanceof AlertManageOrganization && enterprise instanceof Secure){
+            roleCom.addItem(new SecureOfficerRole());
+        }
+        else if(org instanceof AlertHandleOrganization && enterprise instanceof Secure){
+            roleCom.addItem(new SecureGuardRole());
         }
         else{
             for(Role role: org.getSupportedRole()){

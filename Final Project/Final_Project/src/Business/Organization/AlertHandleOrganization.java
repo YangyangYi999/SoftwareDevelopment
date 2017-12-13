@@ -8,6 +8,8 @@ package Business.Organization;
 import Business.Alert.AlertDirectory;
 import Business.Organization.UserAccount.Role.CustomerManagerRole;
 import Business.Organization.UserAccount.Role.DistributorEquipmentManagerRole;
+import Business.Organization.UserAccount.Role.InsuranceEmployeeRole;
+import Business.Organization.UserAccount.Role.PolicemanRole;
 import Business.Organization.UserAccount.Role.Role;
 import Business.Organization.UserAccount.Role.SecureGuardRole;
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class AlertHandleOrganization extends Organization{
     public ArrayList<Role> getSupportedRole() {       
         ArrayList<Role> roleList = new ArrayList<>();
         roleList.add(new SecureGuardRole());
+        roleList.add(new InsuranceEmployeeRole());
+        roleList.add(new PolicemanRole());
         return roleList;    
     }
     

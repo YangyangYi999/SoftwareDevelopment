@@ -5,6 +5,7 @@
  */
 package Interface.Aftersale.EquipmentManager;
 
+import Business.Alert.Alert;
 import Business.Enterprise.AfterSale;
 import Business.Enterprise.Enterprise;
 import Business.Equipment.Equipment;
@@ -36,8 +37,10 @@ public class CheckEquimentStatusJPanel extends javax.swing.JPanel {
         for(Equipment e : ((AfterSale)enterprise).getEquipmentDirectory().getEquipmentList()){
             Object[] row = new Object[4];
             row[0] = e;
-            row[1] = (e.getCustomer()==null ? null:e.getCustomer());
-            row[2] = (e.getCustomer()==null ? null:e.getCustomer().getLocation());
+            for(Alert a:e.getAlertDirectory().getAlertList()){
+                row[1] = (a.getCustomer()==null ? null:a.getCustomer());
+                row[2] = (a.getCustomer()==null ? null:a.getCustomer().getLocation());
+            }
             row[3] = e.getStatus();
             dtm.addRow(row);
         }

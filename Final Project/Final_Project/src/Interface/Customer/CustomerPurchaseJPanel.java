@@ -242,6 +242,7 @@ public class CustomerPurchaseJPanel extends javax.swing.JPanel {
                     omo.getInmoc().addOrder(order);
                 }
             }
+            e.startTimer(customer);
             JOptionPane.showMessageDialog(this, "Successfully orderd !");
             populateTable(p);
         }

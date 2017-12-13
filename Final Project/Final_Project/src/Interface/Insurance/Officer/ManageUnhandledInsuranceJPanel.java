@@ -38,6 +38,9 @@ public class ManageUnhandledInsuranceJPanel extends javax.swing.JPanel {
     ManageUnhandledInsuranceJPanel(JPanel userProcessContainer, AlertManageOrganization alertManageOrganization, Insurance insurance, State state) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.alertManageOrganization = alertManageOrganization;
+        this.insurance = insurance;
+         this.state = state;       
         for (Organization org : insurance.getOrganizationDirectory().getOrganizationList()){
             if(org instanceof AlertHandleOrganization){
                 jComboBoxOrg.addItem(org);
@@ -58,7 +61,7 @@ public class ManageUnhandledInsuranceJPanel extends javax.swing.JPanel {
             Object[] row = new Object[3];
             row[0] = a;
             row[1] = a.getDate();
-            row[2] = a.getEquipment().getCustomer().getLocation();          
+            row[2] = a.getCustomer().getLocation();          
             model.addRow(row);
             }
         }
